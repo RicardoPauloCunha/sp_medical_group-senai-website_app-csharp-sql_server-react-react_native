@@ -36,7 +36,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
-        // Cadastra uma Consulta
+        // Cadastra uma nova Consulta
         [HttpPost]
         public IActionResult Post(Consultas consultaRecebida)
         {
@@ -58,7 +58,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
         {
             try
             {
-                Consultas consultaBuscada = ConsultasRepositorio.Listar().Find(c => c.Id == consultaRecebida.Id);
+                Consultas consultaBuscada = ConsultasRepositorio.BuscarConsulta(consultaRecebida.Id);
 
                 if (consultaBuscada == null)
                 {
@@ -81,7 +81,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
         {
             try
             {
-                Consultas consultaBuscada = ConsultasRepositorio.Listar().Find(c => c.Id == consultaId);
+                Consultas consultaBuscada = ConsultasRepositorio.BuscarConsulta(consultaId);
 
                 if (consultaBuscada == null)
                 {
@@ -99,12 +99,19 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
         }
 
         // Lista uma Consulta especifica
-        [HttpGet("BuscarConsulta/{consultaId}")]
+        [HttpGet("/BuscarConsultas/{consultaId}")]
         public IActionResult GetConsulta(int consultaId)
         {
             try
             {
-                return Ok();
+                Consultas consultaBuscada = ConsultasRepositorio.BuscarConsulta(consultaId);
+
+                if (consultaBuscada == null)
+                {
+                    return NotFound(new { mensagem = "Consulta não encontrada!" });
+                }
+
+                return Ok(consultaBuscada);
             }
             catch (Exception)
             {
@@ -112,13 +119,24 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
-        // Lista todas as Consultas correspondentes a um médico
-        [HttpGet("BuscarConsultasDeMedico/{medicoId}")]
+        // Lista todas as Consultas referentes a um médico
+        [HttpGet("/BuscarConsultasDeMedico/{medicoId}")]
         public IActionResult GetConsultasDeMedico(int medicoId)
         {
             try
             {
-                return Ok();
+                List<Consultas> consultasMedico = ConsultasRepositorio.BuscarConsultasDeMedico(medicoId);
+
+                if (consultasMedico == null)
+                {
+                    return NotFound(new { mensagem = "Não foram encotradas consultas referentes a esse medico." });
+                }
+                else if (consultasMedico.Count() == 0)
+                {
+                    return Ok(new { mensagem = "Medico não possui nenhuma consulta agendada." });
+                }
+
+                return Ok(consultasMedico);
             }
             catch (Exception)
             {
@@ -126,13 +144,24 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
-        // Listar todas as Consultas correspondentes a um paciente
-        [HttpGet("BuscarConsultasDePaciente/{pacienteId}")]
-        public IActionResult GetConsultasDePaciente(int pacienteId)
+        // Listar todas as Consultas referentes a um paciente
+        [HttpGet("/BuscarConsultasDePaciente/{prontuariosId}")]
+        public IActionResult GetConsultasDePaciente(int prontuariosId)
         {
             try
             {
-                return Ok();
+                List<Consultas> consultasPaciente = ConsultasRepositorio.BuscarConsultasDePaciente(prontuariosId);
+
+                if (consultasPaciente == null)
+                {
+                    return NotFound(new { mensagem = "Não foram encotradas consultas referentes a esse paciente." });
+                }
+                else if (consultasPaciente.Count() == 0)
+                {
+                    return Ok(new { mensagem = "Paciente não possui nenhuma consulta agendada." });
+                }
+
+                return Ok(consultasPaciente);
             }
             catch (Exception)
             {

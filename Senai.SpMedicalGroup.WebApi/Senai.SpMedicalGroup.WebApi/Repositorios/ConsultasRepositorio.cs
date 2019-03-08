@@ -9,14 +9,17 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
 {
     public class ConsultasRepositorio : IConsultasRepositorio
     {
+        // Atualiza uma Consulta
         public void Alterar(Consultas consultaRecebida)
         {
             using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
             {
                 ctx.Consultas.Update(consultaRecebida);
+                ctx.SaveChanges();
             }
         }
 
+        // Lista uma Consulta especifica
         public Consultas BuscarConsulta(int consultaId)
         {
             Consultas consultaBuscada = new Consultas();
@@ -29,16 +32,33 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             return consultaBuscada;
         }
 
+        // Lista todas as Consulta referentes a um Medico
         public List<Consultas> BuscarConsultasDeMedico(int medicoId)
         {
-            throw new NotImplementedException();
+            List<Consultas> consultasMedico = new List<Consultas>();
+
+            using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
+            {
+                consultasMedico = ctx.Consultas.ToList().FindAll(c => c.IdMedico == medicoId);
+            }
+
+            return consultasMedico;
         }
 
-        public List<Consultas> BuscarConsultasDePaciente(int Paciente)
+        // Lista todas as Consulta referentes a um Paciente
+        public List<Consultas> BuscarConsultasDePaciente(int prontuarioId)
         {
-            throw new NotImplementedException();
+            List<Consultas> consultasPaciente = new List<Consultas>();
+
+            using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
+            {
+                consultasPaciente = ctx.Consultas.ToList().FindAll(c => c.IdProntuario == prontuarioId);
+            }
+
+            return consultasPaciente;
         }
 
+        // Cadastra uma nova Consulta
         public void Cadastrar(Consultas consultaRecebida)
         {
             using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
@@ -48,14 +68,17 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             }
         }
 
+        // Deleta um Consulta
         public void Deletar(Consultas consulta)
         {
             using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
             {
                 ctx.Consultas.Remove(consulta);
+                ctx.SaveChanges();
             }
         }
 
+        // Lista todas as Consultas
         public List<Consultas> Listar()
         {
             List<Consultas> consultas = new List<Consultas>();
