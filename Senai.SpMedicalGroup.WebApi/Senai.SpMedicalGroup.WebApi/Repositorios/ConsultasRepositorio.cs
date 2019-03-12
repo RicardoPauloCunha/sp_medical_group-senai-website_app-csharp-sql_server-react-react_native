@@ -19,30 +19,6 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             }
         }
 
-        // Altera a descricao daConsulta
-        public void AlterarDescricaoConsulta(Consultas consultaRecebida, string descricao)
-        {
-            consultaRecebida.Descricao = descricao;
-
-            using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
-            {
-                ctx.Consultas.Update(consultaRecebida);
-                ctx.SaveChanges();
-            }
-        }
-
-        // Altera a situacao da Consulta
-        public void AlterarSituacaoConsulta(Consultas consultaRecebida, int idSituacao)
-        {
-            consultaRecebida.IdSituacao = idSituacao;
-
-            using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
-            {
-                ctx.Consultas.Update(consultaRecebida);
-                ctx.SaveChanges();
-            }
-        }
-
         // Lista uma Consulta especifica
         public Consultas BuscarConsulta(int consultaId)
         {

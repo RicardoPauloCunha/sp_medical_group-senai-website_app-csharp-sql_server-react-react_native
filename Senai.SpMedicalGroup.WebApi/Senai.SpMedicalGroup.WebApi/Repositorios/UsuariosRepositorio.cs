@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Senai.SpMedicalGroup.WebApi.Domains;
 using Senai.SpMedicalGroup.WebApi.Interfaces;
+using Senai.SpMedicalGroup.WebApi.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -80,5 +81,16 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             return usuarios;
         }
 
+        public Usuarios Logar(LoginViewModel login)
+        {
+            Usuarios usuarioLogado = new Usuarios();
+
+            using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
+            {
+                usuarioLogado = ctx.Usuarios.ToList().Find(u => u.Email == login.Email && u.Senha == login.Senha);
+            }
+
+            return usuarioLogado;
+        }
     }
 }

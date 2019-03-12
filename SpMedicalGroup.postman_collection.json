@@ -1,0 +1,459 @@
+{
+	"variables": [],
+	"info": {
+		"name": "SpMedicalGroup",
+		"_postman_id": "a14aba71-6d5d-e789-7cd5-5d289211310c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Consultas",
+			"description": "",
+			"item": [
+				{
+					"name": "Listar.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Consultas",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar.Post",
+					"request": {
+						"url": "http://localhost:5000/api/Consultas",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idProntuario\": 1,\n    \"idMedico\": 3,\n    \"dataAgendada\": \"2019-03-07\",\n    \"horaAgendada\": \"17:00:00\",\n    \"idSituacao\": 1,\n    \"descricao\": \"Exames de rotina\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar.Put",
+					"request": {
+						"url": "http://localhost:5000/api/Consultas",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 9,\n\t\"idProntuario\": 1,\n    \"idMedico\": 2,\n    \"dataAgendada\": \"2019-03-18\",\n    \"horaAgendada\": \"20:00:00\",\n    \"idSituacao\": 1,\n    \"descricao\": \"Exames de rotina completa\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar.Delete",
+					"request": {
+						"url": "http://localhost:5000/api/Consultas/8",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ListaUmaConsulta.Get",
+					"request": {
+						"url": "http://localhost:5000/BuscarConsultas/9",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ListarConsultasDeMedicos.Get",
+					"request": {
+						"url": "http://localhost:5000/BuscarConsultasDeMedico/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ListarConsultasDePaciente.Get",
+					"request": {
+						"url": "http://localhost:5000/BuscarConsultasDePaciente/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Medicos",
+			"description": "",
+			"item": [
+				{
+					"name": "Listar.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Medicos",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar.Post",
+					"request": {
+						"url": "http://localhost:5000/api/Medicos",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Ricardo Paulo\",\n    \"crm\": \"66663-SP\",\n    \"idEspecialidade\": 15,\n    \"idUsuario\": 15,\n    \"idClinica\": 1,\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarUmMedico.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Medicos/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar.Put",
+					"request": {
+						"url": "http://localhost:5000/api/Medicos",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 4,\n    \"nome\": \"Ricardo Paulo\",\n    \"crm\": \"66663-SP\",\n    \"idEspecialidade\": 10,\n    \"idUsuario\": 15,\n    \"idClinica\": 1,\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar.Delete",
+					"request": {
+						"url": "http://localhost:5000/api/Medicos/4",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pacientes",
+			"description": "",
+			"item": [
+				{
+					"name": "Listar.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Prontuarios",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarUmProntuario.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Prontuarios/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar.Post",
+					"request": {
+						"url": "http://localhost:5000/api/Prontuarios",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Ricardo Paulo\",\n    \"rg\": \"504.736.948-08\",\n    \"cpf\": \"12345678900\",\n    \"dataNascimento\": \"2002-12-09\",\n    \"telefone\": \"11 94656-7654\",\n    \"idUsuario\": 15,\n    \"rua\": \"Rua Octalles Marcondes, 90\",\n    \"bairro\": \"Helena Maria\",\n    \"cidade\": \"São Paulo\",\n    \"estado\": \"SP\",\n    \"cep\": \"02111-111\",\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar.Put",
+					"request": {
+						"url": "http://localhost:5000/api/Prontuarios",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 11,\n    \"nome\": \"Ricardo Paulo\",\n    \"rg\": \"504.736.948-08\",\n    \"cpf\": \"1234567890\",\n    \"dataNascimento\": \"2002-12-09\",\n    \"telefone\": \"11 94633-3334\",\n    \"idUsuario\": 15,\n    \"rua\": \"Rua Octalles Marcondes, 90\",\n    \"bairro\": \"Helena Maria\",\n    \"cidade\": \"São Paulo\",\n    \"estado\": \"SP\",\n    \"cep\": \"02111-111\",\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar.Delete",
+					"request": {
+						"url": "http://localhost:5000/api/Prontuarios/11",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"description": "",
+			"item": [
+				{
+					"name": "ListaUsuarios.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Usuarios",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarUmUsuario.Get",
+					"request": {
+						"url": "http://localhost:5000/BuscarUsuario/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ListaUsuariosDePacientesEMedicos.Get",
+					"request": {
+						"url": "http://localhost:5000/UsuariosPacientesMedicos",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar.Post",
+					"request": {
+						"url": "http://localhost:5000/api/Usuarios",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"ricardo@ricardo.com\",\n    \"senha\": \"ricardo132\",\n    \"idTipoUsuario\": 3,\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Altera.Put",
+					"request": {
+						"url": "http://localhost:5000/api/Usuarios",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 13,\n\t\"email\": \"ricardo@spmedicalgroup.com\",\n    \"senha\": \"apricardo132\",\n    \"idTipoUsuario\": 2,\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar.Delete",
+					"request": {
+						"url": "http://localhost:5000/api/Usuarios/15",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clinicas",
+			"description": "",
+			"item": [
+				{
+					"name": "Listar.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Clinicas",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar.Post",
+					"request": {
+						"url": "http://localhost:5000/api/Clinicas",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nomeFantasia\": \"SP Medical Group 2\",\n    \"razaoSocial\": \"SP Medical Groupc 2\",\n    \"horarioFuncionamento\": \"Seg - Sex, 07:00 - 22:00\",\n    \"cnpj\": \"86.400.902/0001-00\",\n    \"rua\": \"Av. Barão Limeira, 531\",\n    \"bairro\": \"\",\n    \"cidade\": \"São Paulo\",\n    \"estado\": \"SP\",\n    \"cep\": \"92401-222\",\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarUmaClinica.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Clinicas/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar.Delete",
+					"request": {
+						"url": "http://localhost:5000/api/Clinicas/2",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar.Put",
+					"request": {
+						"url": "http://localhost:5000/api/Clinicas",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 2,\n    \"nomeFantasia\": \"SP Medical Group 3\",\n    \"razaoSocial\": \"SP Medical Groupc 2\",\n    \"horarioFuncionamento\": \"Seg - Sex, 07:00 - 22:00\",\n    \"cnpj\": \"86.400.902/0001-00\",\n    \"rua\": \"Av. Barão Limeira, 531\",\n    \"bairro\": \"\",\n    \"cidade\": \"São Paulo\",\n    \"estado\": \"SP\",\n    \"cep\": \"92401-222\",\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login.Post",
+			"request": {
+				"url": "http://localhost:5000/api/Login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"ligia@gmail.com\",\n    \"senha\": \"ligia132\",\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

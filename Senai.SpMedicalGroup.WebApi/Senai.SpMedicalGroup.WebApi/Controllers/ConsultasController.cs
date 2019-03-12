@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Senai.SpMedicalGroup.WebApi.Domains;
@@ -9,7 +10,7 @@ using Senai.SpMedicalGroup.WebApi.Interfaces;
 using Senai.SpMedicalGroup.WebApi.Repositorios;
 
 namespace Senai.SpMedicalGroup.WebApi.Controllers
-{
+{   
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
@@ -23,6 +24,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
         }
 
         // Listar todas as Consultas
+        [Authorize]
         [HttpGet]
         public IActionResult Get()
         {
@@ -185,52 +187,6 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
                 return Ok(consultasPaciente);
             }
             catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        // Altera a situacao da Consulta
-        [HttpPut("/AlterarSituacao/{consultaId}")]
-        public IActionResult Put(int consultaId, int idSituacao)
-        {
-            try
-            {
-                Consultas consultaBuscada = ConsultasRepositorio.BuscarConsulta(consultaId);
-
-                if (consultaBuscada == null)
-                {
-                    return NotFound(new { mensagem = "Consulta não encontrada"});
-                }
-
-                ConsultasRepositorio.AlterarSituacaoConsulta(consultaBuscada, idSituacao);
-
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest();
-            }
-        }
-
-        // Altera a descrição da Consulta
-        [HttpPut("/AlterarDescricao/{consultaId}")]
-        public IActionResult Put(int consultaId, string descricao)
-        {
-            try
-            {
-                Consultas consultaBuscada = ConsultasRepositorio.BuscarConsulta(consultaId);
-
-                if (consultaBuscada == null)
-                {
-                    return NotFound(new { mensagem = "Consulta não encontrada" });
-                }
-
-                ConsultasRepositorio.AlterarDescricaoConsulta(consultaBuscada, descricao);
-
-                return Ok();
-            }
-            catch (Exception ex)
             {
                 return BadRequest();
             }

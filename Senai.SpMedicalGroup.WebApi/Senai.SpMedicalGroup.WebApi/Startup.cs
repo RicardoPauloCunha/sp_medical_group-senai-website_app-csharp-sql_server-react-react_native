@@ -18,7 +18,12 @@ namespace Senai.SpMedicalGroup.WebApi
         {
             services.AddMvc().AddJsonOptions(options => { options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore; options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
 
-            services.AddAuthentication(options => { options.DefaultAuthenticateScheme = "JwtBearer"; options.DefaultChallengeScheme = "JwtBearer";}).AddJwtBearer("JwtBearer", options =>
+            services.AddAuthentication(options => 
+                {
+                    options.DefaultAuthenticateScheme = "JwtBearer";
+                    options.DefaultChallengeScheme = "JwtBearer";
+                }
+            ).AddJwtBearer("JwtBearer", options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -41,8 +46,9 @@ namespace Senai.SpMedicalGroup.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
             app.UseAuthentication();
+
+            app.UseMvc();
         }
     }
 }

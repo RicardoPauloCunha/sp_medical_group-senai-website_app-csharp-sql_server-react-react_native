@@ -1,4 +1,5 @@
 ﻿using Senai.SpMedicalGroup.WebApi.Domains;
+using Senai.SpMedicalGroup.WebApi.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,5 +45,7 @@ namespace Senai.SpMedicalGroup.WebApi.Interfaces
         /// </summary>
         /// <param name="usuario">Usuario para deletar</param>
         void Deletar(Usuarios usuario);
+
+        Usuarios Logar(LoginViewModel login);
     }
 }
