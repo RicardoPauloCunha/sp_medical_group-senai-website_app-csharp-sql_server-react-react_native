@@ -117,5 +117,28 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
                 return BadRequest();
             }
         }
+
+        // Deleta um Usuario
+        [HttpDelete("{usuarioId}")]
+        public IActionResult Delete(int usuarioId)
+        {
+            try
+            {
+                Usuarios usuarioBuscado = UsuariosRepositorio.BuscarUsuario(usuarioId);
+
+                if (usuarioBuscado == null)
+                {
+                    return NotFound(new { mensagem = "Usuario não encontrada!" });
+                }
+
+                UsuariosRepositorio.Deletar(usuarioBuscado);
+
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

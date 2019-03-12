@@ -38,5 +38,11 @@ namespace Senai.SpMedicalGroup.WebApi.Interfaces
         /// <param name="usuarioId">Id do Usuário Buscado</param>
         /// <returns>Retorna o Usuário encotrado</returns>
         Usuarios BuscarUsuario(int usuarioId);
+
+        /// <summary>
+        /// Deleta um Usuario
+        /// </summary>
+        /// <param name="usuario">Usuario para deletar</param>
+        void Deletar(Usuarios usuario);
     }
 }

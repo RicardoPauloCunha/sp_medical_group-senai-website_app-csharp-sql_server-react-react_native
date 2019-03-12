@@ -44,6 +44,16 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             }
         }
 
+        // Deleta um Usuario
+        public void Deletar(Usuarios usuario)
+        {
+            using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
+            {
+                ctx.Usuarios.Remove(usuario);
+                ctx.SaveChanges();
+            }
+        }
+
         // Lista todos os Usuários
         public List<Usuarios> Listar()
         {

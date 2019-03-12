@@ -125,6 +125,16 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
         {
             try
             {
+                // Verifica se medico existe
+                MedicosRepositorio medicosRep = new MedicosRepositorio();
+                Medicos medicoBuscado = medicosRep.BuscarMedico(medicoId);
+
+                if (medicoBuscado == null)
+                {
+                    return NotFound(new { mensagem = "Medico não encotrado!" });
+                }
+
+                // Procura todas as consultas do medico
                 List<Consultas> consultasMedico = ConsultasRepositorio.BuscarConsultasDeMedico(medicoId);
 
                 if (consultasMedico == null)
@@ -136,6 +146,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
                     return Ok(new { mensagem = "Medico não possui nenhuma consulta agendada." });
                 }
 
+                // retorna as conultas do medico
                 return Ok(consultasMedico);
             }
             catch (Exception)
@@ -145,12 +156,22 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
         }
 
         // Listar todas as Consultas referentes a um paciente
-        [HttpGet("/BuscarConsultasDePaciente/{prontuariosId}")]
-        public IActionResult GetConsultasDePaciente(int prontuariosId)
+        [HttpGet("/BuscarConsultasDePaciente/{prontuarioId}")]
+        public IActionResult GetConsultasDePaciente(int prontuarioId)
         {
             try
             {
-                List<Consultas> consultasPaciente = ConsultasRepositorio.BuscarConsultasDePaciente(prontuariosId);
+                // Verifica se Paciente Existe
+                ProntuariosRepositorio prontuariosRep = new ProntuariosRepositorio();
+                Prontuarios prontuarioBuscado = prontuariosRep.BuscarProntuario(prontuarioId);
+
+                if (prontuarioBuscado == null)
+                {
+                    return NotFound(new { mensagem = "Paciente não encontrado"});
+                }
+
+                // Procura todas as consultas do paciente
+                List<Consultas> consultasPaciente = ConsultasRepositorio.BuscarConsultasDePaciente(prontuarioId);
 
                 if (consultasPaciente == null)
                 {
@@ -164,6 +185,52 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
                 return Ok(consultasPaciente);
             }
             catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        // Altera a situacao da Consulta
+        [HttpPut("/AlterarSituacao/{consultaId}")]
+        public IActionResult Put(int consultaId, int idSituacao)
+        {
+            try
+            {
+                Consultas consultaBuscada = ConsultasRepositorio.BuscarConsulta(consultaId);
+
+                if (consultaBuscada == null)
+                {
+                    return NotFound(new { mensagem = "Consulta não encontrada"});
+                }
+
+                ConsultasRepositorio.AlterarSituacaoConsulta(consultaBuscada, idSituacao);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        // Altera a descrição da Consulta
+        [HttpPut("/AlterarDescricao/{consultaId}")]
+        public IActionResult Put(int consultaId, string descricao)
+        {
+            try
+            {
+                Consultas consultaBuscada = ConsultasRepositorio.BuscarConsulta(consultaId);
+
+                if (consultaBuscada == null)
+                {
+                    return NotFound(new { mensagem = "Consulta não encontrada" });
+                }
+
+                ConsultasRepositorio.AlterarDescricaoConsulta(consultaBuscada, descricao);
+
+                return Ok();
+            }
+            catch (Exception ex)
             {
                 return BadRequest();
             }
