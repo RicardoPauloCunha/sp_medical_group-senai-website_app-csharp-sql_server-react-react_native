@@ -69,14 +69,13 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
 
                 return Ok(prontuarioRecebido);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return BadRequest();
             }
         }
 
         // Atualiza um Prontuario
-        [Authorize(Roles = "2")]
         [HttpPut]
         public IActionResult Put(Prontuarios prontuarioRecebido)
         {

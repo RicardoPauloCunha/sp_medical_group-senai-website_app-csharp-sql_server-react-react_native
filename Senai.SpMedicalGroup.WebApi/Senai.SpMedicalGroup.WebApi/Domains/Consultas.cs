@@ -21,7 +21,6 @@ namespace Senai.SpMedicalGroup.WebApi.Domains
         [Required(ErrorMessage = "Hora da Consulta deve ser informada.")]
         public TimeSpan HoraAgendada { get; set; }
 
-        [Required(ErrorMessage = "Campo IdSituacao deve ser informado.")]
         public int IdSituacao { get; set; }
 
         public string Descricao { get; set; }

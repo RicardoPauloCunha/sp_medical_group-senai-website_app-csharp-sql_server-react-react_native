@@ -3025,19 +3025,6 @@
           }
         }
       },
-      "Swagger/1.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore.Mvc.Core": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Formatters.Json": "1.0.0"
-        },
-        "compile": {
-          "lib/netstandard1.6/Swashbuckle.Swagger.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.6/Swashbuckle.Swagger.dll": {}
-        }
-      },
       "Swashbuckle.AspNetCore/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -8127,19 +8114,6 @@
         "version.txt"
       ]
     },
-    "Swagger/1.0.0": {
-      "sha512": "mZ2abnFgR6a+yDj1zCpP9AjOGGvWgHJT7GQ9N8AK7rTfmYqJLBcnMFvp2/hcDnwo7ok7wUdK4FdHcC8ciGMAwA==",
-      "type": "package",
-      "path": "swagger/1.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net451/_._",
-        "lib/netstandard1.6/Swashbuckle.Swagger.dll",
-        "swagger.1.0.0.nupkg.sha512",
-        "swagger.nuspec"
-      ]
-    },
     "Swashbuckle.AspNetCore/4.0.1": {
       "sha512": "k8TzWTpjwO+4xXsMaaAsAPAdYKyM5wuRvSP+ZmgtyXwhW45ChBVq3xdVJ8Tz+hQ0ziBZSh5p6r2dkRN6SyasVA==",
       "type": "package",
@@ -12727,13 +12701,13 @@
     ".NETCoreApp,Version=v2.1": [
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 2.1.1",
+      "Microsoft.AspNetCore.Http.Abstractions >= 2.1.1",
       "Microsoft.AspNetCore.Razor.Design >= 2.1.2",
       "Microsoft.EntityFrameworkCore.Design >= 2.1.1",
       "Microsoft.EntityFrameworkCore.SqlServer >= 2.1.1",
       "Microsoft.EntityFrameworkCore.Tools >= 2.1.1",
       "Microsoft.NETCore.App >= 2.1.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.1.1",
-      "Swagger >= 1.0.0",
       "Swashbuckle.AspNetCore >= 4.0.1",
       "System.Data.SqlClient >= 4.6.0",
       "System.IdentityModel.Tokens.Jwt >= 5.4.0"
@@ -12790,6 +12764,10 @@
             "target": "Package",
             "version": "[2.1.1, )"
           },
+          "Microsoft.AspNetCore.Http.Abstractions": {
+            "target": "Package",
+            "version": "[2.1.1, )"
+          },
           "Microsoft.AspNetCore.Razor.Design": {
             "suppressParent": "All",
             "target": "Package",
@@ -12817,10 +12795,6 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[2.1.1, )"
-          },
-          "Swagger": {
-            "target": "Package",
-            "version": "[1.0.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

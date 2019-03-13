@@ -89,7 +89,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             {
                 UsuariosRepositorio.Cadastrar(usuarioRecebido);
 
-                return Ok();
+                return Ok(usuarioRecebido);
             }
             catch (Exception)
             {
@@ -114,7 +114,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
 
                 return Ok(usuarioRecebido);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return BadRequest();
             }

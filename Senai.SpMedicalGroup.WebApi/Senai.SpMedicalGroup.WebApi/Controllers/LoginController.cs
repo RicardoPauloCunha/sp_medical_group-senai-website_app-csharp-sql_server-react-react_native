@@ -20,10 +20,12 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
     public class LoginController : ControllerBase
     {
         private IUsuariosRepositorio UsuariosRepositorio { get; set; }
+        private readonly UsuarioLogViewModel _user;
 
-        public LoginController()
+        public LoginController(UsuarioLogViewModel user)
         {
             UsuariosRepositorio = new UsuariosRepositorio();
+            _user = user;
         }
 
         [HttpPost]
@@ -60,7 +62,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
 
                 return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return BadRequest();
             }

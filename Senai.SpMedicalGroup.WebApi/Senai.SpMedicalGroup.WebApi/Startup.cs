@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Senai.SpMedicalGroup.WebApi.ViewModel;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Senai.SpMedicalGroup.WebApi
 {
@@ -17,6 +19,11 @@ namespace Senai.SpMedicalGroup.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().AddJsonOptions(options => { options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore; options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "SP Medical Group API", Version = "v1" });
+            });
 
             services.AddAuthentication(options => 
                 {
@@ -36,6 +43,11 @@ namespace Senai.SpMedicalGroup.WebApi
                     ValidAudience = "SpMedicalGroup.WebApi"
                 };
             });
+
+            services.AddHttpContextAccessor();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<UsuarioLogViewModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +57,14 @@ namespace Senai.SpMedicalGroup.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SP Medical Group V1");
+            });
+
 
             app.UseAuthentication();
 

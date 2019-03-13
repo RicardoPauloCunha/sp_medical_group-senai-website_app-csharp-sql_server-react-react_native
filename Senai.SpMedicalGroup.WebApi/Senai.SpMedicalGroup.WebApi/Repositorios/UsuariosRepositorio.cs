@@ -81,6 +81,7 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             return usuarios;
         }
 
+        // Efetua o login do usuário
         public Usuarios Logar(LoginViewModel login)
         {
             Usuarios usuarioLogado = new Usuarios();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -8,28 +9,33 @@ using Microsoft.AspNetCore.Mvc;
 using Senai.SpMedicalGroup.WebApi.Domains;
 using Senai.SpMedicalGroup.WebApi.Interfaces;
 using Senai.SpMedicalGroup.WebApi.Repositorios;
+using Senai.SpMedicalGroup.WebApi.ViewModel;
 
 namespace Senai.SpMedicalGroup.WebApi.Controllers
-{   
+{
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class ConsultasController : ControllerBase
     {
         private IConsultasRepositorio ConsultasRepositorio { get; set; }
+        private readonly UsuarioLogViewModel _user;
 
-        public ConsultasController()
+        public ConsultasController(UsuarioLogViewModel user)
         {
             ConsultasRepositorio = new ConsultasRepositorio();
+            _user = user;
         }
 
         // Listar todas as Consultas
-        [Authorize]
+        [Authorize(Roles = "1")]
         [HttpGet]
         public IActionResult Get()
         {
             try
             {
+                var usuarioLog = _user.RetornaEmailUsuarioLog();
+
                 return Ok(ConsultasRepositorio.Listar());
             }
             catch (Exception)
@@ -39,6 +45,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
         }
 
         // Cadastra uma nova Consulta
+        [Authorize(Roles = "1")]
         [HttpPost]
         public IActionResult Post(Consultas consultaRecebida)
         {
@@ -55,6 +62,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
         }
 
         // Atualiza uma Consulta
+        [Authorize(Roles = "1, 2")]
         [HttpPut]
         public IActionResult Put(Consultas consultaRecebida)
         {
@@ -78,6 +86,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
         }
 
         // Deleta uma Consulta
+        [Authorize(Roles = "1")]
         [HttpDelete("{consultaId}")]
         public IActionResult Delete(int consultaId)
         {
@@ -100,6 +109,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "1")]
         // Lista uma Consulta especifica
         [HttpGet("/BuscarConsultas/{consultaId}")]
         public IActionResult GetConsulta(int consultaId)
@@ -121,6 +131,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "1, 2")]
         // Lista todas as Consultas referentes a um médico
         [HttpGet("/BuscarConsultasDeMedico/{medicoId}")]
         public IActionResult GetConsultasDeMedico(int medicoId)
@@ -138,7 +149,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
 
                 // Procura todas as consultas do medico
                 List<Consultas> consultasMedico = ConsultasRepositorio.BuscarConsultasDeMedico(medicoId);
-
+                
                 if (consultasMedico == null)
                 {
                     return NotFound(new { mensagem = "Não foram encotradas consultas referentes a esse medico." });
@@ -157,6 +168,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "1, 3")]
         // Listar todas as Consultas referentes a um paciente
         [HttpGet("/BuscarConsultasDePaciente/{prontuarioId}")]
         public IActionResult GetConsultasDePaciente(int prontuarioId)
