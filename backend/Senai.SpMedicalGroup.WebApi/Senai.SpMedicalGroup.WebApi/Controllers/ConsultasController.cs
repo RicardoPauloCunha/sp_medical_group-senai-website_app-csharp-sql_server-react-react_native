@@ -107,7 +107,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
         }
 
         // Alterar situação da consulta
-        [Authorize(Roles = "1,2")]
+        [Authorize(Roles = "1, 2")]
         [HttpPut("/AlterarSituacaoConsulta")]
         public IActionResult AlterarSituacaoConsulta(Consultas situacaoRecebida)
         {
@@ -186,78 +186,53 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
-        [Authorize(Roles = "2")]
-        // Lista todas as Consultas referentes a um médico
-        [HttpGet("/BuscarConsultasDeMedico")]
-        public IActionResult GetConsultasDeMedico()
+        // Prentendo melhorar essa logica, validação e simplificar o codigo, isso foi mais como um TESTE para ver se do jeito que eu estava imaginando dava certo
+        // Lista todas as Consultas referentes a um usuario
+        [Authorize(Roles = "2, 3")]
+        [HttpGet("/BuscarConsultasDeUsuario")]
+        public IActionResult GetConsultasUsuario()
         {
             try
             {
                 MedicosRepositorio medicoRep = new MedicosRepositorio();
+                ProntuariosRepositorio prontuarioRep = new ProntuariosRepositorio();
 
                 // Pega o Usuario Logado
-                int medicoId = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                Medicos medicoLog = medicoRep.medicoLogado(medicoId);
+                int usuarioId = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
 
-                if (medicoLog == null)
+                List<Consultas> consultasUsuarios = new List<Consultas>();
+                Medicos medicoLog = new Medicos();
+
+                // Procura pelo paciente
+                Prontuarios pacienteLog = prontuarioRep.pacienteLogado(usuarioId);
+
+                if (pacienteLog != null)
                 {
-                    return NotFound(new { mensagem = "Medico não encotrado!" });
+                    consultasUsuarios = ConsultasRepositorio.BuscarConsultasDeUsuario(0, pacienteLog.Id);
                 }
-
-                // Procura todas as consultas do medico
-                List<Consultas> consultasMedico = ConsultasRepositorio.BuscarConsultasDeMedico(medicoLog.Id);
+                else if (pacienteLog == null)
+                {
+                    medicoLog = medicoRep.medicoLogado(usuarioId);
+                    consultasUsuarios = ConsultasRepositorio.BuscarConsultasDeUsuario(medicoLog.Id, 0);
+                }
+                else if (medicoLog == null)
+                {
+                    return NotFound(new { mensagem = "Usuario não encotrado!" });
+                }
                 
-                if (consultasMedico == null)
+                if (consultasUsuarios == null)
                 {
-                    return NotFound(new { mensagem = "Não foram encotradas consultas referentes a esse medico." });
+                    return NotFound(new { mensagem = "Não foram encotradas consultas referentes a esse Usuario." });
                 }
-                else if (consultasMedico.Count() == 0)
+                else if (consultasUsuarios.Count() == 0)
                 {
-                    return Ok(new { mensagem = "Medico não possui nenhuma consulta agendada." });
+                    return Ok(new { mensagem = "Usuario não possui nenhuma consulta agendada." });
                 }
 
                 // retorna as conultas do medico
-                return Ok(consultasMedico);
+                return Ok(consultasUsuarios);
             }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        [Authorize(Roles = "3")]
-        // Listar todas as Consultas referentes a um paciente
-        [HttpGet("/BuscarConsultasDePaciente")]
-        public IActionResult GetConsultasDePaciente()
-        {
-            try
-            {
-                ProntuariosRepositorio prontuarioRep = new ProntuariosRepositorio();
-
-                // Pega usuario logado
-                int prontuarioId = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                Prontuarios pacienteLog = prontuarioRep.pacienteLogado(prontuarioId);
-
-                if (pacienteLog == null)
-                {
-                    return NotFound(new { mensagem = "Paciente não encontrado"});
-                }
-
-                // Procura todas as consultas do paciente
-                List<Consultas> consultasPaciente = ConsultasRepositorio.BuscarConsultasDePaciente(pacienteLog.Id);
-
-                if (consultasPaciente == null)
-                {
-                    return NotFound(new { mensagem = "Não foram encotradas consultas referentes a esse paciente." });
-                }
-                else if (consultasPaciente.Count() == 0)
-                {
-                    return Ok(new { mensagem = "Paciente não possui nenhuma consulta agendada." });
-                }
-
-                return Ok(consultasPaciente);
-            }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return BadRequest();
             }

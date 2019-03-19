@@ -59,29 +59,31 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
         }
 
         // Lista todas as Consulta referentes a um Medico
-        public List<Consultas> BuscarConsultasDeMedico(int medicoId)
+        public List<Consultas> BuscarConsultasDeUsuario(int? medicoId, int? prontuarioId)
         {
-            List<Consultas> consultasMedico = new List<Consultas>();
-
-            using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
+            if (medicoId != null && medicoId != 0)
             {
-                consultasMedico = ctx.Consultas.ToList().FindAll(c => c.IdMedico == medicoId);
+                List<Consultas> consultasMedico = new List<Consultas>();
+
+                using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
+                {
+                    consultasMedico = ctx.Consultas.ToList().FindAll(c => c.IdMedico == medicoId);
+                }
+
+                return consultasMedico;
+            } else if (prontuarioId != null && prontuarioId != 0)
+            {
+                List<Consultas> consultaspaciente = new List<Consultas>();
+
+                using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
+                {
+                    consultaspaciente = ctx.Consultas.ToList().FindAll(c => c.IdProntuario == prontuarioId);
+                }
+
+                return consultaspaciente;
             }
 
-            return consultasMedico;
-        }
-
-        // Lista todas as Consulta referentes a um Paciente
-        public List<Consultas> BuscarConsultasDePaciente(int prontuarioId)
-        {
-            List<Consultas> consultasPaciente = new List<Consultas>();
-
-            using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
-            {
-                consultasPaciente = ctx.Consultas.ToList().FindAll(c => c.IdProntuario == prontuarioId);
-            }
-
-            return consultasPaciente;
+            return null;
         }
 
         // Cadastra uma nova Consulta
