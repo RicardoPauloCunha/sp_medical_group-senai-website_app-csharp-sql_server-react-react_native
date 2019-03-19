@@ -59,7 +59,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
         }
 
         // Atualiza uma Consulta
-        [Authorize(Roles = "1, 2")]
+        [Authorize(Roles = "1")]
         [HttpPut]
         public IActionResult Put(Consultas consultaRecebida)
         {
@@ -75,6 +75,64 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
                 ConsultasRepositorio.Alterar(consultaRecebida);
 
                 return Ok(consultaRecebida);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        // Atualiza a descrição do Prontuario
+        [Authorize(Roles = "2")]
+        [HttpPut("/AlterarDescricaoConsulta")]
+        public IActionResult AlterarDescricaoConsulta(Consultas descricaoRecebida)
+        {
+            try
+            {
+                Consultas consultaBuscada = ConsultasRepositorio.BuscarConsulta(descricaoRecebida.Id);
+
+                if (consultaBuscada == null)
+                {
+                    return NotFound(new { mensagem = "Consulta não encontrada!" });
+                }
+
+                Consultas consultaAlterada = ConsultasRepositorio.AlterarDecricaoPaciente(descricaoRecebida, consultaBuscada);
+
+                return Ok(consultaAlterada);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        // Alterar situação da consulta
+        [Authorize(Roles = "1,2")]
+        [HttpPut("/AlterarSituacaoConsulta")]
+        public IActionResult AlterarSituacaoConsulta(Consultas situacaoRecebida)
+        {
+            try
+            {
+                // Verfica se consulta existe
+                Consultas consultaBuscada = ConsultasRepositorio.BuscarConsulta(situacaoRecebida.Id);
+
+                if (consultaBuscada == null)
+                {
+                    return NotFound(new { mensagem = "Consulta não encontrada!" });
+                }
+
+                // Busca pelo usuario logado
+                int usuarioLog = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+
+                if (situacaoRecebida.IdSituacao == 3 && usuarioLog != 1)
+                {
+                    return NotFound(new { mensagem = "Você não possui autorização para cancelar essa Consulta." });
+                }
+
+                // Alterar a situacao
+                Consultas consultaAlterada = ConsultasRepositorio.AlterarSituacaoPaciente(situacaoRecebida, consultaBuscada);
+
+                return Ok(consultaAlterada);
             }
             catch (Exception)
             {

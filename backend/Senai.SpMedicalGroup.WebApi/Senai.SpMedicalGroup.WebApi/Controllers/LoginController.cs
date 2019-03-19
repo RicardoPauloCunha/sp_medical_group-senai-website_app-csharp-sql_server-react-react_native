@@ -60,7 +60,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
 
                 return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return BadRequest();
             }

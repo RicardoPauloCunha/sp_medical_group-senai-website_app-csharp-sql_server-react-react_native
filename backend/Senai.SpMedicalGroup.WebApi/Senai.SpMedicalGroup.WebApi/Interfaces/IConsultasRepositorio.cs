@@ -52,5 +52,21 @@ namespace Senai.SpMedicalGroup.WebApi.Interfaces
         /// <param name="medicoId">Id do Prontuario do Paciente</param>
         /// <returns>Retorna as Consultas encontradas referentes aquele Prontuario</returns>
         List<Consultas> BuscarConsultasDePaciente(int prontuarioId);
+
+        /// <summary>
+        /// Altera a descricao da Consulta do Paciente
+        /// </summary>
+        /// <param name="descricaoRebecida">Descricao da consulta</param>
+        /// <param name="consultaRecebida">Consulta correspondente a essa descricao</param>
+        /// <returns>Retorna a consulta atualizada</returns>
+        Consultas AlterarDecricaoPaciente(Consultas descricaoRebecida, Consultas consultaRecebida);
+
+        /// <summary>
+        /// Altera a situacao da Consulta do paciente
+        /// </summary>
+        /// <param name="situacaoRebecida">Situacao da Consulta</param>
+        /// <param name="consultaRecebida">Consulta correspondete a essa situacao</param>
+        /// <returns>Retorna a consulta atualizada</returns>
+        Consultas AlterarSituacaoPaciente(Consultas situacaoRebecida, Consultas consultaRecebida);
     }
 }

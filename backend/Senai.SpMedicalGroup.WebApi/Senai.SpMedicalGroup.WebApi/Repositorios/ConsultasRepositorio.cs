@@ -19,6 +19,32 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             }
         }
 
+        // Alterar descricao da Consulta
+        public Consultas AlterarDecricaoPaciente(Consultas descricaoRebecida, Consultas consultaRecebida)
+        {
+            consultaRecebida.Descricao = descricaoRebecida.Descricao;
+
+            using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
+            {
+                ctx.Consultas.Update(consultaRecebida);
+            }
+
+            return consultaRecebida;
+        }
+
+        // Altera situacao da Consulta
+        public Consultas AlterarSituacaoPaciente(Consultas situacaoRebecida, Consultas consultaRecebida)
+        {
+            consultaRecebida.IdSituacao = situacaoRebecida.IdSituacao;
+
+            using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
+            {
+                ctx.Consultas.Update(consultaRecebida);
+            }
+
+            return consultaRecebida;
+        }
+
         // Lista uma Consulta especifica
         public Consultas BuscarConsulta(int consultaId)
         {
