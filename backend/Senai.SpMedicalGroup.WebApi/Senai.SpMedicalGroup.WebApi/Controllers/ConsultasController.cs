@@ -186,7 +186,6 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
-        // Prentendo melhorar essa logica, validação e simplificar o codigo, isso foi mais como um TESTE para ver se do jeito que eu estava imaginando dava certo
         // Lista todas as Consultas referentes a um usuario
         [Authorize(Roles = "2, 3")]
         [HttpGet("/BuscarConsultasDeUsuario")]
@@ -199,27 +198,28 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
 
                 // Pega o Usuario Logado
                 int usuarioId = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                int usuarioTipo = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.NameId).Value);
 
                 List<Consultas> consultasUsuarios = new List<Consultas>();
-                Medicos medicoLog = new Medicos();
 
-                // Procura pelo paciente
+                // Procura pelo usuario
                 Prontuarios pacienteLog = prontuarioRep.pacienteLogado(usuarioId);
+                Medicos medicoLog = medicoRep.medicoLogado(usuarioId);
 
                 if (pacienteLog != null)
                 {
-                    consultasUsuarios = ConsultasRepositorio.BuscarConsultasDeUsuario(0, pacienteLog.Id);
+                    consultasUsuarios = ConsultasRepositorio.BuscarConsultasDeUsuario(usuarioTipo, pacienteLog.Id);
                 }
-                else if (pacienteLog == null)
+                else if (medicoLog != null)
                 {
-                    medicoLog = medicoRep.medicoLogado(usuarioId);
-                    consultasUsuarios = ConsultasRepositorio.BuscarConsultasDeUsuario(medicoLog.Id, 0);
+                    consultasUsuarios = ConsultasRepositorio.BuscarConsultasDeUsuario(usuarioTipo, medicoLog.Id);
                 }
-                else if (medicoLog == null)
+                else
                 {
                     return NotFound(new { mensagem = "Usuario não encotrado!" });
                 }
                 
+                // verifica a lista de consultas
                 if (consultasUsuarios == null)
                 {
                     return NotFound(new { mensagem = "Não foram encotradas consultas referentes a esse Usuario." });

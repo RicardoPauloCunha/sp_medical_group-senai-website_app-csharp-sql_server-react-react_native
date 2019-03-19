@@ -44,7 +44,7 @@ namespace Senai.SpMedicalGroup.WebApi.Interfaces
         /// </summary>
         /// <param name="medicoId">Id do Medico</param>
         /// <returns>Retorna as Consultas encontradas referentes aquele Medico</returns>
-        List<Consultas> BuscarConsultasDeUsuario(int? medicoId, int? prontuarioId);
+        List<Consultas> BuscarConsultasDeUsuario(int usuarioTipo, int usuarioLog);
 
         /// <summary>
         /// Altera a descricao da Consulta do Paciente

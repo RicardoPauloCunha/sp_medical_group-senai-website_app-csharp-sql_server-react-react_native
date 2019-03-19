@@ -58,29 +58,29 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             return consultaBuscada;
         }
 
-        // Lista todas as Consulta referentes a um Medico
-        public List<Consultas> BuscarConsultasDeUsuario(int? medicoId, int? prontuarioId)
+        // Lista todas as Consulta referentes a um Usuario
+        public List<Consultas> BuscarConsultasDeUsuario(int usuarioTipo, int usuarioLog)
         {
-            if (medicoId != null && medicoId != 0)
-            {
-                List<Consultas> consultasMedico = new List<Consultas>();
+            List<Consultas> consultasUsuario = new List<Consultas>();
 
+            if (usuarioTipo == 2)
+            {
                 using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
                 {
-                    consultasMedico = ctx.Consultas.ToList().FindAll(c => c.IdMedico == medicoId);
+                    consultasUsuario = ctx.Consultas.ToList().FindAll(c => c.IdMedico == usuarioLog);
                 }
 
-                return consultasMedico;
-            } else if (prontuarioId != null && prontuarioId != 0)
-            {
-                List<Consultas> consultaspaciente = new List<Consultas>();
+                return consultasUsuario;
 
+            }
+            else if (usuarioTipo == 3)
+            {
                 using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
                 {
-                    consultaspaciente = ctx.Consultas.ToList().FindAll(c => c.IdProntuario == prontuarioId);
+                    consultasUsuario = ctx.Consultas.ToList().FindAll(c => c.IdProntuario == usuarioLog);
                 }
 
-                return consultaspaciente;
+                return consultasUsuario;
             }
 
             return null;
