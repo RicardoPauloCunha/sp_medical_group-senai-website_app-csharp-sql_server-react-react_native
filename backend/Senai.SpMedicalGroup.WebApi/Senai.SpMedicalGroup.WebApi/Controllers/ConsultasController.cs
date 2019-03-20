@@ -198,7 +198,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
 
                 // Pega o Usuario Logado
                 int usuarioId = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                int usuarioTipo = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.NameId).Value);
+                int usuarioTipo = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == "UsuarioTipo").Value);
 
                 List<Consultas> consultasUsuarios = new List<Consultas>();
 
