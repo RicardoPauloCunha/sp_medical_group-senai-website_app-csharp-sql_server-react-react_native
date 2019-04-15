@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Axios from "axios";
+import { parseJwt } from "../../services/auth";
 
 class Login extends Component {
     constructor() {
@@ -24,18 +26,22 @@ class Login extends Component {
     efetuarLogin(event){
         event.preventDefault();
 
-        fetch('http://localhost:5000/api/Login', {
-            method: "POST",
-            body: JSON.stringify({
-                email: this.state.email,
-                senha: this.state.senha
-            }),
-            headers: {
-                "Content-Type" : "application/json"
-            }
+        Axios.post('http://localhost:5000/api/Login', {
+            email : this.state.email,
+            senha : this.state.senha
         })
-        .then(resposta => resposta)
-        .then(data => console.log(data))
+        .then(data => {
+            if(data.status === 200) {
+                localStorage.setItem("usuarioautenticado-token-spmedgroup", data.data.token);
+                if(parseJwt().UsuarioTipo == "1"){
+                    this.props.history.push("/DashBoard");
+                } else if (parseJwt().UsuarioTipo == "2"){
+                    this.props.history.push("/ConsultasMedico");
+                } else if (parseJwt().UsuarioTipo == "3"){
+                    this.props.history.push("/ConsultasPaciente");
+                }
+            };
+        })
         .catch(erro => console.log(erro))
     }
 

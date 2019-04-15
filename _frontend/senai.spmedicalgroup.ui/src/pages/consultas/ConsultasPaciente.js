@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
+import { logout } from "../../services/logout";
 
 class ConsultasPaciente extends Component {
     constructor() {
@@ -41,25 +43,6 @@ class ConsultasPaciente extends Component {
         this.setState({ idDescricaoIncluir: event.target.value });
     }
 
-    // metodo atualiza descricao prontuario
-    incluirDescricao(event) {
-        event.preventDefault();
-
-        fetch('http://localhost:5000/AlterarDescricaoConsulta', {
-            method: "PUT",
-            body: JSON.stringify({
-                id: this.state.idDescricaoIncluir,
-                descricao: this.state.descricao
-            }),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-            .then(resposta => resposta)
-            .then(this.listarConsultas())
-            .catch(erro => console.log(erro))
-    }
-
     render() {
         return (
             <div>
@@ -92,13 +75,7 @@ class ConsultasPaciente extends Component {
                         }
                     </tbody>
                 </table>
-
-                <form onSubmit={this.incluirDescricao.bind(this)}>
-                    <input type="text" placeholder="Descricao" value={this.state.descricao} onChange={this.atualizarDescricao} />
-                    <input type="text" placeholder="Id" value={this.state.idDescricaoIncluir} onChange={this.atualizarIdDescricaoIncluir} />
-
-                    <button type="submit">Editar</button>
-                </form>
+                <Link onClick={logout}>Sair</Link>
             </div>
         );
     }

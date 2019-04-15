@@ -83,7 +83,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
         }
 
         // Atualiza a descrição do Prontuario
-        //[Authorize(Roles = "2")]
+        [Authorize(Roles = "2")]
         [HttpPut("/AlterarDescricaoConsulta")]
         public IActionResult AlterarDescricaoConsulta(Consultas descricaoRecebida)
         {
@@ -203,16 +203,19 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
                 List<Consultas> consultasUsuarios = new List<Consultas>();
 
                 // Procura pelo usuario
-                Prontuarios pacienteLog = prontuarioRep.pacienteLogado(usuarioId);
-                Medicos medicoLog = medicoRep.medicoLogado(usuarioId);
-
-                if (pacienteLog != null)
+                if (usuarioTipo == 1)
                 {
-                    consultasUsuarios = ConsultasRepositorio.BuscarConsultasDeUsuario(usuarioTipo, pacienteLog.Id);
+                    return NotFound(new { mensagem = "O usuriário Administrador não possui consultas agendadas" });
                 }
-                else if (medicoLog != null)
+                else if (usuarioTipo == 2)
                 {
+                    Medicos medicoLog = medicoRep.medicoLogado(usuarioId);
                     consultasUsuarios = ConsultasRepositorio.BuscarConsultasDeUsuario(usuarioTipo, medicoLog.Id);
+                }
+                else if (usuarioTipo == 3)
+                {
+                    Prontuarios pacienteLog = prontuarioRep.pacienteLogado(usuarioId);
+                    consultasUsuarios = ConsultasRepositorio.BuscarConsultasDeUsuario(usuarioTipo, pacienteLog.Id);
                 }
                 else
                 {

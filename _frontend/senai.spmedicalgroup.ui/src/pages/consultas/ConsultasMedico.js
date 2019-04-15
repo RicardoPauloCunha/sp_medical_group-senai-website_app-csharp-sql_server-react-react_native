@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {BrowserRouter, Redirect, Link} from "react-router-dom";
+import {logout} from "../../services/logout";
 
 class ConsultasMedico extends Component {
     constructor() {
@@ -37,6 +39,7 @@ class ConsultasMedico extends Component {
         this.setState({ descricao: event.target.value });
     }
 
+    // atualiza a descricao de uma consulta
     atualizarIdDescricaoIncluir(event) {
         this.setState({ idDescricaoIncluir: event.target.value });
     }
@@ -99,6 +102,8 @@ class ConsultasMedico extends Component {
 
                     <button type="submit">Editar</button>
                 </form>
+
+                <Link to="/" onClick={logout}>Sair</Link>
             </div>
         );
     }
