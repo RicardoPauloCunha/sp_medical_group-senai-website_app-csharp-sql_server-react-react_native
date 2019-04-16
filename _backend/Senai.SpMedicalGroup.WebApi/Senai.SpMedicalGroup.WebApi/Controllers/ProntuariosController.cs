@@ -69,7 +69,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
 
                 return Ok(prontuarioRecebido);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return BadRequest();
             }

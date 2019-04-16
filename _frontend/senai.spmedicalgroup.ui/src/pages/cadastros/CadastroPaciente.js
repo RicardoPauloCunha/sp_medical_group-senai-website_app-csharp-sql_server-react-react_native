@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import {Link} from "react-router-dom";
+import { logout } from "../../services/logout";
+import { UsuarioToken } from "../../services/auth";
 
 class CadastroPaciente extends Component {
     constructor() {
@@ -93,11 +96,18 @@ class CadastroPaciente extends Component {
             cidade: this.state.cidade,
             estado: this.state.estado,
             cep: this.state.cep,
-        }
+        };
 
-        Axios.post('http://localhost:5000/api/Prontuarios', {
-            prontuario
+        fetch('http://localhost:5000/api/Prontuarios', {
+            method: 'POST',
+            body: JSON.stringify(prontuario),
+            headers: {
+                'Content-Type' : 'application/json',
+                Authorization: 'Bearer ' + UsuarioToken
+            }
         })
+        .then(resposta => resposta)
+        .then(data => console.log(data))
         .catch(erro => console.log(erro))
     }
 
@@ -119,6 +129,8 @@ class CadastroPaciente extends Component {
 
                     <button type="submit">Cadastrar</button>
                 </form>
+
+                <Link to="/" onClick={logout}>Sair</Link>
             </div>
         )
     }

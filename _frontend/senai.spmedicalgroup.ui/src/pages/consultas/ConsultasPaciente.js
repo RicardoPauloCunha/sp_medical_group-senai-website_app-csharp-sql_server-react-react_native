@@ -75,7 +75,7 @@ class ConsultasPaciente extends Component {
                         }
                     </tbody>
                 </table>
-                <Link onClick={logout}>Sair</Link>
+                <Link to="/" onClick={logout}>Sair</Link>
             </div>
         );
     }

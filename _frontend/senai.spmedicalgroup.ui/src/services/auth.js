@@ -1,3 +1,5 @@
+export const UsuarioToken = localStorage.getItem("usuarioautenticado-token-spmedgroup");
+
 export const UsuarioAutenticado = () => localStorage.getItem("usuarioautenticado-token-spmedgroup") != null;
 
 export const parseJwt = () => {

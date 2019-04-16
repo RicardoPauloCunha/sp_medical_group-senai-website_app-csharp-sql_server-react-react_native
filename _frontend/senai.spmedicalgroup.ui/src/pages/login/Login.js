@@ -34,7 +34,7 @@ class Login extends Component {
             if(data.status === 200) {
                 localStorage.setItem("usuarioautenticado-token-spmedgroup", data.data.token);
                 if(parseJwt().UsuarioTipo == "1"){
-                    this.props.history.push("/DashBoard");
+                    this.props.history.push("/Cadastros");
                 } else if (parseJwt().UsuarioTipo == "2"){
                     this.props.history.push("/ConsultasMedico");
                 } else if (parseJwt().UsuarioTipo == "3"){
