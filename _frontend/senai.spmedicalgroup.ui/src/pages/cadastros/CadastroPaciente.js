@@ -3,6 +3,7 @@ import Axios from "axios";
 import {Link} from "react-router-dom";
 import { logout } from "../../services/logout";
 import { UsuarioToken } from "../../services/auth";
+import cadastrarItem from "../_componentes/compMetodo/cadastrarItem";
 
 class CadastroPaciente extends Component {
     constructor() {
@@ -19,7 +20,8 @@ class CadastroPaciente extends Component {
             bairro: "",
             cidade: "",
             estado: "",
-            cep: ""
+            cep: "",
+            Mensagem: ""
         }
         
         this.atualizarNome = this.atualizarNome.bind(this);
@@ -98,17 +100,20 @@ class CadastroPaciente extends Component {
             cep: this.state.cep,
         };
 
-        fetch('http://localhost:5000/api/Prontuarios', {
-            method: 'POST',
-            body: JSON.stringify(prontuario),
-            headers: {
-                'Content-Type' : 'application/json',
-                Authorization: 'Bearer ' + UsuarioToken
-            }
-        })
-        .then(resposta => resposta)
-        .then(data => console.log(data))
-        .catch(erro => console.log(erro))
+        cadastrarItem
+            .cadastrar('Prontuarios', prontuario)
+            .then(data => {
+                if(data.status == 200){
+                    this.setState({Mensagem: "Cadastro realizado com sucesso!"});
+                }
+                else if(data.status == 401){
+                    this.setState({Mensagem: "Você não tem permissão para realizar essa ação"})
+                }
+                else {
+                    this.setState({Mensagem: "Dados Inválidos"})
+                }
+            })
+            .catch(erro => this.setState({Mensagem: "Ocorreu um erro durante o cadastro, tente novamente"}))
     }
 
     render() {
@@ -131,6 +136,7 @@ class CadastroPaciente extends Component {
                 </form>
 
                 <Link to="/" onClick={logout}>Sair</Link>
+                <p>{this.state.Mensagem}</p>
             </div>
         )
     }

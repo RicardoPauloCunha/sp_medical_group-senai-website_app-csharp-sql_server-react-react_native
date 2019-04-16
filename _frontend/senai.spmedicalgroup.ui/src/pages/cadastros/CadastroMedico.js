@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import {logout} from "../../services/logout";
 import { UsuarioToken } from "../../services/auth";
+import cadastrarItem from "../_componentes/compMetodo/cadastrarItem";
 
 class CadastroMedico extends Component {
     constructor(){
@@ -12,7 +13,8 @@ class CadastroMedico extends Component {
             crm: "",
             idEspecialidade: "",
             idUsuario: "",
-            idClinica: ""
+            idClinica: "",
+            Mensagem: ""
         }
 
         this.atualizarNome = this.atualizarNome.bind(this);
@@ -45,7 +47,7 @@ class CadastroMedico extends Component {
     cadastrarMedico(event) {
         event.preventDefault();
 
-        let usuario = {
+        let medico = {
             nome: this.state.nome,
             crm: this.state.crm,
             idEspecialidade: this.state.idEspecialidade,
@@ -53,17 +55,20 @@ class CadastroMedico extends Component {
             idClinica: this.state.idClinica
         }
         
-        fetch('http://localhost:5000/api/Medicos', {
-            method: "POST",
-            body: JSON.stringify(usuario),
-            headers: {
-                'Content-Type' : 'application/json',
-                Authorization : 'Bearer ' + UsuarioToken
-            }
-        })
-        .then(resposta => resposta)
-        .then(data => console.log(data))
-        .then(erro => console.log(erro))
+        cadastrarItem
+            .cadastrar('Medicos', medico)
+            .then(data => {
+                if(data.status == 200){
+                    this.setState({Mensagem: "Cadastro realizado com sucesso!"});
+                }
+                else if(data.status == 401){
+                    this.setState({Mensagem: "Você não tem permissão para realizar essa ação"})
+                }
+                else {
+                    this.setState({Mensagem: "Dados Inválidos"})
+                }
+            })
+            .catch(erro => this.setState({Mensagem: "Ocorreu um erro durante o cadastro, tente novamente"}))
     }
 
     render() {
@@ -80,6 +85,7 @@ class CadastroMedico extends Component {
                 </form>
 
                 <Link to="/" onClick={logout}>Sair</Link>
+                <p>{this.state.Mensagem}</p>
             </div>
         )
     }

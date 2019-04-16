@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import {logout} from "../../services/logout";
 import { UsuarioToken } from "../../services/auth";
+import cadastrarItem from "../_componentes/compMetodo/cadastrarItem";
 
 class CadastroConsulta extends Component {
     constructor() {
@@ -13,7 +14,8 @@ class CadastroConsulta extends Component {
             dataAgendada: "",
             horaAgendada: "",
             idSituacao: "",
-            descricao: ""
+            descricao: "",
+            Mensagem: ""
         }
 
         this.atualizarIdProntuario = this.atualizarIdProntuario.bind(this);
@@ -60,17 +62,20 @@ class CadastroConsulta extends Component {
             descricao: this.state.descricao
         }
 
-        fetch('http://localhost:5000/api/Consultas', {
-            method: "POST",
-            body: JSON.stringify(consulta),
-            headers: {
-                'Content-Type' : 'application/json',
-                Authorization : 'Bearer ' + UsuarioToken
-            }
-        })
-        .then(resposta => resposta)
-        .then(data => console.log(data))
-        .catch(erro => console.log(erro))
+        cadastrarItem
+            .cadastrar('Consultas', consulta)
+            .then(data => {
+                if(data.status == 200){
+                    this.setState({Mensagem: "Cadastro realizado com sucesso!"});
+                }
+                else if(data.status == 401){
+                    this.setState({Mensagem: "Você não tem permissão para realizar essa ação"})
+                }
+                else {
+                    this.setState({Mensagem: "Dados Inválidos"})
+                }
+            })
+            .catch(erro => this.setState({Mensagem: "Ocorreu um erro durante o cadastro, tente novamente"}))
     }
 
     render() {
@@ -88,6 +93,7 @@ class CadastroConsulta extends Component {
                 </form>
 
                 <Link to="/" onClick={logout}>Sair</Link>
+                <p>{this.state.Mensagem}</p>
             </div>
         )
     }
