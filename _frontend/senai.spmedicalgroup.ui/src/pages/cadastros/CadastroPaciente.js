@@ -21,7 +21,7 @@ class CadastroPaciente extends Component {
             cidade: "",
             estado: "",
             cep: "",
-            Mensagem: ""
+            mensagem: ""
         }
         
         this.atualizarNome = this.atualizarNome.bind(this);
@@ -104,16 +104,16 @@ class CadastroPaciente extends Component {
             .cadastrar('Prontuarios', prontuario)
             .then(data => {
                 if(data.status == 200){
-                    this.setState({Mensagem: "Cadastro realizado com sucesso!"});
+                    this.setState({mensagem: "Cadastro realizado com sucesso!"});
                 }
                 else if(data.status == 401){
-                    this.setState({Mensagem: "Você não tem permissão para realizar essa ação"})
+                    this.setState({mensagem: "Você não tem permissão para realizar essa ação"})
                 }
                 else {
-                    this.setState({Mensagem: "Dados Inválidos"})
+                    this.setState({mensagem: "Dados Inválidos"})
                 }
             })
-            .catch(erro => this.setState({Mensagem: "Ocorreu um erro durante o cadastro, tente novamente"}))
+            .catch(erro => this.setState({ mensagem: "Ocorreu um erro durante o listagem, tente novamente" }))
     }
 
     render() {
@@ -136,7 +136,7 @@ class CadastroPaciente extends Component {
                 </form>
 
                 <Link to="/" onClick={logout}>Sair</Link>
-                <p>{this.state.Mensagem}</p>
+                <p>{this.state.mensagem}</p>
             </div>
         )
     }

@@ -12,6 +12,7 @@ import CadastroPaciente from './pages/cadastros/CadastroPaciente';
 import CadastroUsuarios from "./pages/cadastros/CadastroUsuario";
 import CadastroMedico from './pages/cadastros/CadastroMedico';
 import CadastroConsulta from './pages/cadastros/CadastroConsulta';
+import Dashboard from './pages/dashboard/Dashboard';
 
 // Verifica se é Admin
 const PermissaoAdmin = ({component : Component}) => (
@@ -64,8 +65,7 @@ const Routing = (
                 <PermissaoAdmin path="/CadastroUsuarios" component={CadastroUsuarios} />
                 <PermissaoAdmin path="/CadastroMedico" component={CadastroMedico} />
                 <PermissaoAdmin path="/CadastroConsulta" component={CadastroConsulta} />
-                {/* <Route path="/DashBoard" component={DashBoard} />
-                 */}
+                <PermissaoAdmin path="/Dashboard" component={Dashboard} />
             </Switch>
         </div>
     </Router>

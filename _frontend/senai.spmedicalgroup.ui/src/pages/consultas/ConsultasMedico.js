@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import {BrowserRouter, Redirect, Link} from "react-router-dom";
-import {logout} from "../../services/logout";
+import { BrowserRouter, Redirect, Link } from "react-router-dom";
+import { logout } from "../../services/logout";
+import listarConsultasUsuarioItem from "../_componentes/compMetodo/listarConsultasUsuarioItem";
 
 class ConsultasMedico extends Component {
     constructor() {
@@ -9,7 +10,8 @@ class ConsultasMedico extends Component {
         this.state = {
             consultas: [],
             descricao: "",
-            idDescricaoIncluir: ""
+            idDescricaoIncluir: "",
+            mensagem: ""
         }
 
         this.atualizarDescricao = this.atualizarDescricao.bind(this);
@@ -23,15 +25,11 @@ class ConsultasMedico extends Component {
 
     // lista todas as consultas
     listarConsultas() {
-        fetch('http://localhost:5000/api/Consultas', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
+        listarConsultasUsuarioItem
+            .listar()
             .then(resposta => resposta.json())
-            .then(data => this.setState({ consultas: data }))
-            .catch(erro => console.log(erro))
+            .then(data => { this.setState({ consultas: data }) })
+            .catch(erro => this.setState({ mensagem: "Ocorreu um erro durante o listagem, tente novamente" }));
     }
 
     // pega a descriçao digitada
@@ -60,7 +58,7 @@ class ConsultasMedico extends Component {
         })
             .then(resposta => resposta)
             .then(this.listarConsultas())
-            .catch(erro => console.log(erro))
+            .catch(erro => this.setState({ mensagem: "Ocorreu um erro durante o listagem, tente novamente" }))
     }
 
     render() {
@@ -104,6 +102,7 @@ class ConsultasMedico extends Component {
                 </form>
 
                 <Link to="/" onClick={logout}>Sair</Link>
+                <p>{this.state.mensagem}</p>
             </div>
         );
     }

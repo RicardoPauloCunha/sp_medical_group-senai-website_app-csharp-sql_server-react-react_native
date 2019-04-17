@@ -1,5 +1,3 @@
-import { UsuarioToken } from "../../../services/auth";
-
 export default {
     cadastrar(endpoint, item) {
         let url = `http://localhost:5000/api/${endpoint}`;
@@ -9,7 +7,7 @@ export default {
             body: JSON.stringify(item),
             headers: {
                 'Content-Type' : 'application/json',
-                Authorization : 'Bearer ' + UsuarioToken 
+                Authorization : 'Bearer ' + localStorage.getItem("usuarioautenticado-token-spmedgroup")
             }
         })
     }
