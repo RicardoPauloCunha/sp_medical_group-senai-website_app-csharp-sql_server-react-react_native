@@ -46,8 +46,26 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
+        // retorna a quantidade de Usuarios cadastradas
+        [HttpGet("Count")]
+        public IActionResult GetCount()
+        {
+            try
+            {
+                List<Usuarios> usuarios = UsuariosRepositorio.Listar();
+
+                int usuariosQtd = usuarios.Count();
+
+                return Ok(usuariosQtd);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         // Lista um único Usuario especifico
-        [HttpGet("/BuscarUsuario/{usuarioId}")]
+        [HttpGet("{usuarioId}")]
         public IActionResult GetUsuario(int usuarioId)
         {
             try

@@ -8,17 +8,14 @@ import Login from "./pages/login/Login";
 
 import {UsuarioAutenticado} from "./services/auth";
 import {parseJwt} from "./services/auth";
-import CadastroPaciente from './pages/cadastros/CadastroPaciente';
-import CadastroUsuarios from "./pages/cadastros/CadastroUsuario";
-import CadastroMedico from './pages/cadastros/CadastroMedico';
-import CadastroConsulta from './pages/cadastros/CadastroConsulta';
 import Dashboard from './pages/dashboard/Dashboard';
+import Cadastros from './pages/cadastros/Cadastros';
 
 // Verifica se é Admin
 const PermissaoAdmin = ({component : Component}) => (
     <Route
         render={props =>
-            UsuarioAutenticado() && parseJwt().UsuarioTipo == "1" ? (
+            UsuarioAutenticado() && parseJwt().UsuarioTipo === "1" ? (
                 <Component {...props}/>
             ) : (
                 <Redirect to={{pathname: "/"}}/>
@@ -31,7 +28,7 @@ const PermissaoAdmin = ({component : Component}) => (
 const PermissaoMedico = ({component : Component}) => (
     <Route
         render={props =>
-            UsuarioAutenticado() && parseJwt().UsuarioTipo == "2" ? (
+            UsuarioAutenticado() && parseJwt().UsuarioTipo === "2" ? (
                 <Component {...props}/>
             ) : (
                 <Redirect to={{pathname: "/"}}/>
@@ -44,7 +41,7 @@ const PermissaoMedico = ({component : Component}) => (
 const PermissaoPaciente = ({component : Component}) => (
     <Route
         render={props =>
-            UsuarioAutenticado() && parseJwt().UsuarioTipo == "3" ? (
+            UsuarioAutenticado() && parseJwt().UsuarioTipo === "3" ? (
                 <Component {...props}/>
             ) : (
                 <Redirect to={{pathname: "/"}}/>
@@ -61,10 +58,7 @@ const Routing = (
                 <Route exact path="/" component={Login}/>
                 <PermissaoPaciente path="/ConsultasPaciente" component={ConsultasPaciente} />
                 <PermissaoMedico path="/ConsultasMedico" component={ConsultasMedico} />
-                <PermissaoAdmin path="/CadastroPacientes" component={CadastroPaciente} />
-                <PermissaoAdmin path="/CadastroUsuarios" component={CadastroUsuarios} />
-                <PermissaoAdmin path="/CadastroMedico" component={CadastroMedico} />
-                <PermissaoAdmin path="/CadastroConsulta" component={CadastroConsulta} />
+                <PermissaoAdmin path="/Cadastros" component={Cadastros} />
                 <PermissaoAdmin path="/Dashboard" component={Dashboard} />
             </Switch>
         </div>

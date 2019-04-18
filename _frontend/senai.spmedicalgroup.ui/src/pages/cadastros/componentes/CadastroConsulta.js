@@ -1,9 +1,5 @@
 import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import {logout} from "../../services/logout";
-import { UsuarioToken } from "../../services/auth";
-import cadastrarItem from "../_componentes/compMetodo/cadastrarItem";
-
+import cadastrarItem from "./_cadastrarItem";
 class CadastroConsulta extends Component {
     constructor() {
         super();
@@ -65,10 +61,10 @@ class CadastroConsulta extends Component {
         cadastrarItem
             .cadastrar('Consultas', consulta)
             .then(data => {
-                if(data.status == 200){
+                if(data.status === 200){
                     this.setState({mensagem: "Cadastro realizado com sucesso!"});
                 }
-                else if(data.status == 401){
+                else if(data.status === 401){
                     this.setState({mensagem: "Você não tem permissão para realizar essa ação"})
                 }
                 else {
@@ -92,7 +88,6 @@ class CadastroConsulta extends Component {
                     <button type="submit">Cadastrar</button>
                 </form>
 
-                <Link to="/" onClick={logout}>Sair</Link>
                 <p>{this.state.mensagem}</p>
             </div>
         )

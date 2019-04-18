@@ -33,11 +33,11 @@ class Login extends Component {
         .then(data => {
             if(data.status === 200) {
                 localStorage.setItem("usuarioautenticado-token-spmedgroup", data.data.token);
-                if(parseJwt().UsuarioTipo == "1"){
+                if(parseJwt().UsuarioTipo === "1"){
                     this.props.history.push("/Dashboard");
-                } else if (parseJwt().UsuarioTipo == "2"){
+                } else if (parseJwt().UsuarioTipo === "2"){
                     this.props.history.push("/ConsultasMedico");
-                } else if (parseJwt().UsuarioTipo == "3"){
+                } else if (parseJwt().UsuarioTipo === "3"){
                     this.props.history.push("/ConsultasPaciente");
                 }
             };

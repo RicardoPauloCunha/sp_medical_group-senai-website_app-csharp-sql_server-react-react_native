@@ -38,6 +38,24 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
+        // retorna a quantidade de Prontuarios cadastradas
+        [HttpGet("Count")]
+        public IActionResult GetCount()
+        {
+            try
+            {
+                List<Prontuarios> prontuarios = ProntuariosRepositorio.Listar();
+
+                int usuariosQtd = prontuarios.Count();
+
+                return Ok(usuariosQtd);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         // Busca um unico Prontuario
         [HttpGet("{prontuarioId}")]
         public IActionResult Get(int prontuarioId)

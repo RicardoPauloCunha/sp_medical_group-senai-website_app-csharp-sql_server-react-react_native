@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter, Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { logout } from "../../services/logout";
-import listarConsultasUsuarioItem from "../_componentes/compMetodo/listarConsultasUsuarioItem";
+import listarConsultasUsuarioItem from "./componentes/listarConsultasUsuarioItem";
 
 class ConsultasMedico extends Component {
     constructor() {
@@ -53,12 +53,16 @@ class ConsultasMedico extends Component {
                 descricao: this.state.descricao
             }),
             headers: {
-                "Content-Type": "application/json"
+                'Content-Type' : 'application/json',
+                Authorization : 'Bearer ' + localStorage.getItem("usuarioautenticado-token-spmedgroup")
             }
         })
             .then(resposta => resposta)
             .then(this.listarConsultas())
-            .catch(erro => this.setState({ mensagem: "Ocorreu um erro durante o listagem, tente novamente" }))
+            // .catch(erro => this.setState({ mensagem: "Ocorreu um erro durante o listagem, tente novamente" }))
+            .catch(erro => console.log(erro))
+
+            this.listarConsultas();
     }
 
     render() {

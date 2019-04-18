@@ -27,13 +27,31 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
         }
 
         // Listar todas as Consultas
-        //[Authorize(Roles = "1")]
+        [Authorize(Roles = "1")]
         [HttpGet]
         public IActionResult Get()
         {
             try
             {
                 return Ok(ConsultasRepositorio.Listar());
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        // retorna a quantidade de Consultas cadastradas
+        [HttpGet("Count")]
+        public IActionResult GetCount()
+        {
+            try
+            {
+                List<Consultas> consultas = ConsultasRepositorio.Listar();
+
+                int usuariosQtd = consultas.Count();
+
+                return Ok(usuariosQtd);
             }
             catch (Exception)
             {
@@ -166,7 +184,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
 
         [Authorize(Roles = "1")]
         // Lista uma Consulta especifica
-        [HttpGet("/BuscarConsultas/{consultaId}")]
+        [HttpGet("{consultaId}")]
         public IActionResult GetConsulta(int consultaId)
         {
             try
