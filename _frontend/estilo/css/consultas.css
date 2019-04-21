@@ -1,9 +1,4 @@
-.consultas__consulta--container{
-    width: 100%;
-    height: auto;
-    background-color: rgb(245, 245, 245);
-    padding: 1em 0;
-}
+
 
 .consultas__consulta {
     width: 80%;
@@ -16,6 +11,7 @@
     border-radius: 10px;
     padding: 1px;
     margin: 1em auto;
+    box-shadow: 0px 0px 4px gray;
 }
 
 .consultas__consulta--item-infos {
@@ -43,9 +39,25 @@
 .consultas__consulta--item-infos-desc {
     padding: 0 0.5em;
     font-size: 0.9em;
+    display: flex;
+    flex-direction: column;
 }
 
-.consultas__consulta--item-button {
-    padding: 0 0.5em;
-    text-align: right;
+.consultas__consulta--item-input-desc {
+    border: none;
+    text-decoration: none;
+    background-color: rgb(135, 135, 253, 0.2);
+    border-radius: 7px;
+    border: solid 1px rgb(135, 135, 253, 0.3);
+    margin: 10px 0 10px 0;
+    width: 100%;
+    height: 8em;
+    padding: 0.5em;
+    resize: none;
+}
+
+.consultas__consulta--item-input-desc:focus {
+    outline: none;
+    background-color: rgb(135, 135, 253, 0.3);
+    border: solid 1px rgb(135, 135, 253, 0.4);
 }
