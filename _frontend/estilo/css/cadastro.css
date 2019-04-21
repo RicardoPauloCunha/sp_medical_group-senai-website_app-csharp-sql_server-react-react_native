@@ -1,0 +1,109 @@
+.cadastro__cadastro--header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cadastro__cadastro--header-links {
+    width: auto;
+    height: 1.5em;
+    font-size: 0.9em;
+    background-color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 0.3em;
+    color: gray;
+    box-shadow: inset 0px -4px 15px -10px black;
+}
+
+.cadastro__cadastro--header-links-select {
+    box-shadow: none;
+} 
+
+.cadastro__cadastro--container {
+    width: 100%;
+    height: auto;
+    background: url("../img/cadastro-img-teste.jpg");
+    background-size: cover;
+    padding: 2em 0;
+}
+
+.cadastro__cadastro {
+    width: 90%;
+    margin: auto;
+}
+
+.cadastro__cadastro--item {
+    background-color: white;
+    padding: 1em 0 0.2em 0;
+    text-align: center;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 1em 1em 50px
+}
+
+.cadastro__cadastro--item h2 {
+    color: gray;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.cadastro__cadastro--linha {
+    width: 60%;
+    height: 1px;
+    background-color: rgb(163, 163, 163);
+    margin: 2px auto 1.2em auto;
+}
+
+.cadastro__cadastro--input {
+    width: 35%;
+    height: 30px;
+    border: none;
+    text-decoration: none;
+    background-color: rgb(135, 135, 253);
+    border-radius: 7px;
+    border-color: blue;
+    margin: 0 10px 1em 10px;
+    padding: 0.5em
+}
+
+.cadastro__cadastro--input-grande {
+    width: 77%;
+}
+
+.cadastro__cadastro--input-ultimo {
+    margin: 0 100px 1em 100px;
+    text-align: center
+}
+
+.cadastro__cadastro--input::placeholder {
+    text-align: center;
+    color: gray;
+}
+
+.cadastro__cadastro--input:focus {
+    outline: none;
+    border: solid 1px gray;
+}
+
+.cadastro__cadastro--textarea {
+    border: none;
+    text-decoration: none;
+    background-color: rgb(135, 135, 253);
+    border-radius: 7px;
+    border-color: blue;
+    margin: 0 10px 0 10px;
+    width: 80%;
+    height: 8em;
+    padding: 0.5em;
+}
+
+.cadastro__cadastro--textarea::placeholder {
+    text-align: center;
+    color: gray;
+}
+
+.cadastro__cadastro--textarea:focus {
+    outline: none;
+    border: solid 1px gray;
+}

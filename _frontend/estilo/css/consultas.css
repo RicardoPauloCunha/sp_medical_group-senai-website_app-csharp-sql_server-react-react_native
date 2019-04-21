@@ -1,0 +1,51 @@
+.consultas__consulta--container{
+    width: 100%;
+    height: auto;
+    background-color: rgb(245, 245, 245);
+    padding: 1em 0;
+}
+
+.consultas__consulta {
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.consultas__consulta--item {
+    background-color: rgb(135, 135, 253);
+    border-radius: 10px;
+    padding: 1px;
+    margin: 1em auto;
+}
+
+.consultas__consulta--item-infos {
+    background-color: white;
+    border-radius: 10px;
+    padding: 0.4em;
+}
+
+.consultas__consulta--item-infos-prot {
+    margin: 0.4em 0 0.4em 0.4em;
+    color: white;
+}
+
+.consultas__consulta--item-infos th {
+    width: 50%;
+    text-align: left;
+    color: rgb(135, 135, 253);
+    font-size: 0.9em;
+}
+
+.consultas__consulta--item-descricao th, td {
+    height: 19px;
+}
+
+.consultas__consulta--item-infos-desc {
+    padding: 0 0.5em;
+    font-size: 0.9em;
+}
+
+.consultas__consulta--item-button {
+    padding: 0 0.5em;
+    text-align: right;
+}
