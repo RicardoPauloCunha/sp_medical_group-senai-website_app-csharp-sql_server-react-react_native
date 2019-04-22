@@ -49,9 +49,13 @@
 }
 
 
+.cadastro__cadastro--form {
+    width: 80%;
+    margin: auto;
+}
 
 .cadastro__cadastro--input {
-    width: 35%;
+    width: 40%;
     height: 30px;
     border: none;
     text-decoration: none;
@@ -64,11 +68,11 @@
 }
 
 .cadastro__cadastro--input-grande {
-    width: 77%;
+    width: 88%;
 }
 
 .cadastro__cadastro--input-ultimo {
-    margin: 0 100px 1em 100px;
+    margin: 0 30% 1em 30%;
     text-align: center
 }
 
@@ -91,9 +95,10 @@
     border-radius: 7px;
     border: solid 1px rgb(135, 135, 253, 0.3);
     margin: 0 10px 0 10px;
-    width: 77%;
+    width: 88%;
     height: 8em;
     padding: 0.5em;
+    resize: none;
 }
 
 .cadastro__cadastro--textarea::placeholder {
@@ -118,16 +123,16 @@
         width: 80%;
     }
 
-    .cadastro__cadastro--input-ultimo {
-        margin: 0 150px 1em 150px;
-    }
-
     .cadastro__cadastro--header-links {
-        padding: 0.5em 0.7em;
+        padding: 0.3em 0.7em;
     }
 
     .cadastro__cadastro--input-grande {
-        width: 74%;
+        width: 86%;
+    }
+
+    .cadastro__cadastro--textarea {
+        width: 86%;
     }
 }
 
@@ -136,9 +141,8 @@
     width: 70%;
     }
 
-    .cadastro__cadastro--textarea {
-        width: 74%;
-        margin: 0 20px 0 20px; 
+    .cadastro__cadastro--form {
+        width: 75%;
     }
 
     .cadastro__cadastro--header {
@@ -147,5 +151,54 @@
 
     .cadastro__cadastro--item {
         border-radius: 10px;
+    }
+
+    .style__titulo--linha {
+        margin: 2px auto 1.5em auto;
+    }
+
+    .cadastro__cadastro--header-links {
+        height: 1.6em;
+    }
+
+    .cadastro__cadastro--textarea {
+        margin: 0 10px 0.5em 10px;
+    }
+}
+
+@media (min-width: 900px) {
+    .cadastro__cadastro {
+        width: 60%;
+    }
+
+    .cadastro__cadastro--item {
+        padding: 1.5em 0 1em 0;
+    }
+
+    .cadastro__cadastro--container {
+        padding: 3em 0;
+    }
+
+    .cadastro__cadastro--header-links {
+        font-size: 1em;
+    }
+}
+
+@media (min-width: 1366px) {
+    .cadastro__cadastro {
+        width: 50%;
+    }
+
+    .cadastro__cadastro--item {
+        padding: 2em 0 2em 0;
+    }
+
+    .cadastro__cadastro--input {
+        font-size: 1em;
+    }
+
+    .cadastro__cadastro--textarea {
+        font-size: 1em;
+        margin: 0 10px 1em 10px;
     }
 }
