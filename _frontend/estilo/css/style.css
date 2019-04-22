@@ -147,3 +147,11 @@
 .style__rodape--infos-links p {
     margin-bottom: 0.2em;
 }
+
+/* Media Queries */
+
+@media (min-width: 600px) {
+    .style__rodape {
+        padding: 1em 5em;
+    }
+}

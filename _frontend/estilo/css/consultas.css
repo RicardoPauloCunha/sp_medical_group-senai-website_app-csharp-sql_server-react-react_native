@@ -61,3 +61,9 @@
     background-color: rgb(135, 135, 253, 0.3);
     border: solid 1px rgb(135, 135, 253, 0.4);
 }
+
+@media (min-width: 600px) {
+    .consultas__consulta {
+        width: 70%;
+    }
+}

@@ -106,3 +106,46 @@
     background-color: rgb(135, 135, 253, 0.3);
     border: solid 1px rgb(135, 135, 253, 0.4);
 }
+
+@media (min-width: 420px){
+    .cadastro__cadastro--header-links {
+        padding: 0.3em 0.5em;
+    }
+}
+
+@media (min-width: 600px){
+    .cadastro__cadastro {
+        width: 80%;
+    }
+
+    .cadastro__cadastro--input-ultimo {
+        margin: 0 150px 1em 150px;
+    }
+
+    .cadastro__cadastro--header-links {
+        padding: 0.5em 0.7em;
+    }
+
+    .cadastro__cadastro--input-grande {
+        width: 74%;
+    }
+}
+
+@media (min-width: 768px) {
+    .cadastro__cadastro {
+    width: 70%;
+    }
+
+    .cadastro__cadastro--textarea {
+        width: 74%;
+        margin: 0 20px 0 20px; 
+    }
+
+    .cadastro__cadastro--header {
+        padding: 0 10%;
+    }
+
+    .cadastro__cadastro--item {
+        border-radius: 10px;
+    }
+}

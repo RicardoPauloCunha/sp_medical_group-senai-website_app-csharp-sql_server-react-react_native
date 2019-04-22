@@ -45,7 +45,6 @@ p {
 .login__login--input {
     width: 80%;
     height: 30px;
-    margin: 0 auto;
     border: none;
     text-decoration: none;
     background-color: rgba(255, 255, 255, 0.7);
@@ -70,13 +69,13 @@ p {
 }
 
 .login__outlogin--our-fist {
-    width: 60%;
+    width: 50%;
     height: 35px;
     margin: 20px auto 0 auto;
 }
 
 .login__outlogin--our {
-    width: 60%;
+    width: 50%;
     height: 35px;
     margin: 10px auto 20px auto;
 }
@@ -104,4 +103,38 @@ p {
     top: -19px;
     text-align: center;
     color: gray;
+}
+
+@media (min-width: 600px){
+    .login__login--input {
+        width: 60%;
+    }
+
+    .login__outlogin {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .login__outlogin--our-fist {
+        width: 40%;
+    }
+
+    .login__outlogin--our {
+        width: 40%;
+    }
+}
+
+@media (min-width: 768px){
+    .login__container {
+        background-color: rgb(245, 245, 245);
+        padding: 2em 0;
+    }
+
+    .login__main {
+        width: 80%;
+        margin: 0 auto;
+        box-shadow: 0px 0px 5px grey;
+        padding-bottom: 2em;
+        background-color: white;
+    }
 }

@@ -65,3 +65,23 @@
     background-color: white;
     border: solid 1px rgb(135, 135, 253);
 }
+
+@media (min-width: 420px){
+    .dashboard__estatic--item {
+        width: 8em;
+    }
+}
+
+@media (min-width: 600px) {
+    .dashboard__item--container {
+        width: 70%;
+    }
+
+    .consultas__consulta--item-infos-prot {
+        margin: 0.5em 0 0.5em 0.5em;
+    }
+
+    .consultas__consulta--item-infos {
+        padding: 1em;
+    }
+}
