@@ -33,6 +33,11 @@
     font-size: 2em;
 }
 
+.style__nav--links p {
+    text-transform: uppercase;
+
+}
+
 .login__login--titulo {
     margin: 0.5em 0 0.5em 0;
 }
@@ -121,6 +126,10 @@
     width: 20%;
 }
 
+.style__menu--button-display-none {
+    display: block;
+}
+
 .style__logo--circtittle {
     display: flex;
     margin: auto;
@@ -131,6 +140,10 @@
     font-size: 1.5em;
     margin: 0.4em 1em;
     text-transform: uppercase;
+}
+
+.style__nav--display-none {
+    display: none;
 }
 
 .style__nav {
@@ -231,6 +244,14 @@
     .style__titulo--linha {
         width: 50%;
     }
+
+    .style__menu--button-display-none {
+        display: none;
+    }
+
+    .style__nav--display-none {
+        display: block;
+    }
 }
 
 @media (min-width: 900px) {
@@ -257,11 +278,19 @@
     .style__menu--nav-button {
         width: 12%;
     }
+
+    .style__menu--titulo {
+        margin: 0.7em 0 0.3em 0;
+    }
 }
 
 @media (min-width: 1366px) {
     .style__menu--nav-button {
         width: 8%;
+    }
+
+    .style__menu--titulo {
+        margin: 1em 0 0.3em 0;
     }
 }
 
