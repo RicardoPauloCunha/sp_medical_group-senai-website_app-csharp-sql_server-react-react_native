@@ -67,15 +67,16 @@
                 <h2>Cadastrar Médico</h2>
                 <div class="style__titulo--linha"></div>
 
-                <form class="cadastro__cadastro--form">
-                    <input type="text" placeholder="Nome"
-                        class="cadastro__cadastro--input cadastro__cadastro--input-grande" />
-                    <input type="text" placeholder="CRM" class="cadastro__cadastro--input " />
-                    <input type="text" placeholder="IdEspecialid." class="cadastro__cadastro--input" />
-                    <input type="text" placeholder="IdUser" class="cadastro__cadastro--input" />
-                    <input type="text" placeholder="IdClinica" class="cadastro__cadastro--input" />
-                    <button class="style__button--blue">Cadastrar</button>
+                <form class="cadastro__cadastro--form" onSubmit={this.cadastrarMedico.bind(this)}>
+                    <input type="text" placeholder="Nome" class="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.nome} onChange={this.atualizarNome} />
+                    <input type="text" placeholder="CRM" class="cadastro__cadastro--input " value={this.state.crm} onChange={this.atualizarCrm} />
+                    <input type="text" placeholder="IdEspecialid." class="cadastro__cadastro--input" value={this.state.idEspecialidade} onChange={this.atualizarIdEspecialidade} />
+                    <input type="text" placeholder="IdUser" class="cadastro__cadastro--input" value={this.state.idUsuario} onChange={this.atualizarIdUsuario} />
+                    <input type="text" placeholder="IdClinica" class="cadastro__cadastro--input" value={this.state.idClinica} onChange={this.atualizarIdClinica} />
+                    <button class="style__button--blue" type="submit">Cadastrar</button>
                 </form>
+
+                <p>{this.state.mensagem}</p>
             </div>
         </div>
     </div>

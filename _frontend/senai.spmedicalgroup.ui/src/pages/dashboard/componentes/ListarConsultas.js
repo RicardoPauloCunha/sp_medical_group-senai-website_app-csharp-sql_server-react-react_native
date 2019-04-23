@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import listarItem from "./_listarItem";
 
+import "../assents/css/dashboard.css";
+import "../../_assets/css/style.css";
+
 class ListarConsultas extends Component {
     constructor() {
         super();
@@ -26,7 +29,8 @@ class ListarConsultas extends Component {
     render() {
         return (
             <div>
-                <h3>Lista de Consultas</h3>
+                <h2>Lista de Consultas</h2>
+                <div class="style__titulo--linha"></div>
                 <button onClick={this.buttonClickConsultas.bind(this)}>Listar</button>
                 <table>
                     <tbody>

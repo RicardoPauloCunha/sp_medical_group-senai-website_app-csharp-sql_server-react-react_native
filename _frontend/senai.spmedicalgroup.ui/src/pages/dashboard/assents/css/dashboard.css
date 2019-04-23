@@ -1,0 +1,91 @@
+.dashboard__item--container {
+    width: 80%;
+    height: auto;
+    padding: 1em 0;
+    margin: auto;
+}
+
+.dashboard__estatic--item {
+    width: 7em;
+    height: auto;
+    padding: 0.5em;
+    text-align: center;
+    background-color: white;
+    color: rgb(135, 135, 253);
+    border: solid 1px rgb(135, 135, 253);
+    border-radius: 10px;
+    margin: 0 auto 1.5em;
+}
+
+.dashboard__estatic--item img{
+    margin: 0.5em auto;
+}
+
+.dashboard__estatic--container {
+    display:  flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.dashboard__lista {
+    padding: 0 0 1em 0;
+}
+
+.dashboard__lista h2{
+    text-align: center;
+    margin-top: 0.5em; 
+}
+
+.dashboard__lista--header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+.dashboard__lista--select {
+        width: auto;
+        background-color: rgb(135, 135, 253);
+        text-align: center;
+        border-radius: 15px;
+        padding: 3px 20px;
+        margin: 0.8em auto;
+        color: white;
+        border: solid 1px rgb(135, 135, 253);
+        font-size: 1em;
+}
+
+.dashboard__lista--select:hover {
+    transition: 0.5s;
+    outline: none;
+    background-color: rgb(89, 89, 255);
+}
+
+.dashboard__lista--select:focus {
+    outline: none;
+}
+
+.dashboard__lista--select-option {
+    color: rgb(135, 135, 253);
+    background-color: white;
+    border: solid 1px rgb(135, 135, 253);
+}
+
+@media (min-width: 420px){
+    .dashboard__estatic--item {
+        width: 8em;
+    }
+}
+
+@media (min-width: 600px) {
+    .dashboard__item--container {
+        width: 70%;
+    }
+
+    .consultas__consulta--item-infos-prot {
+        margin: 0.5em 0 0.5em 0.5em;
+    }
+
+    .consultas__consulta--item-infos {
+        padding: 1em;
+    }
+}

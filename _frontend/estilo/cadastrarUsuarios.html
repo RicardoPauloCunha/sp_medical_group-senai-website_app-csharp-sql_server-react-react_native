@@ -67,17 +67,14 @@
                 <h2>Cadastrar Usuários</h2>
                 <div class="style__titulo--linha"></div>
 
-                <form class="cadastro__cadastro--form">
-                    <input type="text" placeholder="Email"
-                        class="cadastro__cadastro--input cadastro__cadastro--input-grande" />
-                    <input type="text" placeholder="Senha"
-                        class="cadastro__cadastro--input cadastro__cadastro--input-grande" />
-                    <input type="text" placeholder="Confimar Senha"
-                        class="cadastro__cadastro--input cadastro__cadastro--input-grande" />
-                    <input type="text" placeholder="IdTipoUsuario"
-                        class="cadastro__cadastro--input cadastro__cadastro--input-ultimo" />
-                    <button class="style__button--blue">Cadastrar</button>
+                <form class="cadastro__cadastro--form" onSubmit={this.cadastrarUsuario.bind(this)}>
+                    <input type="email" placeholder="Email" class="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.email} onChange={this.atualizarEmail} />
+                    <input type="password" placeholder="Senha" class="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.senha} onChange={this.atualizarSenha} />
+                    <input type="text" placeholder="IdTipoUsuario" class="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.idTipoUsuario} onChange={this.atualizarIdTipoUsuario} />
+                    <button type="submit" class="style__button--blue">Cadastrar</button>
                 </form>
+
+                <p>{this.state.mensagem}</p>
             </div>
         </div>
     </div>

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import listarItem from "./_listarItem";
 
+import "../assents/css/dashboard.css";
+import "../../_assets/css/style.css";
+
 class ListarUsuarios extends Component {
     constructor() {
         super();
@@ -26,7 +29,8 @@ class ListarUsuarios extends Component {
     render() {
         return (
             <div>
-                <h3>Lista de Usuarios</h3>
+                <h2>Lista de Usuarios</h2>
+                <div class="style__titulo--linha"></div>
                 <button onClick={this.buttonClickUsuarios.bind(this)}>Listar</button>
                 <table>
                     <tbody>

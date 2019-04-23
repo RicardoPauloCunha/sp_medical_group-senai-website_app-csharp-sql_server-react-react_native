@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { logout } from "../../services/logout";
+
+import MenuMin from "../_componentes/menuMin";
+import RodaPe from "../_componentes/rodaPe";
+
 import ListarConsultas from "./componentes/ListarConsultas";
 import ListarProntuarios from "./componentes/ListarProntuarios";
 import ListarMedicos from "./componentes/ListarMedicos";
 import ListarUsuarios from "./componentes/ListarUsuarios";
 import QuantidadeItensLista from "./componentes/QuantidadeItensLista";
+
+import "./assents/css/dashboard.css";
+import "../_assets/css/style.css";
 
 class Dashboard extends Component {
     constructor() {
@@ -47,47 +53,44 @@ class Dashboard extends Component {
     render() {
         return (
             <div>
-                {/* Quantidade item */}
-                <QuantidadeItensLista />
+                <MenuMin />
 
-                <Link to="/Cadastros">Cadastros</Link>
+                <div class="style__main--container">
+                    <QuantidadeItensLista />
 
-                {/* Listar Itens */}
-                <div>
-                    
-                    <ListarConsultas />
+                    <Link to="/Cadastros">Cadastros</Link>
 
-                    <ListarProntuarios />
-                    
-                    <ListarMedicos />
-                    
-                    <ListarUsuarios />
+                    <div class="dashboard__item--container dashboard__lista">
+
+                        <div class="dashboard__lista--header">
+                            <select class="dashboard__lista--select">
+                                <option value="" class="dashboard__lista--select-option">Listar</option>
+                                <option value="" class="dashboard__lista--select-option">Consultas</option>
+                                <option value="" class="dashboard__lista--select-option">Prontuarios</option>
+                                <option value="" class="dashboard__lista--select-option">Medicos</option>
+                                <option value="" class="dashboard__lista--select-option">Usuarios</option>
+                            </select>
+                            <select class="dashboard__lista--select">
+                                <option value="" class="dashboard__lista--select-option">Cadastrar</option>
+                                <option value="" class="dashboard__lista--select-option">Consultas</option>
+                                <option value="" class="dashboard__lista--select-option">Prontuarios</option>
+                                <option value="" class="dashboard__lista--select-option">Medicos</option>
+                                <option value="" class="dashboard__lista--select-option">Usuarios</option>
+                            </select>
+                        </div>
+
+                        <ListarConsultas />
+
+                        <ListarProntuarios />
+
+                        <ListarMedicos />
+
+                        <ListarUsuarios />
+
+                    </div>
                 </div>
-                
-                {/* Buscar Item */}
-                <div>
-                    {/* <h3>Buscar Item</h3>
 
-                    <form onSubmit={this.buscarId.bind(this)}>
-                        <input type="text" placeholder="Id Item Buscado" value={this.state.idBusca} onChange={this.atualizaIdBuscsa.bind(this)} />
-                        <select value={this.endpointBusca} onChange={this.atualizaEndpointBusca.bind(this)}>
-                            <option value="">Selecione</option>
-                            <option value="Consultas/">IdConsulta</option>
-                            <option value="Medicos/">IdMedico</option>
-                            <option value="Prontuarios/">IdProntuario</option>
-                            <option value="Usuarios/">IdUsuario</option>
-                        </select>
-
-                        <button type="submit">Buscar</button>
-                    </form>
-
-                    <h4>Item Encontrado</h4> */}
-                </div>
-                
-                {/* Sair */}
-                <div>
-                    <Link to="/" onClick={logout}>Sair</Link>
-                </div>
+                <RodaPe />
             </div>
         )
     }

@@ -1,10 +1,15 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import {logout} from "../../services/logout";
+import React, { Component } from "react";
+
 import CadastroUsuario from "./componentes/CadastroUsuario";
 import CadastroMedico from "./componentes/CadastroMedico";
 import CadastroPaciente from "./componentes/CadastroPaciente";
 import CadastroConsulta from "./componentes/CadastroConsulta";
+
+import "../_assets/css/style.css";
+import "./assents/css/cadastro.css";
+import MenuMin from "../_componentes/menuMin";
+import Rodape from "../_componentes/rodaPe";
+
 
 class Cadastros extends Component {
     constructor() {
@@ -16,17 +21,23 @@ class Cadastros extends Component {
     }
 
     render() {
-        return(
+        return (
             <div>
-                <CadastroUsuario />
 
-                <CadastroMedico />
-                
-                <CadastroPaciente />
+                <MenuMin />
 
-                <CadastroConsulta />
+                <div class="cadastro__cadastro--container">
+                    <CadastroUsuario />
 
-                <Link to="/" onClick={logout}>Sair</Link>
+                    <CadastroMedico />
+
+                    <CadastroPaciente />
+
+                    <CadastroConsulta />
+                </div>
+
+                <Rodape />
+
             </div>
         )
     }
