@@ -62,8 +62,99 @@
     border: solid 1px rgb(135, 135, 253, 0.4);
 }
 
+/* Ricardo */
+
+.consultas__consulta--table {
+    display: none;
+    width: 70%;
+    margin: auto;
+}
+
+.consultas__table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+    border: solid 1px rgb(135, 135, 253);
+}
+
+.consultas__table tr{
+    border: none;
+}
+
+.consultas__table--header {
+    background-color: rgb(135, 135, 253);
+    color: white;
+}
+
+.consultas__table--header th {
+    width: auto;
+    height: 2em;
+    padding: 1em;
+}
+
+.consultas__table tr, td {
+    margin-top: 1em;
+    border-top: solid 1px rgb(135, 135, 253);
+}
+
+.consultas__table--infos td{
+    vertical-align: top;
+    padding: 1em 0 2em 0;
+    text-align: center;
+}
+
 @media (min-width: 600px) {
     .consultas__consulta {
         width: 70%;
+    }
+
+    .consultas__consulta--item-infos-prot {
+        margin: 0.4em 0 0.4em 0.7em;
+    }
+
+    .consultas__consulta--item-infos {
+        padding: 0.7em;
+    }
+
+    .consultas__consulta--item-descricao th, td {
+        height: 21px;
+    }
+
+    .consultas__consulta--item-infos-desc {
+        padding: 0.3em 0.5em 0;
+        font-size: 1em;
+    }
+}
+
+@media (min-width: 768px) {
+    .consultas__consulta {
+        width: 70%;
+    }
+
+    .consultas__consulta--item-infos-prot {
+        margin: 0.5em 0 0.5em 1em;
+    }
+
+    .consultas__consulta--item-infos {
+        padding: 1em;
+    }
+
+    .consultas__consulta--item-descricao th, td {
+        height: 25px;
+    }
+
+    .consultas__consulta--item-infos-desc {
+        padding: 0.5em 0.5em 0;
+    }
+}
+
+@media (min-width: 900px) {
+    .consultas__consulta--display-none {
+        display: none;
+    }
+
+    .consultas__consulta--table {
+        display: flex;
     }
 }
