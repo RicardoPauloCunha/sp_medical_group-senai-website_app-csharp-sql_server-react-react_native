@@ -8,7 +8,7 @@
 .style__main--container{
     width: 100%;
     height: auto;
-    background-color: rgb(245, 245, 245);
+    background-color: #f5fafc;
     padding: 1em 0;
 }
 
@@ -70,27 +70,27 @@
 
 .style__button--blue {
     width: auto;
-    background-color: rgb(135, 135, 253);
+    background-color: #82c1d7;
     text-align: center;
     border-radius: 15px;
     padding: 3px 20px;
     margin: 0.8em auto;
     color: white;
-    border: solid 1px rgb(135, 135, 253);
+    border: solid 1px #82c1d7;
     font-size: 1em;
 }
 
 .style__button--blue:hover {
     transition: 0.5s;
     outline: none;
-    background-color: rgb(89, 89, 255);
+    background-color: #419bbb;
 }
 
 .style__button--blue:focus {
     transition: 0.1s;
     outline: none;
     background-color: transparent;
-    color: rgb(135, 135, 253);
+    color: #82c1d7;
 }
 
 .style__titulo--linha {

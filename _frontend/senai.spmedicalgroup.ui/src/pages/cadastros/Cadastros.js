@@ -26,7 +26,7 @@ class Cadastros extends Component {
 
                 <MenuMin />
 
-                <div class="cadastro__cadastro--container">
+                <div className="cadastro__cadastro--container">
                     <CadastroUsuario />
 
                     <CadastroMedico />

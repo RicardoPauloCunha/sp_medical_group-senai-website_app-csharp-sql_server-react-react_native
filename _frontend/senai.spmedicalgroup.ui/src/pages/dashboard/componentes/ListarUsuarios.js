@@ -3,6 +3,7 @@ import listarItem from "./_listarItem";
 
 import "../assents/css/dashboard.css";
 import "../../_assets/css/style.css";
+import "../../consultas/assets/css/consultas.css";
 
 class ListarUsuarios extends Component {
     constructor() {
@@ -28,13 +29,13 @@ class ListarUsuarios extends Component {
 
     render() {
         return (
-            <div>
+            <div className="consultas__lista--table">
                 <h2>Lista de Usuarios</h2>
-                <div class="style__titulo--linha"></div>
-                <button onClick={this.buttonClickUsuarios.bind(this)}>Listar</button>
-                <table>
+                <div className="style__titulo--linha"></div>
+                <button onClick={this.buttonClickUsuarios.bind(this)} className="style__button--blue">Listar</button>
+                <table className="consultas__table">
                     <tbody>
-                        <tr>
+                        <tr className="consultas__table--header">
                             <th>Id</th>
                             <th>Email</th>
                             <th>Senha</th>
@@ -44,7 +45,7 @@ class ListarUsuarios extends Component {
                         {
                             this.state.listaUsuarios.map(usuario => {
                                 return (
-                                    <tr key={usuario.id}>
+                                    <tr key={usuario.id} className="consultas__table--infos">
                                         <td>{usuario.id}</td>
                                         <td>{usuario.email}</td>
                                         <td>{usuario.senha}</td>

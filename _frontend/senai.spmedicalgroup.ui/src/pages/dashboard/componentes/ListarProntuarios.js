@@ -28,13 +28,13 @@ class ListarProntuarios extends Component {
 
     render() {
         return (
-            <div>
+            <div className="consultas__lista--table">
                 <h2>Lista de Prontuarios</h2>
-                <div class="style__titulo--linha"></div>
-                <button onClick={this.buttonClickProntuarios.bind(this)}>Listar</button>
-                <table>
+                <div className="style__titulo--linha"></div>
+                <button onClick={this.buttonClickProntuarios.bind(this)} className="style__button--blue">Listar</button>
+                <table className="consultas__table">
                     <tbody>
-                        <tr>
+                    <tr className="consultas__table--header">
                             <th>Id</th>
                             <th>Nome</th>
                             <th>RG</th>
@@ -52,7 +52,7 @@ class ListarProntuarios extends Component {
                         {
                             this.state.listaProntuarios.map(prontuario => {
                                 return (
-                                    <tr key={prontuario.id}>
+                                    <tr key={prontuario.id} className="consultas__table--infos">
                                         <td>{prontuario.id}</td>
                                         <td>{prontuario.nome}</td>
                                         <td>{prontuario.rg}</td>

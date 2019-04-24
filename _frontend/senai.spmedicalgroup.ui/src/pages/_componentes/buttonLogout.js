@@ -7,9 +7,9 @@ import { logout } from "../../services/logout";
 class ButtonLogout extends Component {
     render() {
         return (
-            <div class="style__menu--nav-button">
+            <div className="style__menu--nav-button">
                 <Link to="/" onClick={logout}>
-                    <button type="submit" class="style__button--white">Sair</button>
+                    <button type="submit" className="style__button--white">Sair</button>
                 </Link>
             </div>
         )

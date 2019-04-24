@@ -48,7 +48,6 @@
     </div>
 
     <div class="style__main--container">
-        <!-- Ricardo -->
         <div class="consultas__consulta consultas__consulta--display-none">
 
             <div class="consultas__consulta--item">
@@ -161,30 +160,29 @@
         </div>
 
         <!-- Ricardo -->
-        <div class="consultas__consulta--table">
+        <div class="consultas__lista--table">
             <table class="consultas__table">
                 <tbody>
                     <tr class="consultas__table--header">
-                        <th>ID</th>
-                        <th>Medico</th>
-                        <th>Data</th>
-                        <th>Hora</th>
-                        <th>Situacao</th>
+                        <th>Id</th>
+                        <th>IdProntuario</th>
+                        <th>IdMedico</th>
+                        <th>DataAgendada</th>
+                        <th>HoraAgendade</th>
+                        <th>IdSituacao</th>
                         <th>Descrição</th>
                     </tr>
-                    <tr class="consultas__table--infos">
-                        <td>N</td>
-                        <td>NomeMedico</td>
-                        <td>20/02/2019</td>
-                        <td>15:00 h</td>
-                        <td>Realizada</td>
-                        <td>
-                            Lorem Ipsum is simply dummy text of the printing
-                            and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
-                            since
-                            the 1500s.
-                        </td>
+
+                    <tr key={consulta.id} class="consultas__table--infos">
+                        <td>{consulta.id}</td>
+                        <td>{consulta.idProntuario}</td>
+                        <td>{consulta.idMedico}</td>
+                        <td>{consulta.dataAgendada.replace("T", " ").split(".")[0]}</td>
+                        <td>{consulta.horaAgendada}</td>
+                        <td>{consulta.idSituacao}</td>
+                        <td class="consultas__table--infos-desc">{consulta.descricao}</td>
                     </tr>
+
                     <tr class="consultas__table--infos">
                         <td>N</td>
                         <td>NomeMedico</td>

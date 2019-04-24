@@ -18,8 +18,6 @@ class ConsultasMedico extends Component {
             mensagem: ""
         }
 
-        this.atualizarDescricao = this.atualizarDescricao.bind(this);
-        this.atualizarIdDescricaoIncluir = this.atualizarIdDescricaoIncluir.bind(this);
     }
 
     // carrega o metodo
@@ -42,7 +40,7 @@ class ConsultasMedico extends Component {
     }
 
     // atualiza a descricao de uma consulta
-    atualizarIdDescricaoIncluir(event) {
+    atualizarIdDescricao(event) {
         this.setState({ idDescricaoIncluir: event.target.value });
     }
 
@@ -50,23 +48,29 @@ class ConsultasMedico extends Component {
     incluirDescricao(event) {
         event.preventDefault();
 
-        fetch('http://localhost:5000/AlterarDescricaoConsulta', {
-            method: "PUT",
-            body: JSON.stringify({
-                id: this.state.idDescricaoIncluir,
-                descricao: this.state.descricao
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + localStorage.getItem("usuarioautenticado-token-spmedgroup")
-            }
-        })
-            .then(resposta => resposta)
-            .then(this.listarConsultas())
-            // .catch(erro => this.setState({ mensagem: "Ocorreu um erro durante o listagem, tente novamente" }))
-            .catch(erro => console.log(erro))
+        let op = {
+            id: this.state.idDescricaoIncluir,
+            descricao: this.state.descricao
+        }
 
-        this.listarConsultas();
+        console.log(op)
+        // fetch('http://localhost:5000/AlterarDescricaoConsulta', {
+        //     method: "PUT",
+        //     body: JSON.stringify({
+        //         id: this.state.IdIncluirDescricao,
+        //         descricao: this.state.descricao
+        //     }),
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         Authorization: 'Bearer ' + localStorage.getItem("usuarioautenticado-token-spmedgroup")
+        //     }
+        // })
+        //     .then(resposta => resposta)
+        //     .then(this.listarConsultas())
+        //     // .catch(erro => this.setState({ mensagem: "Ocorreu um erro durante o listagem, tente novamente" }))
+        //     .catch(erro => console.log(erro))
+
+        // this.listarConsultas();
     }
 
     render() {
@@ -74,51 +78,52 @@ class ConsultasMedico extends Component {
             <div>
                 <MenuMin />
 
-                <div class="style__main--container">
-                    <div class="consultas__consulta">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>IdProntuario</th>
-                                    <th>IdMedico</th>
-                                    <th>DataAgendada</th>
-                                    <th>HoraAgendade</th>
-                                    <th>IdSituacao</th>
-                                    <th>Descricao</th>
-                                </tr>
+                <div className="consultas__lista--table">
+                    <table className="consultas__table">
+                        <tbody>
+                            <tr className="consultas__table--header">
+                                <th>Id</th>
+                                <th>IdProntuario</th>
+                                <th>IdMedico</th>
+                                <th>DataAgendada</th>
+                                <th>HoraAgendade</th>
+                                <th>IdSituacao</th>
+                                <th>Descrição</th>
+                            </tr>
 
-                                {
-                                    this.state.consultas.map(consulta => {
-                                        return (
-                                            <tr key={consulta.id}>
-                                                <td>{consulta.id}</td>
-                                                <td>{consulta.idProntuario}</td>
-                                                <td>{consulta.idMedico}</td>
-                                                <td>{consulta.dataAgendada.replace("T", " ").split(".")[0]}</td>
-                                                <td>{consulta.horaAgendada}</td>
-                                                <td>{consulta.idSituacao}</td>
-                                                <td>{consulta.descricao}</td>
-                                            </tr>
-                                        );
-                                    })
-                                }
-                            </tbody>
-                        </table>
+                            {
+                                this.state.consultas.map(consulta => {
+                                    return (
+                                        <tr key={consulta.id} className="consultas__table--infos">
+                                            <td>{consulta.id}</td>
+                                            <td>{consulta.idProntuario}</td>
+                                            <td>{consulta.idMedico}</td>
+                                            <td>{consulta.dataAgendada.replace("T", " ").split(".")[0]}</td>
+                                            <td>{consulta.horaAgendada}</td>
+                                            <td>{consulta.idSituacao}</td>
+                                            <td className="consultas__table--infos-desc">{consulta.descricao}</td>
+                                            <td>
+                                                <form onSubmit={this.incluirDescricao.bind(this)}>
+                                                    <textarea placeholder="Descricao" value={this.state.descricao} onChange={this.atualizarDescricao.bind(this)}></textarea>
+                                                    <input defaultValue={consulta.id}/>
+                                                    <button type="submit">Editar</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
+                            }
+                        </tbody>
+                    </table>
 
-                        <form onSubmit={this.incluirDescricao.bind(this)}>
-                            <input type="text" placeholder="Descricao" value={this.state.descricao} onChange={this.atualizarDescricao} />
-                            <input type="text" placeholder="Id" value={this.state.idDescricaoIncluir} onChange={this.atualizarIdDescricaoIncluir} />
 
-                            <button type="submit">Editar</button>
-                        </form>
 
-                        <p>{this.state.mensagem}</p>
-                    </div>
                 </div>
 
+
+
                 <Rodape />
-            </div>
+            </div >
         );
     }
 }

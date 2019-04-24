@@ -62,24 +62,24 @@ class QuantidadeItensLista extends Component {
 
     render() {
         return (
-            <div class="dashboard__item--container dashboard__estatic--container">
-                <div class="dashboard__estatic--item">
-                    <p>Usuários</p>
+            <div className="dashboard__item--container dashboard__estatic--container">
+                <div className="dashboard__estatic--item">
+                    <p>Consultas</p>
                     <img src={iconConsulta} alt="" />
                     <p>{this.state.qtdConsultas}</p>
                 </div>
-                <div class="dashboard__estatic--item">
+                <div className="dashboard__estatic--item">
                     <p>Prontuários</p>
                     <img src={iconProntuario} alt="" />
                     <p>{this.state.qtdProntuarios}</p>
                 </div>
-                <div class="dashboard__estatic--item">
-                    <p>Consultas</p>
+                <div className="dashboard__estatic--item">
+                    <p>Médicos</p>
                     <img src={iconMedico} alt="" />
                     <p>{this.state.qtdMedicos}</p>
                 </div>
-                <div class="dashboard__estatic--item">
-                    <p>Médicos</p>
+                <div className="dashboard__estatic--item">
+                    <p>Usuários</p>
                     <img src={iconUsuario} alt="" />
                     <p>{this.state.qtdUsuarios}</p>
                 </div>

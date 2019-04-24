@@ -22,19 +22,23 @@ class ListarConsultas extends Component {
             .catch(erro => console.log(erro))
     }
 
+    componentDidMount() {
+        this.listarConsultas();
+    }
+
     buttonClickConsultas() {
         this.listarConsultas();
     }
 
     render() {
         return (
-            <div>
+            <div className="consultas__lista--table">
                 <h2>Lista de Consultas</h2>
-                <div class="style__titulo--linha"></div>
-                <button onClick={this.buttonClickConsultas.bind(this)}>Listar</button>
-                <table>
+                <div className="style__titulo--linha"></div>
+                <button onClick={this.buttonClickConsultas.bind(this)} className="style__button--blue">Listar</button>
+                <table className="consultas__table">
                     <tbody>
-                        <tr>
+                    <tr className="consultas__table--header">
                             <th>Id</th>
                             <th>IdProntuario</th>
                             <th>IdMedico</th>
@@ -47,7 +51,7 @@ class ListarConsultas extends Component {
                         {
                             this.state.listaConsultas.map(consulta => {
                                 return (
-                                    <tr key={consulta.id}>
+                                    <tr key={consulta.id} className="consultas__table--infos">
                                         <td>{consulta.id}</td>
                                         <td>{consulta.idProntuario}</td>
                                         <td>{consulta.idMedico}</td>

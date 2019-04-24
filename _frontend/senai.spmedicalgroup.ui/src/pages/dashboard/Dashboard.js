@@ -20,6 +20,7 @@ class Dashboard extends Component {
         this.state = {
             idBusca: "",
             endpointBusca: "",
+            selectOption: 0
         }
     }
 
@@ -50,34 +51,45 @@ class Dashboard extends Component {
             .catch(erro => console.log(erro));
     }
 
+    // função select
+    atualizaSelectOption(event) {
+        this.setState({selectOption: event.target.value});
+    }
+
+    selecionar() {
+        console.log(this.state.selectOption)
+    }
+
     render() {
         return (
             <div>
                 <MenuMin />
 
-                <div class="style__main--container">
+                <div className="style__main--container">
                     <QuantidadeItensLista />
 
                     <Link to="/Cadastros">Cadastros</Link>
 
-                    <div class="dashboard__item--container dashboard__lista">
+                    <div className="dashboard__item--container dashboard__lista">
 
-                        <div class="dashboard__lista--header">
-                            <select class="dashboard__lista--select">
-                                <option value="" class="dashboard__lista--select-option">Listar</option>
-                                <option value="" class="dashboard__lista--select-option">Consultas</option>
-                                <option value="" class="dashboard__lista--select-option">Prontuarios</option>
-                                <option value="" class="dashboard__lista--select-option">Medicos</option>
-                                <option value="" class="dashboard__lista--select-option">Usuarios</option>
+                        <div className="dashboard__lista--header">
+                            <select className="dashboard__lista--select" value={this.state.selectOption} onChange={this.atualizaSelectOption.bind(this)}>
+                                <option value="1" className="dashboard__lista--select-option">Listar</option>
+                                <option value="2" className="dashboard__lista--select-option">Consultas</option>
+                                <option value="3" className="dashboard__lista--select-option">Prontuarios</option>
+                                <option value="4" className="dashboard__lista--select-option">Medicos</option>
+                                <option value="5" className="dashboard__lista--select-option">Usuarios</option>
                             </select>
-                            <select class="dashboard__lista--select">
-                                <option value="" class="dashboard__lista--select-option">Cadastrar</option>
-                                <option value="" class="dashboard__lista--select-option">Consultas</option>
-                                <option value="" class="dashboard__lista--select-option">Prontuarios</option>
-                                <option value="" class="dashboard__lista--select-option">Medicos</option>
-                                <option value="" class="dashboard__lista--select-option">Usuarios</option>
+                            <select className="dashboard__lista--select">
+                                <option value="" className="dashboard__lista--select-option">Cadastrar</option>
+                                <option value="" className="dashboard__lista--select-option">Consultas</option>
+                                <option value="" className="dashboard__lista--select-option">Prontuarios</option>
+                                <option value="" className="dashboard__lista--select-option">Medicos</option>
+                                <option value="" className="dashboard__lista--select-option">Usuarios</option>
                             </select>
                         </div>
+
+                        <button onClick={this.selecionar.bind(this)}>Selecionar</button>
 
                         <ListarConsultas />
 

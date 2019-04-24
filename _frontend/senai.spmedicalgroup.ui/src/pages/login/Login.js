@@ -55,34 +55,34 @@ class Login extends Component {
 
     render() {
         return (
-            <div class="login__container">
-                <div class="login__main">
-                    <div class="login__login-background">
-                        <div class="login__login">
-                            <div class="login__login--home">
+            <div className="login__container">
+                <div className="login__main">
+                    <div className="login__login-background">
+                        <div className="login__login">
+                            <div className="login__login--home">
                                 <img src={iconHome} alt=""/>
                             </div>
-                            <div class="style__logo--circulo">
+                            <div className="style__logo--circulo">
                                 <img src={iconLogo} alt=""/>
                             </div>
 
-                            <h1 class="style__menu--titulo login__login--titulo">Login</h1>
+                            <h1 className="style__menu--titulo login__login--titulo">Login</h1>
 
-                            <form class="login__login--form" onSubmit={this.efetuarLogin.bind(this)}>
-                                <input type="email" placeholder="Email" class="login__login--input" value={this.state.email} onChange={this.atualizarEmail} />
-                                <input type="password" placeholder="Senha" class="login__login--input" value={this.state.senha} onChange={this.atualizarSenha} />
-                                <button type="submit" class="style__button--white">Entrar</button>
+                            <form className="login__login--form" onSubmit={this.efetuarLogin.bind(this)}>
+                                <input type="email" placeholder="Email" className="login__login--input" value={this.state.email} onChange={this.atualizarEmail} />
+                                <input type="password" placeholder="Senha" className="login__login--input" value={this.state.senha} onChange={this.atualizarSenha} />
+                                <button type="submit" className="style__button--white">Entrar</button>
                             </form>
                         </div>
                     </div>
-                    <div class="login__divisoria--circulo">V</div>
-                    <div class="login__outlogin">
+                    <div className="login__divisoria--circulo">V</div>
+                    <div className="login__outlogin">
                         <p>ou</p>
-                        <img src={iconFacebook} class="login__outlogin--our-fist" alt=""/>
-                        <img src={iconGoogle} class="login__outlogin--our" alt=""/>
+                        <img src={iconFacebook} className="login__outlogin--our-fist" alt=""/>
+                        <img src={iconGoogle} className="login__outlogin--our" alt=""/>
                         <p>Criar uma Conta</p>
-                        <div class="login__outlogin--linha"></div>
-                        <p class="login__outlogin--p-pequeno">Sobre | Contrato</p>
+                        <div className="login__outlogin--linha"></div>
+                        <p className="login__outlogin--p-pequeno">Sobre | Contrato</p>
                     </div>
                 </div>
             </div>

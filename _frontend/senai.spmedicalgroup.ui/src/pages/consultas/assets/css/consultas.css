@@ -7,7 +7,7 @@
 }
 
 .consultas__consulta--item {
-    background-color: rgb(135, 135, 253);
+    background-color: #82c1d7;
     border-radius: 10px;
     padding: 1px;
     margin: 1em auto;
@@ -28,7 +28,7 @@
 .consultas__consulta--item-infos th {
     width: 50%;
     text-align: left;
-    color: rgb(135, 135, 253);
+    color: #bfbfbf;
     font-size: 0.9em;
 }
 
@@ -62,8 +62,107 @@
     border: solid 1px rgb(135, 135, 253, 0.4);
 }
 
+.consultas__lista--table table {
+    border-collapse: collapse;
+    border-spacing: 0px;
+    background-color: white;
+    border: solid 1px #82c1d7;
+}
+
+.consultas__lista--table {
+    display: none;
+    width: 70%;
+    margin: 2.5em auto;
+}
+
+.consultas__table--header tr {
+    background-color: #82c1d7;
+} 
+
+.consultas__table--header th {
+    background-color: #82c1d7;
+    width: auto;
+    height: 1em;
+    padding: 0.5em;
+    border: none;
+    color: white;
+}
+
+.consultas__table--infos td {
+    text-align: center;
+    vertical-align: top;
+    padding: 0.5em 0 1.5em 0;
+}
+
+.consultas__table--infos{
+    border: solid 1px rgb(135, 135, 253);
+    width: 99%;
+}
+
+.consultas__table--infos-desc{
+    width: 35%;
+    padding: 0.5em 0 1.5em 0.5em;
+    text-align: left;
+}
+
 @media (min-width: 600px) {
     .consultas__consulta {
         width: 70%;
+    }
+
+    .consultas__consulta--item-infos-prot {
+        margin: 0.4em 0 0.4em 0.7em;
+    }
+
+    .consultas__consulta--item-infos {
+        padding: 0.7em;
+    }
+
+    .consultas__consulta--item-descricao th, td {
+        height: 21px;
+    }
+
+    .consultas__consulta--item-infos-desc {
+        padding: 0.3em 0.5em 0;
+        font-size: 1em;
+    }
+}
+
+@media (min-width: 768px) {
+    .consultas__consulta {
+        width: 70%;
+    }
+
+    .consultas__consulta--item-infos-prot {
+        margin: 0.5em 0 0.5em 1em;
+    }
+
+    .consultas__consulta--item-infos {
+        padding: 1em;
+    }
+
+    .consultas__consulta--item-descricao th, td {
+        height: 25px;
+    }
+
+    .consultas__consulta--item-infos-desc {
+        padding: 0.5em 0.5em 0;
+    }
+}
+
+@media (min-width: 900px) {
+    .consultas__consulta--display-none {
+        display: none;
+    }
+
+    .consultas__lista--table {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 1366px) {
+    .consultas__table--infos-desc{
+        width: 45%;
     }
 }

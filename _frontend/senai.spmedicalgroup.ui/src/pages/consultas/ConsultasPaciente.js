@@ -50,43 +50,40 @@ class ConsultasPaciente extends Component {
             <div>
                 <MenuMin />
 
-                <div class="style__main--container">
-                    <div class="consultas__consulta">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>IdProntuario</th>
-                                    <th>IdMedico</th>
-                                    <th>DataAgendada</th>
-                                    <th>HoraAgendade</th>
-                                    <th>IdSituacao</th>
-                                    <th>Descricao</th>
-                                </tr>
+                <div className="consultas__lista--table">
+                    <table className="consultas__table">
+                        <tbody>
+                            <tr className="consultas__table--header">
+                                <th>Id</th>
+                                <th>IdProntuario</th>
+                                <th>IdMedico</th>
+                                <th>DataAgendada</th>
+                                <th>HoraAgendade</th>
+                                <th>IdSituacao</th>
+                                <th>Descrição</th>
+                            </tr>
 
-                                {
-                                    this.state.consultas.map(consulta => {
-                                        return (
-                                            <tr key={consulta.id}>
-                                                <td>{consulta.id}</td>
-                                                <td>{consulta.idProntuario}</td>
-                                                <td>{consulta.idMedico}</td>
-                                                <td>{consulta.dataAgendada.replace("T", " ").split(".")[0]}</td>
-                                                <td>{consulta.horaAgendada}</td>
-                                                <td>{consulta.idSituacao}</td>
-                                                <td>{consulta.descricao}</td>
-                                            </tr>
-                                        );
-                                    })
-                                }
-                            </tbody>
-                        </table>
-                        <p>{this.state.mensagem}</p>
-                    </div>
+                            {
+                                this.state.consultas.map(consulta => {
+                                    return (
+                                        <tr key={consulta.id} className="consultas__table--infos">
+                                            <td>{consulta.id}</td>
+                                            <td>{consulta.idProntuario}</td>
+                                            <td>{consulta.idMedico}</td>
+                                            <td>{consulta.dataAgendada.replace("T", " ").split(".")[0]}</td>
+                                            <td>{consulta.horaAgendada}</td>
+                                            <td>{consulta.idSituacao}</td>
+                                            <td className="consultas__table--infos-desc">{consulta.descricao}</td>
+                                        </tr>
+                                    );
+                                })
+                            }
+                        </tbody>
+                    </table>
                 </div>
 
-                <Rodape />
-            </div>
+            <Rodape />
+            </div >
         );
     }
 }

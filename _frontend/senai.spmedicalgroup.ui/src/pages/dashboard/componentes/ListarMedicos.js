@@ -28,13 +28,13 @@ class ListarMedicos extends Component {
 
     render() {
         return (
-            <div>
+            <div className="consultas__lista--table">
                 <h2>Lista de Medicos</h2>
-                <div class="style__titulo--linha"></div>
-                <button onClick={this.buttonClickMedicos.bind(this)}>Listar</button>
-                <table>
+                <div className="style__titulo--linha"></div>
+                <button onClick={this.buttonClickMedicos.bind(this)} className="style__button--blue">Listar</button>
+                <table className="consultas__table">
                     <tbody>
-                        <tr>
+                    <tr className="consultas__table--header">
                             <th>Id</th>
                             <th>Nome</th>
                             <th>CRM</th>
@@ -46,7 +46,7 @@ class ListarMedicos extends Component {
                         {
                             this.state.listaMedicos.map(medico => {
                                 return (
-                                    <tr key={medico.id}>
+                                    <tr key={medico.id} className="consultas__table--infos">
                                         <td>{medico.id}</td>
                                         <td>{medico.nome}</td>
                                         <td>{medico.crm}</td>
