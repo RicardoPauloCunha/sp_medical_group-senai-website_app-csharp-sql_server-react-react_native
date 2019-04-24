@@ -43,7 +43,7 @@
 }
 
 .cadastro__cadastro--item h2 {
-    color: gray;
+    color: #808080;
     font-size: 1.5em;
     text-align: center;
 }
@@ -59,12 +59,12 @@
     height: 30px;
     border: none;
     text-decoration: none;
-    background-color: rgb(135, 135, 253, 0.2);
+    background-color: #eff7f9;
     border-radius: 7px;
-    border: solid 1px rgb(135, 135, 253, 0.3);
+    border: solid 1px #82c1d7;
     margin: 0 10px 1em 10px;
     padding: 0.5em;
-    color: gray;
+    color: #bfbfbf;
 }
 
 .cadastro__cadastro--input-grande {
@@ -84,16 +84,16 @@
 .cadastro__cadastro--input:focus {
     outline: none;
     outline: none;
-    background-color: rgb(135, 135, 253, 0.3);
-    border: solid 1px rgb(135, 135, 253, 0.4);
+    background-color: #bfdfe7;
+    border: solid 1px #67abc4;
 }
 
 .cadastro__cadastro--textarea {
     border: none;
     text-decoration: none;
-    background-color: rgb(135, 135, 253, 0.2);
+    background-color: #eff7f9;
     border-radius: 7px;
-    border: solid 1px rgb(135, 135, 253, 0.3);
+    border: solid 1px #82c1d7;
     margin: 0 10px 0 10px;
     width: 88%;
     height: 8em;
@@ -108,8 +108,8 @@
 
 .cadastro__cadastro--textarea:focus {
     outline: none;
-    background-color: rgb(135, 135, 253, 0.3);
-    border: solid 1px rgb(135, 135, 253, 0.4);
+    background-color: #bfdfe7;
+    border: solid 1px #67abc4;
 }
 
 @media (min-width: 420px){
@@ -200,5 +200,13 @@
     .cadastro__cadastro--textarea {
         font-size: 1em;
         margin: 0 10px 1em 10px;
+    }
+
+    .cadastro__cadastro--input-grande {
+        width: 84%;
+    }
+
+    .cadastro__cadastro--textarea {
+        width: 84%;
     }
 }

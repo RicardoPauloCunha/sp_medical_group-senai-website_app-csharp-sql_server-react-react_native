@@ -35,7 +35,6 @@
 
 .style__nav--links p {
     text-transform: uppercase;
-
 }
 
 .login__login--titulo {
@@ -96,7 +95,8 @@
 .style__titulo--linha {
     width: 60%;
     height: 1px;
-    background-color: rgb(89, 89, 255, 0.5);
+    background-color: #808080;
+    opacity: 0.5;
     margin: 2px auto 1.2em auto;
 }
 
@@ -159,6 +159,10 @@
     margin: auto;
 }
 
+.style__nav--padding {
+    margin: 1.5em auto 0.5em;
+}
+
 .style__menu--linha-white {
     width: 80%;
     height: 1px;
@@ -166,12 +170,16 @@
     margin: 2px auto 1.2em auto;
 }
 
+.style__menu--linha-padding {
+    margin: 2px auto 0.5em auto;
+}
+
 /* Rodape */
 
 .style__rodape {
     width: 100%;
     padding: 1em 5% 0;
-    background-color: rgb(85, 85, 85);
+    background-color: #333333;
     color: white;
 }
 

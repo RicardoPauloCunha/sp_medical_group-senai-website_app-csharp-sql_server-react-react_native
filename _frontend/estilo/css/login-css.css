@@ -2,9 +2,9 @@ h1 {
     font-size: 1.8em;
 }
 
-p {
+.login__outlogin p {
     font: 1em;
-    color: gray;
+    color: #808080;
 }
 
 .login__container {
@@ -85,12 +85,13 @@ p {
 .login__outlogin--linha {
     width: 70%;
     height: 1px;
-    background-color: rgb(163, 163, 163);
+    background-color: #cccccc;
     margin: 15px auto 10px auto;
 }
 
 .login__outlogin--p-pequeno {
     font-size: 0.9em;
+    color: #9a9a9a;
 }
 
 .login__divisoria--circulo {

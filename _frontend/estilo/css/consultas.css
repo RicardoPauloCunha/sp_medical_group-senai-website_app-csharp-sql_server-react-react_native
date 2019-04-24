@@ -62,13 +62,43 @@
     border: solid 1px rgb(135, 135, 253, 0.4);
 }
 
-/* Ricardo */
+/* kkkk */
 
-.consultas__lista--table table {
+.consultas__table{
+    width: 90%;
+    margin: auto;
+}
+
+.consultas__table--table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em auto;
+}
+
+.consultas__table--header th {
+    background-color: #82c1d7;
+    color: white;
+    width: auto;
+    margin: auto;
+    text-align: center;
+    vertical-align: center;
+    padding: 0.5em;
+}
+
+.consultas__table--info td {
+    text-align: center;
+    padding: 0.5em;
+}
+
+.consultas__table--table-textarea {
+    margin: 1em auto 0;
+}
+
+/* .consultas__lista--table table {
     border-collapse: collapse;
     border-spacing: 0px;
     background-color: white;
-    border: solid 1px rgb(135, 135, 253);
+    border: solid 1px #82c1d7;
 }
 
 .consultas__lista--table {
@@ -78,11 +108,11 @@
 }
 
 .consultas__table--header tr {
-    background-color: rgb(135, 135, 253);
+    background-color: #82c1d7;
 } 
 
 .consultas__table--header th {
-    background-color: rgb(135, 135, 253);
+    background-color: #82c1d7;
     width: auto;
     height: 1em;
     padding: 0.5em;
@@ -105,7 +135,7 @@
     width: 35%;
     padding: 0.5em 0 1.5em 0.5em;
     text-align: left;
-}
+} */
 
 @media (min-width: 600px) {
     .consultas__consulta {
@@ -157,13 +187,18 @@
         display: none;
     }
 
-    .consultas__lista--table {
+    /* .consultas__lista--table {
+        display: none;
+    } */
+
+    /* .consultas__lista--table {
         display: flex;
-    }
+        flex-direction: column;
+    } */
 }
 
 @media (min-width: 1366px) {
-    .consultas__table--infos-desc{
+    /* .consultas__table--infos-desc{
         width: 45%;
-    }
+    } */
 }

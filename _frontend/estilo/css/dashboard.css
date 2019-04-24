@@ -11,8 +11,8 @@
     padding: 0.5em;
     text-align: center;
     background-color: white;
-    color: rgb(135, 135, 253);
-    border: solid 1px rgb(135, 135, 253);
+    color: #82c1d7;
+    border: solid 1px #82c1d7;
     border-radius: 10px;
     margin: 0 auto 1.5em;
 }
@@ -34,6 +34,7 @@
 .dashboard__lista h2{
     text-align: center;
     margin-top: 0.5em; 
+    color: #808080;
 }
 
 .dashboard__lista--header {
@@ -44,20 +45,20 @@
 
 .dashboard__lista--select {
         width: auto;
-        background-color: rgb(135, 135, 253);
+        background-color: #82c1d7;
         text-align: center;
         border-radius: 15px;
         padding: 3px 20px;
         margin: 0.8em auto;
         color: white;
-        border: solid 1px rgb(135, 135, 253);
+        border: solid 1px #82c1d7;
         font-size: 1em;
 }
 
 .dashboard__lista--select:hover {
     transition: 0.5s;
     outline: none;
-    background-color: rgb(89, 89, 255);
+    background-color: #419bbb;
 }
 
 .dashboard__lista--select:focus {
@@ -65,9 +66,9 @@
 }
 
 .dashboard__lista--select-option {
-    color: rgb(135, 135, 253);
+    color: #419bbb;
     background-color: white;
-    border: solid 1px rgb(135, 135, 253);
+    border: solid 1px #419bbb;
 }
 
 @media (min-width: 420px){
