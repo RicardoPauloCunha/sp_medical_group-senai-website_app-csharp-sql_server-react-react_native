@@ -160,100 +160,102 @@
         </div>
 
         <!-- Ricardo -->
-        <div class="consultas__lista--table">
-            <table class="consultas__table">
-                <tbody>
-                    <tr class="consultas__table--header">
-                        <th>Id</th>
-                        <th>IdProntuario</th>
-                        <th>IdMedico</th>
-                        <th>DataAgendada</th>
-                        <th>HoraAgendade</th>
-                        <th>IdSituacao</th>
-                        <th>Descrição</th>
-                    </tr>
-
-                    <tr key={consulta.id} class="consultas__table--infos">
-                        <td>{consulta.id}</td>
-                        <td>{consulta.idProntuario}</td>
-                        <td>{consulta.idMedico}</td>
-                        <td>{consulta.dataAgendada.replace("T", " ").split(".")[0]}</td>
-                        <td>{consulta.horaAgendada}</td>
-                        <td>{consulta.idSituacao}</td>
-                        <td class="consultas__table--infos-desc">{consulta.descricao}</td>
-                    </tr>
-
-                    <tr class="consultas__table--infos">
-                        <td>N</td>
-                        <td>NomeMedico</td>
-                        <td>20/02/2019</td>
-                        <td>15:00 h</td>
-                        <td>Realizada</td>
-                        <td>
-                            Lorem Ipsum is simply dummy text of the printing
-                            and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
-                            since
-                            the 1500s.
-                        </td>
-                    </tr>
-                    <tr class="consultas__table--infos">
-                        <td>N</td>
-                        <td>NomeMedico</td>
-                        <td>20/02/2019</td>
-                        <td>15:00 h</td>
-                        <td>Realizada</td>
-                        <td>
-                            Lorem Ipsum is simply dummy text of the printing
-                            and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
-                            since
-                            the 1500s.
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="consultas__consulta">
+            <div class="consultas__lista">
+                <table class="consultas__lista--lista">
+                    <tbody>
+                        <tr class="consultas__lista--header">
+                            <th>Id</th>
+                            <th>IdProntuario</th>
+                            <th>IdMedico</th>
+                            <th>DataAgendada</th>
+                            <th>HoraAgendade</th>
+                            <th>IdSituacao</th>
+                            <th>Descrição</th>
+                        </tr>
+                        <tr class="consultas__lista--info">
+                            <td>Id</td>
+                            <td>Prontuario</td>
+                            <td>NomeMedico</td>
+                            <td>20/02/2019</td>
+                            <td>15:00 h</td>
+                            <td>Realizada</td>
+                            <td class="consultas__lista--desc">Lorem Ipsum is simply dummy text of the printing and
+                                typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since
+                                the 1500s.</td>
+                        </tr>
+                        <tr class="consultas__lista--info">
+                            <td>Id</td>
+                            <td>Prontuario</td>
+                            <td>NomeMedico</td>
+                            <td>20/02/2019</td>
+                            <td>15:00 h</td>
+                            <td>Realizada</td>
+                            <td class="consultas__lista--desc">Lorem Ipsum is simply dummy text of the printing and
+                                typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since
+                                the 1500s.</td>
+                        </tr>
+                        <tr class="consultas__lista--info">
+                            <td>Id</td>
+                            <td>Prontuario</td>
+                            <td>NomeMedico</td>
+                            <td>20/02/2019</td>
+                            <td>15:00 h</td>
+                            <td>Realizada</td>
+                            <td class="consultas__lista--desc">Lorem Ipsum is simply dummy text of the printing and
+                                typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since
+                                the 1500s.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- Ricardo dia 24 -->
         <div class="consultas__consulta">
+
             <div class="consultas__consulta--item">
                 <div class="consultas__consulta--item-infos">
-                    <table class="consultas__consulta--table">
-                        <tbody>
-                            <tr class="consultas__table--header">
-                                <th>Id</th>
-                                <th>IdProntuario</th>
-                                <th>IdMedico</th>
-                                <th>DataAgendada</th>
-                                <th>HoraAgendade</th>
-                                <th>IdSituacao</th>
-                            </tr>
-                            <tr class="consultas__table--info">
-                                <td>Id</td>
-                                <td>Prontuario</td>
-                                <td>NomeMedico</td>
-                                <td>20/02/2019</td>
-                                <td>15:00 h</td>
-                                <td>Realizada</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="consultas__table">
+                        <table class="consultas__table--table">
+                            <tbody>
+                                <tr class="consultas__table--header">
+                                    <th>Id</th>
+                                    <th>IdProntuario</th>
+                                    <th>IdMedico</th>
+                                    <th>DataAgendada</th>
+                                    <th>HoraAgendade</th>
+                                    <th>IdSituacao</th>
+                                </tr>
+                                <tr class="consultas__table--info">
+                                    <td>Id</td>
+                                    <td>Prontuario</td>
+                                    <td>NomeMedico</td>
+                                    <td>20/02/2019</td>
+                                    <td>15:00 h</td>
+                                    <td>Realizada</td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                    <table class="consultas__consulta--table">
-                        <tbody>
-                            <tr class="consultas__table--header">
-                                <th>Descrição</th>
-                            </tr>
-                            <tr class="consultas__table--info consultas__table--info-desc">
-                                <td>
-                                    Lorem Ipsum is simply dummy text of the printing
-                                    and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                                    ever
-                                    since
-                                    the 1500s.
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <table class="consultas__table--table consultas__table--table-textarea">
+                            <tbody>
+                                <tr class="consultas__table--header">
+                                    <th>Descrição</th>
+                                </tr>
+                                <tr class="consultas__table--info consultas__table--info-desc">
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <form class="consultas__consulta--item-infos-desc">
+                            <textarea class="consultas__consulta--item-input-desc">
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                                    </textarea>
+                            <button class="style__button--blue">Incluir Descrição</button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
 
@@ -301,6 +303,7 @@
 
                 </div>
             </div>
+
         </div>
 
         <div class="style__rodape">
