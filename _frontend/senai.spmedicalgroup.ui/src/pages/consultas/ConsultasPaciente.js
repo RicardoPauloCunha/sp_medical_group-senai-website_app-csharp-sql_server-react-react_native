@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import listarConsultasUsuarioItem from "./componentes/listarConsultasUsuarioItem";
 
+
 import "./assets/css/consultas.css";
 import "../_assets/css/style.css";
 
 import MenuMin from "../_componentes/menuMin";
 import Rodape from "../_componentes/rodaPe";
+import Consultas from "./componentes/Consultas";
 
 class ConsultasPaciente extends Component {
     constructor() {
@@ -49,40 +51,10 @@ class ConsultasPaciente extends Component {
         return (
             <div>
                 <MenuMin />
+                
+                <Consultas />
 
-                <div className="consultas__lista--table">
-                    <table className="consultas__table">
-                        <tbody>
-                            <tr className="consultas__table--header">
-                                <th>Id</th>
-                                <th>IdProntuario</th>
-                                <th>IdMedico</th>
-                                <th>DataAgendada</th>
-                                <th>HoraAgendade</th>
-                                <th>IdSituacao</th>
-                                <th>Descrição</th>
-                            </tr>
-
-                            {
-                                this.state.consultas.map(consulta => {
-                                    return (
-                                        <tr key={consulta.id} className="consultas__table--infos">
-                                            <td>{consulta.id}</td>
-                                            <td>{consulta.idProntuario}</td>
-                                            <td>{consulta.idMedico}</td>
-                                            <td>{consulta.dataAgendada.replace("T", " ").split(".")[0]}</td>
-                                            <td>{consulta.horaAgendada}</td>
-                                            <td>{consulta.idSituacao}</td>
-                                            <td className="consultas__table--infos-desc">{consulta.descricao}</td>
-                                        </tr>
-                                    );
-                                })
-                            }
-                        </tbody>
-                    </table>
-                </div>
-
-            <Rodape />
+                <Rodape />
             </div >
         );
     }

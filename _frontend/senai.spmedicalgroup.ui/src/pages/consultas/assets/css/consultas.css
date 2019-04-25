@@ -62,47 +62,74 @@
     border: solid 1px rgb(135, 135, 253, 0.4);
 }
 
-.consultas__lista--table table {
+/* kkkk */
+
+.consultas__table{
+    width: 90%;
+    margin: auto;
+}
+
+.consultas__table--table {
     border-collapse: collapse;
-    border-spacing: 0px;
+    width: 100%;
+    margin: 1em auto;
+}
+
+.consultas__table--header th {
+    background-color: #82c1d7;
+    color: white;
+    width: auto;
+    margin: auto;
+    text-align: center;
+    vertical-align: center;
+    padding: 0.5em;
+}
+
+.consultas__table--info td {
+    text-align: center;
+    padding: 0.5em;
+}
+
+.consultas__table--table-textarea {
+    margin: 1em auto 0;
+}
+
+/* lista */
+
+.consultas__lista {
+    width: 100%;
+    margin: auto;
     background-color: white;
     border: solid 1px #82c1d7;
 }
 
-.consultas__lista--table {
-    display: none;
-    width: 70%;
-    margin: 2.5em auto;
+.consultas__lista--lista {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto;
 }
 
-.consultas__table--header tr {
-    background-color: #82c1d7;
-} 
-
-.consultas__table--header th {
-    background-color: #82c1d7;
-    width: auto;
-    height: 1em;
-    padding: 0.5em;
-    border: none;
-    color: white;
-}
-
-.consultas__table--infos td {
-    text-align: center;
-    vertical-align: top;
-    padding: 0.5em 0 1.5em 0;
-}
-
-.consultas__table--infos{
-    border: solid 1px rgb(135, 135, 253);
-    width: 99%;
-}
-
-.consultas__table--infos-desc{
-    width: 35%;
+.consultas__lista--desc{
+    width: 45%;
     padding: 0.5em 0 1.5em 0.5em;
     text-align: left;
+}
+
+.consultas__lista--header th {
+    background-color: #82c1d7;
+    color: white;
+    width: auto;
+    margin: auto;
+    text-align: center;
+    vertical-align: center;
+    padding: 0.5em;
+}
+
+.consultas__lista--info td {
+    text-align: center;
+    padding: 0.5em 0.5em 1.5em;
+    vertical-align: top;
+    border-bottom: solid 1px #82c1d7;
 }
 
 @media (min-width: 600px) {
@@ -154,15 +181,8 @@
     .consultas__consulta--display-none {
         display: none;
     }
-
-    .consultas__lista--table {
-        display: flex;
-        flex-direction: column;
-    }
 }
 
 @media (min-width: 1366px) {
-    .consultas__table--infos-desc{
-        width: 45%;
-    }
+
 }

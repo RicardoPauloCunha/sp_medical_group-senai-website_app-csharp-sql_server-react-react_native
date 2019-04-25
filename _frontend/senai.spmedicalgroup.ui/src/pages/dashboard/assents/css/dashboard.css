@@ -5,6 +5,12 @@
     margin: auto;
 }
 
+.dashboard__item--container-prontuario {
+    width: 90%;
+    margin: auto;
+    height: auto;
+}
+
 .dashboard__estatic--item {
     width: 7em;
     height: auto;
@@ -69,6 +75,15 @@
     color: #419bbb;
     background-color: white;
     border: solid 1px #419bbb;
+}
+
+.dashboard__lista--titulo {
+    text-align: center;
+    color: #808080;
+}
+
+.dashboard__titulo--linha {
+    width: 35%;
 }
 
 @media (min-width: 420px){

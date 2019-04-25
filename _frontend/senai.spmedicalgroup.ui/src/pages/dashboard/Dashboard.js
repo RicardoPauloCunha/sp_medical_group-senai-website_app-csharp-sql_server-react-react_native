@@ -9,6 +9,7 @@ import ListarProntuarios from "./componentes/ListarProntuarios";
 import ListarMedicos from "./componentes/ListarMedicos";
 import ListarUsuarios from "./componentes/ListarUsuarios";
 import QuantidadeItensLista from "./componentes/QuantidadeItensLista";
+import ListaIf from "./componentes/listasIf";
 
 import "./assents/css/dashboard.css";
 import "../_assets/css/style.css";
@@ -53,7 +54,7 @@ class Dashboard extends Component {
 
     // função select
     atualizaSelectOption(event) {
-        this.setState({selectOption: event.target.value});
+        this.setState({ selectOption: event.target.value });
     }
 
     selecionar() {
@@ -68,7 +69,9 @@ class Dashboard extends Component {
                 <div className="style__main--container">
                     <QuantidadeItensLista />
 
-                    <Link to="/Cadastros">Cadastros</Link>
+                    <div className="links">
+                        <Link to="/Cadastros">Cadastros</Link>
+                    </div>
 
                     <div className="dashboard__item--container dashboard__lista">
 
@@ -91,18 +94,25 @@ class Dashboard extends Component {
 
                         <button onClick={this.selecionar.bind(this)}>Selecionar</button>
 
-                        <ListarConsultas />
+                        {/* <ListarConsultas /> */}
+                    </div>
 
+                    {/* <div className="dashboard__item--container-prontuario">
                         <ListarProntuarios />
+                    </div>
 
+                    <div className="dashboard__item--container dashboard__lista">
                         <ListarMedicos />
 
                         <ListarUsuarios />
 
-                    </div>
+                    </div> */}
+
+                    <ListaIf />
+                    
                 </div>
 
-                <RodaPe />
+                <RodaPe idDaLista="4"/>
             </div>
         )
     }

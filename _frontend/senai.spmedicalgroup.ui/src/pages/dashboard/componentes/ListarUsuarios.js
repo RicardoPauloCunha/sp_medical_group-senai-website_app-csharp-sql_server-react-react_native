@@ -29,33 +29,38 @@ class ListarUsuarios extends Component {
 
     render() {
         return (
-            <div className="consultas__lista--table">
-                <h2>Lista de Usuarios</h2>
-                <div className="style__titulo--linha"></div>
-                <button onClick={this.buttonClickUsuarios.bind(this)} className="style__button--blue">Listar</button>
-                <table className="consultas__table">
-                    <tbody>
-                        <tr className="consultas__table--header">
-                            <th>Id</th>
-                            <th>Email</th>
-                            <th>Senha</th>
-                            <th>IdTipoUsuario</th>
-                        </tr>
+            <div>
+                <div className="consultas__lista--table">
+                    <h2>Lista de Usuarios</h2>
+                    <div className="style__titulo--linha"></div>
+                    <button onClick={this.buttonClickUsuarios.bind(this)} className="style__button--blue">Listar</button>
+                </div>
 
-                        {
-                            this.state.listaUsuarios.map(usuario => {
-                                return (
-                                    <tr key={usuario.id} className="consultas__table--infos">
-                                        <td>{usuario.id}</td>
-                                        <td>{usuario.email}</td>
-                                        <td>{usuario.senha}</td>
-                                        <td>{usuario.idTipoUsuario}</td>
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
+                <div class="consultas__lista">
+                    <table className="consultas__lista--lista">
+                        <tbody>
+                            <tr className="consultas__lista--header">
+                                <th>Id</th>
+                                <th>Email</th>
+                                <th>Senha</th>
+                                <th>IdTipoUsuario</th>
+                            </tr>
+
+                            {
+                                this.state.listaUsuarios.map(usuario => {
+                                    return (
+                                        <tr key={usuario.id} className="consultas__lista--info">
+                                            <td>{usuario.id}</td>
+                                            <td>{usuario.email}</td>
+                                            <td>{usuario.senha}</td>
+                                            <td>{usuario.idTipoUsuario}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         )
     }

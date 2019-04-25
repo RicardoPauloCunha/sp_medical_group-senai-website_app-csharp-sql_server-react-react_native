@@ -30,7 +30,7 @@
 
 .cadastro__cadastro {
     width: 90%;
-    margin: auto;
+    margin: 0 auto 2em;
 }
 
 .cadastro__cadastro--item {
@@ -139,6 +139,7 @@
 @media (min-width: 768px) {
     .cadastro__cadastro {
     width: 70%;
+    margin: 0 auto 3em;
     }
 
     .cadastro__cadastro--form {
@@ -169,6 +170,7 @@
 @media (min-width: 900px) {
     .cadastro__cadastro {
         width: 60%;
+        margin: 0 auto 4em;
     }
 
     .cadastro__cadastro--item {
@@ -187,6 +189,7 @@
 @media (min-width: 1366px) {
     .cadastro__cadastro {
         width: 50%;
+        margin: 0 auto 5em;
     }
 
     .cadastro__cadastro--item {
