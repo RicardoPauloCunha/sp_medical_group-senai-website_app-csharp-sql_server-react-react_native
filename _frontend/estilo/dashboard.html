@@ -16,7 +16,8 @@
             <div class="style__menu">
                 <div class="style__menu--nav">
                     <div class="style__menu--nav-button">
-                        <button type="submit" class="style__button--white style__menu--button-display-none">Menu</button>
+                        <button type="submit"
+                            class="style__button--white style__menu--button-display-none">Menu</button>
                     </div>
 
                     <div class="style__logo--circtittle">
@@ -51,22 +52,22 @@
         <div class="dashboard__item--container dashboard__estatic--container">
             <div class="dashboard__estatic--item">
                 <p>Usuários</p>
-                <img src="./img/dashboard-icon-usuario.png" alt=""/>
+                <img src="./img/dashboard-icon-usuario.png" alt="" />
                 <p>{this.state.qtdConsultas}</p>
             </div>
             <div class="dashboard__estatic--item">
                 <p>Prontuários</p>
-                <img src="./img/dashboard-icon-prontuario.png" alt=""/>
+                <img src="./img/dashboard-icon-prontuario.png" alt="" />
                 <p>{this.state.qtdProntuarios}</p>
             </div>
             <div class="dashboard__estatic--item">
                 <p>Consultas</p>
-                <img src="./img/dashboard-icon-consulta.png" alt=""/>
+                <img src="./img/dashboard-icon-consulta.png" alt="" />
                 <p>{this.state.qtdMedicos}</p>
             </div>
             <div class="dashboard__estatic--item">
                 <p>Médicos</p>
-                <img src="./img/dashboard-icon-medico.png" alt=""/>
+                <img src="./img/dashboard-icon-medico.png" alt="" />
                 <p>{this.state.qtdUsuarios}</p>
             </div>
         </div>
@@ -88,9 +89,8 @@
                     <option value="" class="dashboard__lista--select-option">Usuarios</option>
                 </select>
             </div>
-            
-            <h2>Lista de Consultas</h2>
-            <div class="style__titulo--linha"></div>
+
+
             <div>
                 <div class="consultas__consulta--item">
                     <p class="consultas__consulta--item-infos-prot">N | Protocologo: ID</p>
@@ -138,7 +138,60 @@
                     </div>
                 </div>
             </div>
+        </div>
 
+    </div>
+
+    <!-- ricardo paulo -->
+
+    <div class="dashboard__lista">
+        <h2>Lista de Consultas</h2>
+        <div class="style__titulo--linha"></div>
+        <div class="consultas__consulta">
+            <div class="consultas__consulta--item-infos dashboard__lista--table-container">
+                <div class="consultas__table dashboard__lista--table">
+                    <table class="dashboard__table--table">
+                        <tbody>
+                            <tr class="consultas__table--header">
+                                <th>Id</th>
+                                <th>IdProntuario</th>
+                                <th>IdMedico</th>
+                                <th>DataAgendada</th>
+                                <th>HoraAgendade</th>
+                                <th>IdSituacao</th>
+                                <th>Descricao</th>
+                            </tr>
+                            <tr class="consultas__table--info dashboard__table--info">
+                                <td>Id</td>
+                                <td>Prontuario</td>
+                                <td>NomeMedico</td>
+                                <td>20/02/2019</td>
+                                <td>15:00 h</td>
+                                <td>Realizada</td>
+                                <td class="consultas__ldescista--desc">testes</td>
+                            </tr>
+                            <tr class="consultas__table--info dashboard__table--info">
+                                <td>Id</td>
+                                <td>Prontuario</td>
+                                <td>NomeMedico</td>
+                                <td>20/02/2019</td>
+                                <td>15:00 h</td>
+                                <td>Realizada</td>
+                                <td class="consultas__ldescista--desc">testes</td>
+                            </tr>
+                            <tr class="consultas__table--info dashboard__table--info">
+                                <td>Id</td>
+                                <td>Prontuario</td>
+                                <td>NomeMedico</td>
+                                <td>20/02/2019</td>
+                                <td>15:00 h</td>
+                                <td>Realizada</td>
+                                <td class="consultas__ldescista--desc">testes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 

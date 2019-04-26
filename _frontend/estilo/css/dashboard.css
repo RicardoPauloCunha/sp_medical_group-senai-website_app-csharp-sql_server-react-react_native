@@ -29,6 +29,10 @@
 
 .dashboard__lista {
     padding: 0 0 1em 0;
+    width: 100%;
+    height: auto;
+    background-color: #f5fafc;
+    padding: 1em 0;
 }
 
 .dashboard__lista h2{
@@ -69,6 +73,24 @@
     color: #419bbb;
     background-color: white;
     border: solid 1px #419bbb;
+}
+
+.dashboard__table--table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.dashboard__lista--table-container {
+    box-shadow: 0 0 5px gray;
+}
+
+.dashboard__table--info {
+    border-bottom: solid 1px #82c1d7;
+}
+
+.dashboard__table--info td {
+    padding: 1.2em 0.5em 0.5em;
 }
 
 @media (min-width: 420px){
