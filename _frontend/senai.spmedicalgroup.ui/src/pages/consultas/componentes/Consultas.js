@@ -33,7 +33,7 @@ class Consultas extends Component {
 
     render() {
         return (
-            <div>
+            <div className="body">
                 {
                     this.state.consultas.map(consulta => {
                         return (

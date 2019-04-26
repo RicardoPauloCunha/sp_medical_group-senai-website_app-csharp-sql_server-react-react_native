@@ -79,37 +79,21 @@ class CadastroConsulta extends Component {
 
     render() {
         return (
-            <div className="cadastro__cadastro">
-                <div className="cadastro__cadastro--header">
-                    <div className="cadastro__cadastro--header-links cadastro__cadastro--header-links-select">
-                        <p>Consultas</p>
-                    </div>
-                    <div className="cadastro__cadastro--header-links">
-                        <p>Prontuários</p>
-                    </div>
-                    <div className="cadastro__cadastro--header-links">
-                        <p>Usuários</p>
-                    </div>
-                    <div className="cadastro__cadastro--header-links">
-                        <p>Medicos</p>
-                    </div>
-                </div>
-                <div className="cadastro__cadastro--item">
-                    <h2>Cadastrar Consulta</h2>
-                    <div className="style__titulo--linha"></div>
+            <div className="cadastro__cadastro--item">
+                <h2>Cadastrar Consulta</h2>
+                <div className="style__titulo--linha"></div>
 
-                    <form className="cadastro__cadastro--form" onSubmit={this.cadastrarConsulta.bind(this)}>
-                        <input type="text" placeholder="IdProntuário" className="cadastro__cadastro--input" value={this.state.idProntuario} onChange={this.atualizarIdProntuario} />
-                        <input type="text" placeholder="IdMédico" className="cadastro__cadastro--input " value={this.state.idMedico} onChange={this.atualizarIdMedico} />
-                        <input type="text" placeholder="Data Agendada" className="cadastro__cadastro--input" value={this.state.dataAgendada} onChange={this.atualizarDataAgendada} />
-                        <input type="text" placeholder="Hora Agendada" className="cadastro__cadastro--input" value={this.state.horaAgendada} onChange={this.atualizarHoraAgendada} />
-                        <input type="text" placeholder="IdSituacao" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.idSituacao} onChange={this.atualizarIdSituacao} />
-                        <textarea placeholder="Descrição" className="cadastro__cadastro--textarea" value={this.state.descricao} onChange={this.atualizarDescricao}></textarea>
-                        <button type="submit" className="style__button--blue">Cadastrar</button>
-                    </form>
+                <form className="cadastro__cadastro--form" onSubmit={this.cadastrarConsulta.bind(this)}>
+                    <input type="text" placeholder="IdProntuário" className="cadastro__cadastro--input" value={this.state.idProntuario} onChange={this.atualizarIdProntuario} />
+                    <input type="text" placeholder="IdMédico" className="cadastro__cadastro--input " value={this.state.idMedico} onChange={this.atualizarIdMedico} />
+                    <input type="text" placeholder="Data Agendada" className="cadastro__cadastro--input" value={this.state.dataAgendada} onChange={this.atualizarDataAgendada} />
+                    <input type="text" placeholder="Hora Agendada" className="cadastro__cadastro--input" value={this.state.horaAgendada} onChange={this.atualizarHoraAgendada} />
+                    <input type="text" placeholder="IdSituacao" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.idSituacao} onChange={this.atualizarIdSituacao} />
+                    <textarea placeholder="Descrição" className="cadastro__cadastro--textarea" value={this.state.descricao} onChange={this.atualizarDescricao}></textarea>
+                    <button type="submit" className="style__button--blue">Cadastrar</button>
+                </form>
 
-                    <p>{this.state.mensagem}</p>
-                </div>
+                <p>{this.state.mensagem}</p>
             </div>
         )
     }

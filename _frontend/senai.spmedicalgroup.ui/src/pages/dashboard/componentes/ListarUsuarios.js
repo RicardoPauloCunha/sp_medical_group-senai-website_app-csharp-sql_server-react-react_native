@@ -23,43 +23,75 @@ class ListarUsuarios extends Component {
             .catch(erro => console.log(erro))
     }
 
-    buttonClickUsuarios() {
+    componentDidMount() {
         this.listarUsuarios();
     }
 
     render() {
         return (
             <div>
-                <div className="consultas__lista--table">
-                    <h2>Lista de Usuarios</h2>
+                <div className="dashboard__lista">
+                    <h2>Lista de Usuários</h2>
                     <div className="style__titulo--linha"></div>
-                    <button onClick={this.buttonClickUsuarios.bind(this)} className="style__button--blue">Listar</button>
-                </div>
 
-                <div class="consultas__lista">
-                    <table className="consultas__lista--lista">
-                        <tbody>
-                            <tr className="consultas__lista--header">
-                                <th>Id</th>
-                                <th>Email</th>
-                                <th>Senha</th>
-                                <th>IdTipoUsuario</th>
-                            </tr>
+                    <div className="consultas__consulta">
 
-                            {
-                                this.state.listaUsuarios.map(usuario => {
-                                    return (
-                                        <tr key={usuario.id} className="consultas__lista--info">
-                                            <td>{usuario.id}</td>
-                                            <td>{usuario.email}</td>
-                                            <td>{usuario.senha}</td>
-                                            <td>{usuario.idTipoUsuario}</td>
+                        {
+                            this.state.listaUsuarios.map(usuario => {
+                                return (
+                                    <div key={usuario.id} className="consultas__consulta--item dashboard__consulta--display-none">
+                                        <p className="consultas__consulta--item-infos-prot">N | Inscrição: {usuario.id}</p>
+                                        <div className="consultas__consulta--item-infos">
+                                            <table >
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Email:</th>
+                                                        <td>{usuario.email}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>CRM:</th>
+                                                        <td>{usuario.senha}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>IdTipoUsuario:</th>
+                                                        <td>{usuario.idTipoUsuario}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        }
+
+                        <div className="consultas__consulta--item-infos dashboard__lista--table-container">
+                            <div className="consultas__table dashboard__lista--table">
+                                <table className="dashboard__table--table">
+                                    <tbody>
+                                        <tr className="consultas__lista--header">
+                                            <th>Id</th>
+                                            <th>Email</th>
+                                            <th>Senha</th>
+                                            <th>IdTipoUsuario</th>
                                         </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
+
+                                        {
+                                            this.state.listaUsuarios.map(usuario => {
+                                                return (
+                                                    <tr key={usuario.id} className="consultas__table--info dashboard__table--info">
+                                                        <td>{usuario.id}</td>
+                                                        <td>{usuario.email}</td>
+                                                        <td>{usuario.senha}</td>
+                                                        <td>{usuario.idTipoUsuario}</td>
+                                                    </tr>
+                                                )
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

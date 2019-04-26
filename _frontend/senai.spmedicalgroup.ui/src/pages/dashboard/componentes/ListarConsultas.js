@@ -32,43 +32,86 @@ class ListarConsultas extends Component {
 
     render() {
         return (
-            <div>
-                <div className="consultas__lista--table">
-                    <h2>Lista de Consultas</h2>
-                    <div className="style__titulo--linha"></div>
-                    <button onClick={this.buttonClickConsultas.bind(this)} className="style__button--blue">Listar</button>
-                </div>
 
-                <div class="consultas__lista">
-                    <table className="consultas__lista--lista">
-                        <tbody>
-                            <tr className="consultas__lista--header">
-                                <th>Id</th>
-                                <th>IdProntuario</th>
-                                <th>IdMedico</th>
-                                <th>DataAgendada</th>
-                                <th>HoraAgendada</th>
-                                <th>IdSituacao</th>
-                                <th>Descricao</th>
-                            </tr>
+            <div className="dashboard__lista">
+                <h2>Lista de Consultas</h2>
+                <div className="style__titulo--linha"></div>
 
-                            {
-                                this.state.listaConsultas.map(consulta => {
-                                    return (
-                                        <tr key={consulta.id} className="consultas__lista--info">
-                                            <td>{consulta.id}</td>
-                                            <td>{consulta.idProntuario}</td>
-                                            <td>{consulta.idMedico}</td>
-                                            <td>{consulta.dataAgendada}</td>
-                                            <td>{consulta.horaAgendada}</td>
-                                            <td>{consulta.idSituacao}</td>
-                                            <td class="consultas__lista--desc">{consulta.descricao}</td>
-                                        </tr>
-                                    );
-                                })
-                            }
-                        </tbody>
-                    </table>
+                <div className="consultas__consulta">
+
+                    {
+                        this.state.listaConsultas.map(consulta => {
+                            return (
+                                <div key={consulta.id} className="consultas__consulta--item dashboard__consulta--display-none">
+                                    <p className="consultas__consulta--item-infos-prot">N | Protocologo: {consulta.id}</p>
+                                    <div className="consultas__consulta--item-infos">
+                                        <table >
+                                            <tbody>
+                                                <tr>
+                                                    <th>Prontuario:</th>
+                                                    <td>{consulta.idProntuario}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Medico:</th>
+                                                    <td>{consulta.idMedico}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Data:</th>
+                                                    <td>{consulta.dataAgendada}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Hora:</th>
+                                                    <td>{consulta.horaAgendada}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Situação:</th>
+                                                    <td>{consulta.idSituacao}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Descricao:</th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <p className="consultas__consulta--item-infos-desc">{consulta.descricao}</p>
+                                    </div>
+                                </div>
+                            );
+                        })
+                    }
+
+                    <div className="consultas__consulta--item-infos dashboard__lista--table-container">
+                        <div className="consultas__table dashboard__lista--table">
+                            <table className="dashboard__table--table">
+                                <tbody>
+                                    <tr className="consultas__lista--header">
+                                        <th>Id</th>
+                                        <th>IdProntuario</th>
+                                        <th>IdMedico</th>
+                                        <th>DataAgendada</th>
+                                        <th>HoraAgendada</th>
+                                        <th>IdSituacao</th>
+                                        <th>Descricao</th>
+                                    </tr>
+
+                                    {
+                                        this.state.listaConsultas.map(consulta => {
+                                            return (
+                                                <tr key={consulta.id} className="consultas__table--info dashboard__table--info">
+                                                    <td>{consulta.id}</td>
+                                                    <td>{consulta.idProntuario}</td>
+                                                    <td>{consulta.idMedico}</td>
+                                                    <td>{consulta.dataAgendada}</td>
+                                                    <td>{consulta.horaAgendada}</td>
+                                                    <td>{consulta.idSituacao}</td>
+                                                    <td className="consultas__ldescista--desc">{consulta.descricao}</td>
+                                                </tr>
+                                            );
+                                        })
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-
-import CadastroUsuario from "./componentes/CadastroUsuario";
-import CadastroMedico from "./componentes/CadastroMedico";
-import CadastroPaciente from "./componentes/CadastroPaciente";
-import CadastroConsulta from "./componentes/CadastroConsulta";
+import CadastrosIf from "./componentes/cadastrosIf";
 
 import "../_assets/css/style.css";
 import "./assents/css/cadastro.css";
@@ -16,8 +12,12 @@ class Cadastros extends Component {
         super();
 
         this.state = {
-
+            cadastroId: ""
         }
+    }
+
+    atualizaCadastroid(event) {
+        var id = event.target.getAttribute('cadastro-id');
     }
 
     render() {
@@ -27,13 +27,23 @@ class Cadastros extends Component {
                 <MenuMin />
 
                 <div className="cadastro__cadastro--container">
-                    <CadastroUsuario />
-
-                    <CadastroMedico />
-
-                    <CadastroPaciente />
-
-                    <CadastroConsulta />
+                    <div className="cadastro__cadastro">
+                        <div className="cadastro__cadastro--header">
+                            <div className="cadastro__cadastro--header-links  cadastro__cadastro--header-links-select" cadastro-id="2" onClick={this.atualizaCadastroid.bind(this)}>
+                                <p>Consultas</p>
+                            </div>
+                            <div className="cadastro__cadastro--header-links  cadastro__cadastro--header-links-select" cadastro-id="2" onClick={this.atualizaCadastroid.bind(this)}>
+                                <p>Prontuários</p>
+                            </div>
+                            <div className="cadastro__cadastro--header-links cadastro__cadastro--header-links-select" cadastro-id="3" onClick={this.atualizaCadastroid.bind(this)}>
+                                <p>Usuários</p>
+                            </div>
+                            <div className="cadastro__cadastro--header-links  cadastro__cadastro--header-links-select" cadastro-id="4" onClick={this.atualizaCadastroid.bind(this)}>
+                                <p>Medicos</p>
+                            </div>
+                        </div>
+                        <CadastrosIf />
+                    </div>
                 </div>
 
                 <Rodape />

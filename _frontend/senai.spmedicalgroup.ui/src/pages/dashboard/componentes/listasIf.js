@@ -5,37 +5,30 @@ import ListarUsuarios from "./ListarUsuarios";
 import ListarProntuarios from "./ListarProntuarios";
 
 class ListasIf extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            listaId: props.idDaLista
-        }
-    }
-
-    componentDidMount(){
-    console.log(this.state.listaId);
-    }
-
     render() {
-        
+        var lista;
 
-        if (this.state.listaId === "1") {
-            return (<ListarConsultas />)
+        if (this.props.idLista === "1") {
+            lista = <ListarConsultas />
         }
-        else if (this.state.listaId === "2") {
-            return (<ListarMedicos />)
+        else if (this.props.idLista === "2") {
+            lista = <ListarProntuarios />
         }
-        else if (this.state.listaId === "3") {
-            return (<ListarUsuarios />)
+        else if (this.props.idLista === "3") {
+            lista = <ListarMedicos />
         }
-        else if (this.state.listaId === "4") {
-            return (<ListarProntuarios />)
+        else if (this.props.idLista === "4") {
+            lista = <ListarUsuarios />
         }
         else {
-            console.log(this.state.listaId);
-            return(<ListarConsultas />)
+            lista = <ListarConsultas />
         }
+
+        return(
+            <div>
+                {lista}
+            </div>
+        );
     }
 }
 

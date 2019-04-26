@@ -116,42 +116,26 @@ class CadastroPaciente extends Component {
 
     render() {
         return (
-            <div className="cadastro__cadastro">
-                <div className="cadastro__cadastro--header">
-                    <div className="cadastro__cadastro--header-links">
-                        <p>Consultas</p>
-                    </div>
-                    <div className="cadastro__cadastro--header-links cadastro__cadastro--header-links-select">
-                        <p>Prontuários</p>
-                    </div>
-                    <div className="cadastro__cadastro--header-links">
-                        <p>Usuários</p>
-                    </div>
-                    <div className="cadastro__cadastro--header-links">
-                        <p>Medicos</p>
-                    </div>
-                </div>
-                <div className="cadastro__cadastro--item">
-                    <h2>Cadastrar Prontuarios</h2>
-                    <div className="style__titulo--linha"></div>
+            <div className="cadastro__cadastro--item">
+                <h2>Cadastrar Prontuarios</h2>
+                <div className="style__titulo--linha"></div>
 
-                    <form className="cadastro__cadastro--form" onSubmit={this.cadastrarPaciente.bind(this)}>
-                        <input type="text" placeholder="Nome" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.nome} onChange={this.atualizarNome} />
-                        <input type="text" placeholder="CPF" className="cadastro__cadastro--input " value={this.state.rg} onChange={this.atualizarRg} />
-                        <input type="text" placeholder="RG" className="cadastro__cadastro--input" value={this.state.cpf} onChange={this.atualizarCpf} />
-                        <input type="text" placeholder="Data Nasc." className="cadastro__cadastro--input" value={this.state.dataNascimento} onChange={this.atualizarDataNascimento} />
-                        <input type="text" placeholder="Telefone" className="cadastro__cadastro--input" value={this.state.telefone} onChange={this.atualizarTelefone} />
-                        <input type="text" placeholder="Rua" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.idUsuario} onChange={this.atualizarIdUsuario} />
-                        <input type="text" placeholder="Bairro" className="cadastro__cadastro--input" value={this.state.rua} onChange={this.atualizarRua} />
-                        <input type="text" placeholder="Cidade" className="cadastro__cadastro--input" value={this.state.bairro} onChange={this.atualizarBairro} />
-                        <input type="text" placeholder="Estado" className="cadastro__cadastro--input" value={this.state.cidade} onChange={this.atualizarCidade} />
-                        <input type="text" placeholder="CEP" className="cadastro__cadastro--input" value={this.state.estado} onChange={this.atualizarEstado} />
-                        <input type="text" placeholder="IdUsuario" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.cep} onChange={this.atualizarCep} />
-                        <button className="style__button--blue" type="submit">Cadastrar</button>
-                    </form>
+                <form className="cadastro__cadastro--form" onSubmit={this.cadastrarPaciente.bind(this)}>
+                    <input type="text" placeholder="Nome" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.nome} onChange={this.atualizarNome} />
+                    <input type="text" placeholder="CPF" className="cadastro__cadastro--input " value={this.state.rg} onChange={this.atualizarRg} />
+                    <input type="text" placeholder="RG" className="cadastro__cadastro--input" value={this.state.cpf} onChange={this.atualizarCpf} />
+                    <input type="text" placeholder="Data Nasc." className="cadastro__cadastro--input" value={this.state.dataNascimento} onChange={this.atualizarDataNascimento} />
+                    <input type="text" placeholder="Telefone" className="cadastro__cadastro--input" value={this.state.telefone} onChange={this.atualizarTelefone} />
+                    <input type="text" placeholder="Rua" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.idUsuario} onChange={this.atualizarIdUsuario} />
+                    <input type="text" placeholder="Bairro" className="cadastro__cadastro--input" value={this.state.rua} onChange={this.atualizarRua} />
+                    <input type="text" placeholder="Cidade" className="cadastro__cadastro--input" value={this.state.bairro} onChange={this.atualizarBairro} />
+                    <input type="text" placeholder="Estado" className="cadastro__cadastro--input" value={this.state.cidade} onChange={this.atualizarCidade} />
+                    <input type="text" placeholder="CEP" className="cadastro__cadastro--input" value={this.state.estado} onChange={this.atualizarEstado} />
+                    <input type="text" placeholder="IdUsuario" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.cep} onChange={this.atualizarCep} />
+                    <button className="style__button--blue" type="submit">Cadastrar</button>
+                </form>
 
-                    <p>{this.state.mensagem}</p>
-                </div>
+                <p>{this.state.mensagem}</p>
             </div>
         )
     }

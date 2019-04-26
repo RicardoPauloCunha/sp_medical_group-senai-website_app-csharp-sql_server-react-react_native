@@ -59,34 +59,18 @@ class CadastroUsuario extends Component {
 
     render() {
         return (
-            <div className="cadastro__cadastro">
-                <div className="cadastro__cadastro--header">
-                    <div className="cadastro__cadastro--header-links">
-                        <p>Consultas</p>
-                    </div>
-                    <div className="cadastro__cadastro--header-links">
-                        <p>Prontuários</p>
-                    </div>
-                    <div className="cadastro__cadastro--header-links cadastro__cadastro--header-links-select">
-                        <p>Usuários</p>
-                    </div>
-                    <div className="cadastro__cadastro--header-links">
-                        <p>Medicos</p>
-                    </div>
-                </div>
-                <div className="cadastro__cadastro--item">
-                    <h2>Cadastrar Usuários</h2>
-                    <div className="style__titulo--linha"></div>
+            <div className="cadastro__cadastro--item">
+                <h2>Cadastrar Usuários</h2>
+                <div className="style__titulo--linha"></div>
 
-                    <form className="cadastro__cadastro--form" onSubmit={this.cadastrarUsuario.bind(this)}>
-                        <input type="email" placeholder="Email" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.email} onChange={this.atualizarEmail} />
-                        <input type="password" placeholder="Senha" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.senha} onChange={this.atualizarSenha} />
-                        <input type="text" placeholder="IdTipoUsuario" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.idTipoUsuario} onChange={this.atualizarIdTipoUsuario} />
-                        <button type="submit" className="style__button--blue">Cadastrar</button>
-                    </form>
+                <form className="cadastro__cadastro--form" onSubmit={this.cadastrarUsuario.bind(this)}>
+                    <input type="email" placeholder="Email" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.email} onChange={this.atualizarEmail} />
+                    <input type="password" placeholder="Senha" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.senha} onChange={this.atualizarSenha} />
+                    <input type="text" placeholder="IdTipoUsuario" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.idTipoUsuario} onChange={this.atualizarIdTipoUsuario} />
+                    <button type="submit" className="style__button--blue">Cadastrar</button>
+                </form>
 
-                    <p>{this.state.mensagem}</p>
-                </div>
+                <p>{this.state.mensagem}</p>
             </div>
         )
     }

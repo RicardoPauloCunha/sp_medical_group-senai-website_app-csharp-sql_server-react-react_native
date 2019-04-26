@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import MenuMin from "../_componentes/menuMin";
 import RodaPe from "../_componentes/rodaPe";
 
-import ListarConsultas from "./componentes/ListarConsultas";
-import ListarProntuarios from "./componentes/ListarProntuarios";
-import ListarMedicos from "./componentes/ListarMedicos";
-import ListarUsuarios from "./componentes/ListarUsuarios";
+// import ListarConsultas from "./componentes/ListarConsultas";
+// import ListarProntuarios from "./componentes/ListarProntuarios";
+// import ListarMedicos from "./componentes/ListarMedicos";
+// import ListarUsuarios from "./componentes/ListarUsuarios";
 import QuantidadeItensLista from "./componentes/QuantidadeItensLista";
 import ListaIf from "./componentes/listasIf";
 
@@ -21,44 +21,15 @@ class Dashboard extends Component {
         this.state = {
             idBusca: "",
             endpointBusca: "",
-            selectOption: 0
+            selectOption: ""
         }
-    }
 
-    // Busca Item
-    atualizaIdBuscsa(event) {
-        this.setState({ idBusca: event.target.value });
-    }
-
-    atualizaEndpointBusca(event) {
-        this.setState({ endpointBusca: event.target.value });
-    }
-
-    buscarId(event) {
-        event.preventDefault();
-
-        let url = `http://localhost:5000/api/${this.state.endpointBusca}${this.state.idBusca}`;
-        console.log(url)
-
-        fetch(url, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + localStorage.getItem("usuarioautenticado-token-spmedgroup")
-            }
-        })
-            .then(resposta => resposta)
-            .then(data => { console.log(data) })
-            .catch(erro => console.log(erro));
+        this.atualizaSelectOption = this.atualizaSelectOption.bind(this);
     }
 
     // função select
     atualizaSelectOption(event) {
         this.setState({ selectOption: event.target.value });
-    }
-
-    selecionar() {
-        console.log(this.state.selectOption)
     }
 
     render() {
@@ -76,13 +47,14 @@ class Dashboard extends Component {
                     <div className="dashboard__item--container dashboard__lista">
 
                         <div className="dashboard__lista--header">
-                            <select className="dashboard__lista--select" value={this.state.selectOption} onChange={this.atualizaSelectOption.bind(this)}>
-                                <option value="1" className="dashboard__lista--select-option">Listar</option>
-                                <option value="2" className="dashboard__lista--select-option">Consultas</option>
-                                <option value="3" className="dashboard__lista--select-option">Prontuarios</option>
-                                <option value="4" className="dashboard__lista--select-option">Medicos</option>
-                                <option value="5" className="dashboard__lista--select-option">Usuarios</option>
+
+                            <select className="dashboard__lista--select" value={this.state.selectOption} onChange={this.atualizaSelectOption}>
+                                <option value="1" className="dashboard__lista--select-option">Listar Consultas</option>
+                                <option value="2" className="dashboard__lista--select-option">Listar Prontuarios</option>
+                                <option value="3" className="dashboard__lista--select-option">Listar Medicos</option>
+                                <option value="4" className="dashboard__lista--select-option">Listar Usuarios</option>
                             </select>
+
                             <select className="dashboard__lista--select">
                                 <option value="" className="dashboard__lista--select-option">Cadastrar</option>
                                 <option value="" className="dashboard__lista--select-option">Consultas</option>
@@ -90,29 +62,13 @@ class Dashboard extends Component {
                                 <option value="" className="dashboard__lista--select-option">Medicos</option>
                                 <option value="" className="dashboard__lista--select-option">Usuarios</option>
                             </select>
+
                         </div>
-
-                        <button onClick={this.selecionar.bind(this)}>Selecionar</button>
-
-                        {/* <ListarConsultas /> */}
                     </div>
-
-                    {/* <div className="dashboard__item--container-prontuario">
-                        <ListarProntuarios />
-                    </div>
-
-                    <div className="dashboard__item--container dashboard__lista">
-                        <ListarMedicos />
-
-                        <ListarUsuarios />
-
-                    </div> */}
-
-                    <ListaIf />
-                    
+                    <ListaIf idLista={this.state.selectOption} />
                 </div>
 
-                <RodaPe idDaLista="4"/>
+                <RodaPe />
             </div>
         )
     }

@@ -1,4 +1,6 @@
-
+.body {
+    min-height: 65vh;
+}
 
 .consultas__consulta {
     width: 80%;
@@ -28,7 +30,7 @@
 .consultas__consulta--item-infos th {
     width: 50%;
     text-align: left;
-    color: #bfbfbf;
+    color: #82c1d7;
     font-size: 0.9em;
 }
 
@@ -51,7 +53,7 @@
     border: solid 1px rgb(135, 135, 253, 0.3);
     margin: 10px 0 10px 0;
     width: 100%;
-    height: 8em;
+    height: 5em;
     padding: 0.5em;
     resize: none;
 }
@@ -61,8 +63,6 @@
     background-color: rgb(135, 135, 253, 0.3);
     border: solid 1px rgb(135, 135, 253, 0.4);
 }
-
-/* kkkk */
 
 .consultas__table{
     width: 90%;
@@ -90,8 +90,16 @@
     padding: 0.5em;
 }
 
+.dashboard__table--info td {
+    padding: 1.2em 0.5em 0.5em;
+}
+
 .consultas__table--table-textarea {
     margin: 1em auto 0;
+}
+
+.consulta__table--display-none {
+    display: none;
 }
 
 /* lista */
@@ -109,7 +117,7 @@
     margin: 0 auto;
 }
 
-.consultas__lista--desc{
+.consultas__ldescista--desc{
     width: 45%;
     padding: 0.5em 0 1.5em 0.5em;
     text-align: left;
@@ -130,6 +138,17 @@
     padding: 0.5em 0.5em 1.5em;
     vertical-align: top;
     border-bottom: solid 1px #82c1d7;
+}
+
+.consultas__consulta--button-display-none {
+    text-align: center;
+    margin: 0.5em 0 0 0;
+}
+
+/* Ricardo Paulo */
+
+.dashboard__lista--table{
+    width: 100%;
 }
 
 @media (min-width: 600px) {
@@ -181,8 +200,14 @@
     .consultas__consulta--display-none {
         display: none;
     }
+
+    .consulta__table--display-none {
+        display: block;
+    }
 }
 
 @media (min-width: 1366px) {
-
+    .consultas__consulta-prontuario {
+        width: 95%;
+    }
 }
