@@ -17,11 +17,6 @@ class Consultas extends Component {
         }
     }
 
-    // carrega o metodo
-    componentDidMount() {
-        this.listarConsultas();
-    }
-
     // lista todas as consultas
     listarConsultas() {
         listarConsultasUsuarioItem
@@ -29,6 +24,11 @@ class Consultas extends Component {
             .then(resposta => resposta.json())
             .then(data => { this.setState({ consultas: data }) })
             .catch(erro => this.setState({ mensagem: "Ocorreu um erro durante o listagem, tente novamente" }));
+    }
+
+    // carrega o metodo
+    componentDidMount() {
+        this.listarConsultas();
     }
 
     render() {

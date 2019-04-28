@@ -52,11 +52,15 @@
         background-color: #82c1d7;
         text-align: center;
         border-radius: 15px;
-        padding: 3px 20px;
         margin: 0.8em auto;
+        padding: 3px 20px;
         color: white;
         border: solid 1px #82c1d7;
         font-size: 1em;
+}
+
+.dashboard__lista--select-button {
+    margin: 0 auto;
 }
 
 .dashboard__lista--select:hover {

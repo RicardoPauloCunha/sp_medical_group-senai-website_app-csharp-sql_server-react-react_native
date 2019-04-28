@@ -104,7 +104,7 @@ class Consultas extends Component {
                                         <p className="consultas__consulta--item-infos-desc">{consulta.descricao}</p>
 
                                         <form className="consultas__consulta--item-infos-desc" consulta-id={consulta.id} onSubmit={this.incluirDescricao.bind(this)}>
-                                            <textarea className="consultas__consulta--item-input-desc" Value={this.state.descricao} onChange={this.atualizarDescricao}></textarea>
+                                            <textarea className="consultas__consulta--item-input-desc" placeholder="Incluir Descrição" Value={this.state.descricao} onChange={this.atualizarDescricao}></textarea>
                                             <button type="submit" className="style__button--blue" onClick={this.listarConsultas()}>Salvar</button>
                                         </form>
                                     </div>
@@ -144,7 +144,7 @@ class Consultas extends Component {
                                             </table>
 
                                             <form className="consultas__consulta--item-infos-desc" consulta-id={consulta.id} onSubmit={this.incluirDescricao.bind(this)}>
-                                                <textarea className="consultas__consulta--item-input-desc" Value={this.state.descricao} onChange={this.atualizarDescricao}></textarea>
+                                                <textarea className="consultas__consulta--item-input-desc" placeholder="Incluir Descrição" Value={this.state.descricao} onChange={this.atualizarDescricao}></textarea>
                                                 <button type="submit" className="style__button--blue" onClick={this.listarConsultas()}>Salvar</button>
                                             </form>
                                         </div>

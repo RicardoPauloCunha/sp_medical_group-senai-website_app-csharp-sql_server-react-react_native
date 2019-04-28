@@ -8,16 +8,16 @@ class CadastroIf extends Component {
     render() {
         var cadastro;
 
-        if (this.props.idLista === "1") {
+        if (this.props.cadastroId === "1") {
             cadastro = <CadastroConsulta />
         }
-        else if (this.props.idLista === "2") {
+        else if (this.props.cadastroId === "2") {
             cadastro = <CadastroPaciente />
         }
-        else if (this.props.idLista === "3") {
+        else if (this.props.cadastroId === "3") {
             cadastro = <CadastroMedico />
         }
-        else if (this.props.idLista === "4") {
+        else if (this.props.cadastroId === "4") {
             cadastro = <CadastroUsuario />
         }
         else {

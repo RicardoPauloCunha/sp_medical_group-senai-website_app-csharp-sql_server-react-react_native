@@ -40,10 +40,6 @@ class Dashboard extends Component {
                 <div className="style__main--container">
                     <QuantidadeItensLista />
 
-                    <div className="links">
-                        <Link to="/Cadastros">Cadastros</Link>
-                    </div>
-
                     <div className="dashboard__item--container dashboard__lista">
 
                         <div className="dashboard__lista--header">
@@ -55,13 +51,15 @@ class Dashboard extends Component {
                                 <option value="4" className="dashboard__lista--select-option">Listar Usuarios</option>
                             </select>
 
-                            <select className="dashboard__lista--select">
-                                <option value="" className="dashboard__lista--select-option">Cadastrar</option>
-                                <option value="" className="dashboard__lista--select-option">Consultas</option>
-                                <option value="" className="dashboard__lista--select-option">Prontuarios</option>
-                                <option value="" className="dashboard__lista--select-option">Medicos</option>
-                                <option value="" className="dashboard__lista--select-option">Usuarios</option>
-                            </select>
+                            <Link to="/Cadastros" className="dashboard__lista--select-button">
+                                <select className="dashboard__lista--select">
+                                    <option value="" className="dashboard__lista--select-option">Cadastrar</option>
+                                    <option value="" className="dashboard__lista--select-option">Consultas</option>
+                                    <option value="" className="dashboard__lista--select-option">Prontuarios</option>
+                                    <option value="" className="dashboard__lista--select-option">Medicos</option>
+                                    <option value="" className="dashboard__lista--select-option">Usuarios</option>
+                                </select>
+                            </Link>
 
                         </div>
                     </div>

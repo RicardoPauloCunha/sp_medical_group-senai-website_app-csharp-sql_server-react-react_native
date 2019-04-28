@@ -5,24 +5,15 @@ import "../_assets/css/style.css";
 
 import MenuMin from "../_componentes/menuMin";
 import Rodape from "../_componentes/rodaPe";
-import Consultas from "./componentes/Consultas&Descricao";
+import ConsultasMedicos from "./componentes/Consultas&Descricao";
 
 class ConsultasMedico extends Component {
-    constructor() {
-        super();
-
-        this.state = {
-
-        }
-
-    }
-
     render() {
         return (
             <div>
                 <MenuMin />
 
-                <Consultas />
+                <ConsultasMedicos />
 
                 <Rodape />
             </div >

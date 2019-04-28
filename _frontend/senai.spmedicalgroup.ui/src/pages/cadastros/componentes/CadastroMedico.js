@@ -72,7 +72,7 @@ class CadastroMedico extends Component {
 
     render() {
         return (
-            <div className="cadastro__cadastro--item">
+            <div>
                 <h2>Cadastrar Médico</h2>
                 <div className="style__titulo--linha"></div>
 

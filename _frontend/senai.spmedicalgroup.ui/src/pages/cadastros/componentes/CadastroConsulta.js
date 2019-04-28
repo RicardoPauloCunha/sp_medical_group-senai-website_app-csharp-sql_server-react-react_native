@@ -79,7 +79,7 @@ class CadastroConsulta extends Component {
 
     render() {
         return (
-            <div className="cadastro__cadastro--item">
+            <div>
                 <h2>Cadastrar Consulta</h2>
                 <div className="style__titulo--linha"></div>
 

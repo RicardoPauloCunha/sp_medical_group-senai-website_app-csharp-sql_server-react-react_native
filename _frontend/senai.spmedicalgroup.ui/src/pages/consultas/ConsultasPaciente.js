@@ -10,20 +10,6 @@ import Rodape from "../_componentes/rodaPe";
 import Consultas from "./componentes/Consultas";
 
 class ConsultasPaciente extends Component {
-    constructor() {
-        super();
-
-        this.state = {
-            consultas: [],
-            descricao: "",
-            idDescricaoIncluir: "",
-            mensagem: ""
-        }
-
-        this.atualizarDescricao = this.atualizarDescricao.bind(this);
-        this.atualizarIdDescricaoIncluir = this.atualizarIdDescricaoIncluir.bind(this);
-    }
-
     // carrega o metodo
     componentDidMount() {
         this.listarConsultas();

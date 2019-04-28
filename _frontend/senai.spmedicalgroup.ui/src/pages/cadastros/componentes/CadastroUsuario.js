@@ -10,6 +10,7 @@ class CadastroUsuario extends Component {
         this.state = {
             email: "",
             senha: "",
+            listaTipoUsuario: "",
             idTipoUsuario: "",
             mensagem: ""
         }
@@ -54,12 +55,11 @@ class CadastroUsuario extends Component {
                 }
             })
             .catch(erro => this.setState({ mensagem: "Ocorreu um erro durante o listagem, tente novamente" }))
-
     }
 
     render() {
         return (
-            <div className="cadastro__cadastro--item">
+            <div>
                 <h2>Cadastrar Usuários</h2>
                 <div className="style__titulo--linha"></div>
 
