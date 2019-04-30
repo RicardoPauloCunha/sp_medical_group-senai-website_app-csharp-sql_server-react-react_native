@@ -5,23 +5,15 @@ import "../../_assets/css/style.css";
 
 import listarConsultasUsuarioItem from "./listarConsultasUsuarioItem";
 
-class Consultas extends Component {
+class ConsultasMedico extends Component {
     constructor() {
         super();
 
         this.state = {
             consultas: [],
             descricao: "",
-            idDescricaoIncluir: "",
             mensagem: ""
         }
-
-        this.atualizarDescricao = this.atualizarDescricao.bind(this)
-    }
-
-    // carrega o metodo
-    componentDidMount() {
-        this.listarConsultas();
     }
 
     // lista todas as consultas
@@ -33,38 +25,42 @@ class Consultas extends Component {
             .catch(erro => this.setState({ mensagem: "Ocorreu um erro durante o listagem, tente novamente" }));
     }
 
-    // pega a descriçao digitada
+    // carrega o metodo
+    componentDidMount() {
+        this.listarConsultas();
+    }
+
+    //pega a descricao digitada
     atualizarDescricao(event) {
         this.setState({ descricao: event.target.value });
     }
 
-    // metodo atualiza descricao prontuario
+    //metodo atualiza descricao do prontuario
     incluirDescricao(event) {
         event.preventDefault();
 
-        var id = event.target.getAttribute('consulta-id');
+        var idDescricao = event.target.getAttribute("consulta-id")
 
-        let incluir = {
-            idConsulta: id,
+        let item = {
+            id: idDescricao,
             descricao: this.state.descricao
         }
 
-        console.log(incluir)
+        console.log(item);
 
         fetch('http://localhost:5000/AlterarDescricaoConsulta', {
             method: "PUT",
-            body: JSON.stringify({
-                id: id,
-                descricao: this.state.descricao
-            }),
+            body: JSON.stringify(item),
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
                 Authorization: 'Bearer ' + localStorage.getItem("usuarioautenticado-token-spmedgroup")
             }
         })
             .then(resposta => resposta)
             .then(this.listarConsultas())
             .catch(erro => console.log(erro))
+
+        this.listarConsultas();
     }
 
     render() {
@@ -81,7 +77,7 @@ class Consultas extends Component {
                                         <table>
                                             <tbody>
                                                 <tr>
-                                                    <th>Prontuario:</th>
+                                                    <th>Prontuário:</th>
                                                     <td>{consulta.idProntuario}</td>
                                                 </tr>
                                                 <tr>
@@ -102,10 +98,9 @@ class Consultas extends Component {
                                             </tbody>
                                         </table>
                                         <p className="consultas__consulta--item-infos-desc">{consulta.descricao}</p>
-
                                         <form className="consultas__consulta--item-infos-desc" consulta-id={consulta.id} onSubmit={this.incluirDescricao.bind(this)}>
-                                            <textarea className="consultas__consulta--item-input-desc" placeholder="Incluir Descrição" Value={this.state.descricao} onChange={this.atualizarDescricao}></textarea>
-                                            <button type="submit" className="style__button--blue" onClick={this.listarConsultas()}>Salvar</button>
+                                            <textarea className="consultas__consulta--item-input-desc" placeholder="Incluir Descrição" value={this.state.descricao} onChange={this.atualizarDescricao.bind(this)}></textarea>
+                                            <button type="submit" className="style__button--blue">Incluir Descrição</button>
                                         </form>
                                     </div>
                                 </div>
@@ -117,7 +112,7 @@ class Consultas extends Component {
                                                 <tbody>
                                                     <tr className="consultas__table--header">
                                                         <th>Id</th>
-                                                        <th>IdProntuario</th>
+                                                        <th>idProntuario</th>
                                                         <th>DataAgendada</th>
                                                         <th>HoraAgendade</th>
                                                         <th>IdSituacao</th>
@@ -138,19 +133,21 @@ class Consultas extends Component {
                                                         <th>Descrição</th>
                                                     </tr>
                                                     <tr className="consultas__table--info consultas__table--info-desc">
-                                                        <td >{consulta.descricao}</td>
+                                                        <td>{consulta.descricao}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
 
                                             <form className="consultas__consulta--item-infos-desc" consulta-id={consulta.id} onSubmit={this.incluirDescricao.bind(this)}>
-                                                <textarea className="consultas__consulta--item-input-desc" placeholder="Incluir Descrição" Value={this.state.descricao} onChange={this.atualizarDescricao}></textarea>
-                                                <button type="submit" className="style__button--blue" onClick={this.listarConsultas()}>Salvar</button>
+                                                <textarea className="consultas__consulta--item-input-desc" placeholder="Incluir Descrição" value={this.state.descricao} onChange={this.atualizarDescricao.bind(this)}></textarea>
+                                                <button type="submit" className="style__button--blue">Incluir Descrição</button>
                                             </form>
+
                                         </div>
 
                                     </div>
                                 </div>
+
                             </div>
                         );
                     })
@@ -160,4 +157,4 @@ class Consultas extends Component {
     }
 }
 
-export default Consultas
+export default ConsultasMedico

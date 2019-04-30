@@ -114,6 +114,18 @@
     margin-bottom: 1em;
 }
 
+.cadastro__cadastro--button {
+    display: flex;
+    justify-content: right;
+    width: 80%;
+    margin: auto;
+}
+
+.cadastro__cadastro--select{
+    height: auto;
+    text-align: center;;
+}
+
 @media (min-width: 420px){
     .cadastro__cadastro--header-links {
         padding: 0.3em 0.5em;

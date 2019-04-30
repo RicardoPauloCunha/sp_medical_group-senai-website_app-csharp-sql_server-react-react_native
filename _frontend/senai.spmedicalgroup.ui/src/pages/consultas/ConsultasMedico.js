@@ -5,7 +5,7 @@ import "../_assets/css/style.css";
 
 import MenuMin from "../_componentes/menuMin";
 import Rodape from "../_componentes/rodaPe";
-import ConsultasMedicos from "./componentes/Consultas&Descricao";
+import ConsultasMedicos from "./componentes/ConsultasEDescricao";
 
 class ConsultasMedico extends Component {
     render() {

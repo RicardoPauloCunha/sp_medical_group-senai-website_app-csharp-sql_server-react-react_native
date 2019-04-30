@@ -38,6 +38,23 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
+        // Lista todas as Clinicas com somente o id e nome
+        [HttpGet("SelectClinicas")]
+        public IActionResult GetClinicas()
+        {
+            try
+            {
+                using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
+                {
+                    return Ok(ctx.Clinicas.Select(x => new { x.Id, x.NomeFantasia}).ToList());
+                }
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         // Busca uma unica Clinica
         [HttpGet("{clinicaId}")]
         public IActionResult Get(int clinicaId)

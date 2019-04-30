@@ -65,6 +65,14 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             return medicos;
         }
 
+        public List<Especialidades> ListarEspecialidades()
+        {
+            using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
+            {
+                return (ctx.Especialidades.ToList());
+            }
+        }
+
         // Busca medico por usuario
         public Medicos medicoLogado(int usuarioId)
         {

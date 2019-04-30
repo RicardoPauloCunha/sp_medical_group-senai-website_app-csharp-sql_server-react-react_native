@@ -47,5 +47,7 @@ namespace Senai.SpMedicalGroup.WebApi.Interfaces
         void Deletar(Usuarios usuario);
 
         Usuarios Logar(LoginViewModel login);
+
+        List<TiposUsuarios> ListarTiposUsuarios();
     }
 }

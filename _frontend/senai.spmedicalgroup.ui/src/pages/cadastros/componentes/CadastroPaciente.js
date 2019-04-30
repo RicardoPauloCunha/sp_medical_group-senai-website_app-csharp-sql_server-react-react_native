@@ -13,6 +13,7 @@ class CadastroPaciente extends Component {
             cpf: "",
             dataNascimento: "",
             telefone: "",
+            listaUsuarios: [],
             idUsuario: "",
             rua: "",
             bairro: "",
@@ -114,6 +115,24 @@ class CadastroPaciente extends Component {
             .catch(erro => this.setState({ mensagem: "Ocorreu um erro durante o listagem, tente novamente" }))
     }
 
+    componentDidMount() {
+        this.listarUsuarios();
+    }
+
+    listarUsuarios() {
+        fetch("http://localhost:5000/api/Usuarios/SelectUsuarios", {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + localStorage.getItem("usuarioautenticado-token-spmedgroup")
+            }
+        })
+            .then(resposta => resposta.json())
+            .then(data => this.setState({ listaUsuarios: data }))
+            .catch(erro => console.log(erro))
+    }
+
+
     render() {
         return (
             <div>
@@ -122,16 +141,28 @@ class CadastroPaciente extends Component {
 
                 <form className="cadastro__cadastro--form" onSubmit={this.cadastrarPaciente.bind(this)}>
                     <input type="text" placeholder="Nome" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.nome} onChange={this.atualizarNome} />
-                    <input type="text" placeholder="CPF" className="cadastro__cadastro--input " value={this.state.rg} onChange={this.atualizarRg} />
-                    <input type="text" placeholder="RG" className="cadastro__cadastro--input" value={this.state.cpf} onChange={this.atualizarCpf} />
+                    <input type="text" placeholder="CPF" className="cadastro__cadastro--input " value={this.state.cpf} onChange={this.atualizarCpf} />
+                    <input type="text" placeholder="RG" className="cadastro__cadastro--input" value={this.state.rg} onChange={this.atualizarRg} />
                     <input type="text" placeholder="Data Nasc." className="cadastro__cadastro--input" value={this.state.dataNascimento} onChange={this.atualizarDataNascimento} />
                     <input type="text" placeholder="Telefone" className="cadastro__cadastro--input" value={this.state.telefone} onChange={this.atualizarTelefone} />
-                    <input type="text" placeholder="Rua" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.idUsuario} onChange={this.atualizarIdUsuario} />
-                    <input type="text" placeholder="Bairro" className="cadastro__cadastro--input" value={this.state.rua} onChange={this.atualizarRua} />
-                    <input type="text" placeholder="Cidade" className="cadastro__cadastro--input" value={this.state.bairro} onChange={this.atualizarBairro} />
-                    <input type="text" placeholder="Estado" className="cadastro__cadastro--input" value={this.state.cidade} onChange={this.atualizarCidade} />
-                    <input type="text" placeholder="CEP" className="cadastro__cadastro--input" value={this.state.estado} onChange={this.atualizarEstado} />
-                    <input type="text" placeholder="IdUsuario" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.cep} onChange={this.atualizarCep} />
+                    <input type="text" placeholder="Rua" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.rua} onChange={this.atualizarRua} />
+                    <input type="text" placeholder="Bairro" className="cadastro__cadastro--input" value={this.state.bairro} onChange={this.atualizarBairro} />
+                    <input type="text" placeholder="Cidade" className="cadastro__cadastro--input" value={this.state.cidade} onChange={this.atualizarCidade} />
+                    <input type="text" placeholder="Estado" className="cadastro__cadastro--input" value={this.state.estado} onChange={this.atualizarEstado} />
+                    <input type="text" placeholder="CEP" className="cadastro__cadastro--input" value={this.state.cep} onChange={this.atualizarCep} />
+                    {/* <input type="text" placeholder="IdUsuario" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.idUsuario} onChange={this.atualizarIdUsuario} /> */}
+
+                    <select className="cadastro__cadastro--input cadastro__cadastro--input-ultimo cadastro__cadastro--select" value={this.state.idUsuario} onChange={this.atualizarIdUsuario}>
+                        <option className="dashboard__lista--select-option">Usuário</option>
+                        {
+                            this.state.listaUsuarios.map(usuario => {
+                                return (
+                                    <option key={usuario.id} value={usuario.id} className="dashboard__lista--select-option">{usuario.email}</option>
+                                )
+                            })
+                        }
+                    </select>
+
                     <button className="style__button--blue" type="submit">Cadastrar</button>
                 </form>
 

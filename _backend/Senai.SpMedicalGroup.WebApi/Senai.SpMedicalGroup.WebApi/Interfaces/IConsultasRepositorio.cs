@@ -61,5 +61,7 @@ namespace Senai.SpMedicalGroup.WebApi.Interfaces
         /// <param name="consultaRecebida">Consulta correspondete a essa situacao</param>
         /// <returns>Retorna a consulta atualizada</returns>
         Consultas AlterarSituacaoPaciente(Consultas situacaoRebecida, Consultas consultaRecebida);
+
+        List<Situacao> ListarSituacao();
     }
 }

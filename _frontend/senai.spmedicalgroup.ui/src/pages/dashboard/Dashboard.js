@@ -53,11 +53,7 @@ class Dashboard extends Component {
 
                             <Link to="/Cadastros" className="dashboard__lista--select-button">
                                 <select className="dashboard__lista--select">
-                                    <option value="" className="dashboard__lista--select-option">Cadastrar</option>
-                                    <option value="" className="dashboard__lista--select-option">Consultas</option>
-                                    <option value="" className="dashboard__lista--select-option">Prontuarios</option>
-                                    <option value="" className="dashboard__lista--select-option">Medicos</option>
-                                    <option value="" className="dashboard__lista--select-option">Usuarios</option>
+                                    <option value="0" className="dashboard__lista--select-option">Cadastrar</option>
                                 </select>
                             </Link>
 

@@ -38,5 +38,7 @@ namespace Senai.SpMedicalGroup.WebApi.Interfaces
         /// </summary>
         /// <param name="medico">Medico para deletar</param>
         void Deletar(Medicos medico);
+
+        List<Especialidades> ListarEspecialidades();
     }
 }

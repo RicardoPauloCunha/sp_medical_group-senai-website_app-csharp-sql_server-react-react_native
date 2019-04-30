@@ -12,6 +12,7 @@ class CadastroConsulta extends Component {
             idMedico: "",
             dataAgendada: "",
             horaAgendada: "",
+            listaSituacao: [],
             idSituacao: "",
             descricao: "",
             mensagem: ""
@@ -77,6 +78,23 @@ class CadastroConsulta extends Component {
             .catch(erro => this.setState({ mensagem: "Ocorreu um erro durante o listagem, tente novamente" }))
     }
 
+    componentDidMount() {
+        this.listarSitucao();
+    }
+
+    listarSitucao() {
+        fetch("http://localhost:5000/api/Consultas/SelectSituacao", {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + localStorage.getItem("usuarioautenticado-token-spmedgroup")
+            }
+        })
+            .then(resposta => resposta.json())
+            .then(data => this.setState({ listaSituacao: data }))
+            .catch(erro => console.log(erro))
+    }
+
     render() {
         return (
             <div>
@@ -88,7 +106,19 @@ class CadastroConsulta extends Component {
                     <input type="text" placeholder="IdMédico" className="cadastro__cadastro--input " value={this.state.idMedico} onChange={this.atualizarIdMedico} />
                     <input type="text" placeholder="Data Agendada" className="cadastro__cadastro--input" value={this.state.dataAgendada} onChange={this.atualizarDataAgendada} />
                     <input type="text" placeholder="Hora Agendada" className="cadastro__cadastro--input" value={this.state.horaAgendada} onChange={this.atualizarHoraAgendada} />
-                    <input type="text" placeholder="IdSituacao" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.idSituacao} onChange={this.atualizarIdSituacao} />
+                    {/* <input type="text" placeholder="IdSituacao" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.idSituacao} onChange={this.atualizarIdSituacao} /> */}
+
+                    <select className="cadastro__cadastro--input cadastro__cadastro--input-ultimo cadastro__cadastro--select" value={this.state.idSituacao} onChange={this.atualizarIdSituacao}>
+                        <option className="dashboard__lista--select-option">Situação</option>                        
+                        {
+                            this.state.listaSituacao.map(situacao => {
+                                return (
+                                    <option key={situacao.id} value={situacao.id} className="dashboard__lista--select-option">{situacao.nome}</option>
+                                )
+                            })
+                        }
+                    </select>
+
                     <textarea placeholder="Descrição" className="cadastro__cadastro--textarea" value={this.state.descricao} onChange={this.atualizarDescricao}></textarea>
                     <button type="submit" className="style__button--blue">Cadastrar</button>
                 </form>

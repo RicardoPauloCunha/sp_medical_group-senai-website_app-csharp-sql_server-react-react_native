@@ -31,14 +31,24 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
         {
             try
             {
-                //Lista apenas os campos Id, Email e Tipo dos Usuários
-
-                //using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
-                //{
-                //    return Ok(ctx.Usuarios.Select(x => new { x.Id, x.Email, x.IdTipoUsuario }).ToList());
-                //}
-
                 return Ok(UsuariosRepositorio.Listar());
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        // Lista todos os usuarios somente com o id e o email
+        [HttpGet("SelectUsuarios")]
+        public IActionResult GetUsuarios()
+        {
+            try
+            {
+                using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
+                {
+                    return Ok(ctx.Usuarios.Select(x => new { x.Id, x.Email }).ToList());
+                }
             }
             catch (Exception)
             {
@@ -154,6 +164,20 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
                 UsuariosRepositorio.Deletar(usuarioBuscado);
 
                 return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        //lista tipos usuários
+        [HttpGet("SelectTiposUsuarios")]
+        public IActionResult GetTiposUsuarios()
+        {
+            try
+            {
+                return Ok(UsuariosRepositorio.ListarTiposUsuarios());
             }
             catch (Exception)
             {

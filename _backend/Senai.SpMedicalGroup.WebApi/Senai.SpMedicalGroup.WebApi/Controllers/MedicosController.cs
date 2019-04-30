@@ -138,5 +138,19 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
                 return BadRequest();
             }
         }
+
+        // lista todas as especilidade de medicos
+        [HttpGet("SelectEspecialidades")]
+        public IActionResult GetEspecilidades()
+        {
+            try
+            {
+                return Ok(MedicosRepositorio.ListarEspecialidades());
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

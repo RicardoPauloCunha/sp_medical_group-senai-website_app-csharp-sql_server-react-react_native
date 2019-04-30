@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import CadastrosIf from "./componentes/cadastrosIf";
 
 import "../_assets/css/style.css";
@@ -58,6 +59,12 @@ class Cadastros extends Component {
                         </div> */}
 
                             <CadastrosIf cadastroId={this.state.selectOption} />
+
+                            <div className="cadastro__cadastro--button">
+                                <Link to="/Dashboard">
+                                    <button type="submit" className="style__button--blue">Voltar</button>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

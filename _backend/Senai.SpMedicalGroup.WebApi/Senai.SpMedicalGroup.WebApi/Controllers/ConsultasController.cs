@@ -258,5 +258,19 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
                 return BadRequest();
             }
         }
+
+        // lista todas as situações
+        [HttpGet("SelectSituacao")]
+        public IActionResult GetSituacao()
+        {
+            try
+            {
+                return Ok(ConsultasRepositorio.ListarSituacao());
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

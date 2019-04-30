@@ -119,5 +119,13 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
 
             return consultas;
         }
+
+        public List<Situacao> ListarSituacao()
+        {
+            using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
+            {
+                return (ctx.Situacao.ToList());
+            }
+        }
     }
 }

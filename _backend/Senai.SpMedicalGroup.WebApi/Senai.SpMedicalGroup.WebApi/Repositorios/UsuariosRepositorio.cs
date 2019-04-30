@@ -68,6 +68,19 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             return usuarios;
         }
 
+        // lista os tipos de usuarios
+        public List<TiposUsuarios> ListarTiposUsuarios()
+        {
+            List<TiposUsuarios> tiposUsuarios = new List<TiposUsuarios>();
+
+            using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
+            {
+                tiposUsuarios = ctx.TiposUsuarios.ToList();
+            }
+
+            return (tiposUsuarios);
+        }
+
         // Lista todos os Usuários e seus correspondentes donos(Pacientes, Medicos ou Admin)
         public List<Usuarios> ListarUserPacMedCorr()
         {
