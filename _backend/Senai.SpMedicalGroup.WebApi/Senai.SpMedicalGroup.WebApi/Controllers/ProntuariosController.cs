@@ -38,6 +38,23 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
+        // Lista todos os Prontuarios somente com id o nome
+        [HttpGet("SelectProntuarios")]
+        public IActionResult GetProntuarios()
+        {
+            try
+            {
+                using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
+                {
+                    return Ok(ctx.Prontuarios.Select(x => new { x.Id, x.Nome }).ToList());
+                }
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         // retorna a quantidade de Prontuarios cadastradas
         [HttpGet("Count")]
         public IActionResult GetCount()

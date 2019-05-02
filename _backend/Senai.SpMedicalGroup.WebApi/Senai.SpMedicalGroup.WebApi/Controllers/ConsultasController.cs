@@ -260,6 +260,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
         }
 
         // lista todas as situações
+        [Authorize(Roles = "1")]
         [HttpGet("SelectSituacao")]
         public IActionResult GetSituacao()
         {

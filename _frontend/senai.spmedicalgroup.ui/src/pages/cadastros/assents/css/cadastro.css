@@ -23,7 +23,7 @@
 .cadastro__cadastro--container {
     width: 100%;
     height: auto;
-    background: url("../img/cadastro-img-teste.jpg");
+    background: url("../img/cadastro-background.jpg");
     background-size: cover;
     padding: 2em 0;
 }
@@ -55,7 +55,7 @@
 
 .cadastro__cadastro--input {
     width: 40%;
-    height: 30px;
+    height: 37px;
     border: none;
     text-decoration: none;
     background-color: #eff7f9;
@@ -63,6 +63,7 @@
     border: solid 1px #82c1d7;
     margin: 0 10px 1em 10px;
     padding: 0.5em;
+    color: rgb(80, 80, 80);
 }
 
 .cadastro__cadastro--input-grande {
@@ -75,14 +76,13 @@
 }
 
 .cadastro__cadastro--input::placeholder {
-    text-align: center;
-    color: gray;
+    /* text-align: center; */
+    color: rgb(80, 80, 80);
 }
 
 .cadastro__cadastro--input:focus {
     outline: none;
-    outline: none;
-    background-color: #bfdfe7;
+    background-color: #c2e9f3;
     border: solid 1px #67abc4;
 }
 
@@ -97,16 +97,17 @@
     height: 8em;
     padding: 0.5em;
     resize: none;
+    color: rgb(80, 80, 80);
 }
 
 .cadastro__cadastro--textarea::placeholder {
     text-align: center;
-    color: gray;
+    color: rgb(80, 80, 80);
 }
 
 .cadastro__cadastro--textarea:focus {
     outline: none;
-    background-color: #bfdfe7;
+    background-color: #c2e9f3;
     border: solid 1px #67abc4;
 }
 

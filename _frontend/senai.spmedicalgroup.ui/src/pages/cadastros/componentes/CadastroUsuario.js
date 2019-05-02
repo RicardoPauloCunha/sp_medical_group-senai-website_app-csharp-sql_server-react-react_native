@@ -83,9 +83,9 @@ class CadastroUsuario extends Component {
                 <form className="cadastro__cadastro--form" onSubmit={this.cadastrarUsuario.bind(this)}>
                     <input type="email" placeholder="Email" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.email} onChange={this.atualizarEmail} />
                     <input type="password" placeholder="Senha" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.senha} onChange={this.atualizarSenha} />
-                    {/* <input type="text" placeholder="IdTipoUsuario" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.idTipoUsuario} onChange={this.atualizarIdTipoUsuario} /> */}
                     
-                    <select className="cadastro__cadastro--input cadastro__cadastro--input-ultimo cadastro__cadastro--select" value={this.state.idTipoUsuario} onChange={this.atualizarIdTipoUsuario}>
+                    {/* <input type="text" placeholder="IdTipoUsuario" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.idTipoUsuario} onChange={this.atualizarIdTipoUsuario} /> */}
+                    <select className="cadastro__cadastro--input cadastro__cadastro--input-ultimo cadastro__cadastro--select dashboard__select-default" value={this.state.idTipoUsuario} onChange={this.atualizarIdTipoUsuario}>
                         <option className="dashboard__lista--select-option">Tipo Usuário</option>                        
                         {
                             this.state.listaTipoUsuarios.map(tipoUsuario => {

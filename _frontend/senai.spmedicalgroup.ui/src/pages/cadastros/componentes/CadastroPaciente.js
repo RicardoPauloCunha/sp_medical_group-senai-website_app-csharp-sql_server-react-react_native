@@ -99,6 +99,8 @@ class CadastroPaciente extends Component {
             cep: this.state.cep,
         };
 
+        console.log(prontuario);
+
         cadastrarItem
             .cadastrar('Prontuarios', prontuario)
             .then(data => {
@@ -106,10 +108,13 @@ class CadastroPaciente extends Component {
                     this.setState({ mensagem: "Cadastro realizado com sucesso!" });
                 }
                 else if (data.status === 401) {
-                    this.setState({ mensagem: "Você não tem permissão para realizar essa ação" })
+                    this.setState({ mensagem: "Você não tem permissão para realizar essa ação" });
+                }
+                else if (data.status === 400){
+                    this.setState({mensagem: "erro 01/05/2019"});
                 }
                 else {
-                    this.setState({ mensagem: "Dados Inválidos" })
+                    this.setState({ mensagem: data });
                 }
             })
             .catch(erro => this.setState({ mensagem: "Ocorreu um erro durante o listagem, tente novamente" }))
@@ -141,18 +146,18 @@ class CadastroPaciente extends Component {
 
                 <form className="cadastro__cadastro--form" onSubmit={this.cadastrarPaciente.bind(this)}>
                     <input type="text" placeholder="Nome" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.nome} onChange={this.atualizarNome} />
+                    <input type="text" placeholder="RG" className="cadastro__cadastro--input" value={this.state.rg} onChange={this.atualizarRg} />                    
                     <input type="text" placeholder="CPF" className="cadastro__cadastro--input " value={this.state.cpf} onChange={this.atualizarCpf} />
-                    <input type="text" placeholder="RG" className="cadastro__cadastro--input" value={this.state.rg} onChange={this.atualizarRg} />
-                    <input type="text" placeholder="Data Nasc." className="cadastro__cadastro--input" value={this.state.dataNascimento} onChange={this.atualizarDataNascimento} />
+                    <input type="date" placeholder="Data Nasc." className="cadastro__cadastro--input" value={this.state.dataNascimento} onChange={this.atualizarDataNascimento} />
                     <input type="text" placeholder="Telefone" className="cadastro__cadastro--input" value={this.state.telefone} onChange={this.atualizarTelefone} />
                     <input type="text" placeholder="Rua" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.rua} onChange={this.atualizarRua} />
                     <input type="text" placeholder="Bairro" className="cadastro__cadastro--input" value={this.state.bairro} onChange={this.atualizarBairro} />
                     <input type="text" placeholder="Cidade" className="cadastro__cadastro--input" value={this.state.cidade} onChange={this.atualizarCidade} />
                     <input type="text" placeholder="Estado" className="cadastro__cadastro--input" value={this.state.estado} onChange={this.atualizarEstado} />
                     <input type="text" placeholder="CEP" className="cadastro__cadastro--input" value={this.state.cep} onChange={this.atualizarCep} />
+                    
                     {/* <input type="text" placeholder="IdUsuario" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.idUsuario} onChange={this.atualizarIdUsuario} /> */}
-
-                    <select className="cadastro__cadastro--input cadastro__cadastro--input-ultimo cadastro__cadastro--select" value={this.state.idUsuario} onChange={this.atualizarIdUsuario}>
+                    <select className="cadastro__cadastro--input cadastro__cadastro--input-ultimo cadastro__cadastro--select dashboard__select-default" value={this.state.idUsuario} onChange={this.atualizarIdUsuario}>
                         <option className="dashboard__lista--select-option">Usuário</option>
                         {
                             this.state.listaUsuarios.map(usuario => {

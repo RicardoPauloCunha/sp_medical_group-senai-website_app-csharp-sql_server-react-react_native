@@ -8,7 +8,9 @@ class CadastroConsulta extends Component {
         super();
 
         this.state = {
+            listaProntuarios: [],
             idProntuario: "",
+            listaMedicos: [],
             idMedico: "",
             dataAgendada: "",
             horaAgendada: "",
@@ -80,6 +82,8 @@ class CadastroConsulta extends Component {
 
     componentDidMount() {
         this.listarSitucao();
+        this.listarMedicos();
+        this.listarProntuarios();
     }
 
     listarSitucao() {
@@ -95,6 +99,32 @@ class CadastroConsulta extends Component {
             .catch(erro => console.log(erro))
     }
 
+    listarMedicos() {
+        fetch("http://localhost:5000/api/Medicos/SelectMedicos", {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + localStorage.getItem("usuarioautenticado-token-spmedgroup")
+            }
+        })
+            .then(resposta => resposta.json())
+            .then(data => this.setState({ listaMedicos: data }))
+            .catch(erro => console.log(erro))
+    }
+
+    listarProntuarios() {
+        fetch("http://localhost:5000/api/Prontuarios/SelectProntuarios", {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + localStorage.getItem("usuarioautenticado-token-spmedgroup")
+            }
+        })
+            .then(resposta => resposta.json())
+            .then(data => this.setState({ listaProntuarios: data }))
+            .catch(erro => console.log(erro))
+    }
+
     render() {
         return (
             <div>
@@ -102,13 +132,54 @@ class CadastroConsulta extends Component {
                 <div className="style__titulo--linha"></div>
 
                 <form className="cadastro__cadastro--form" onSubmit={this.cadastrarConsulta.bind(this)}>
-                    <input type="text" placeholder="IdProntuário" className="cadastro__cadastro--input" value={this.state.idProntuario} onChange={this.atualizarIdProntuario} />
-                    <input type="text" placeholder="IdMédico" className="cadastro__cadastro--input " value={this.state.idMedico} onChange={this.atualizarIdMedico} />
-                    <input type="text" placeholder="Data Agendada" className="cadastro__cadastro--input" value={this.state.dataAgendada} onChange={this.atualizarDataAgendada} />
-                    <input type="text" placeholder="Hora Agendada" className="cadastro__cadastro--input" value={this.state.horaAgendada} onChange={this.atualizarHoraAgendada} />
-                    {/* <input type="text" placeholder="IdSituacao" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.idSituacao} onChange={this.atualizarIdSituacao} /> */}
+                    {/* <input type="text" placeholder="IdProntuário" className="cadastro__cadastro--input" value={this.state.idProntuario} onChange={this.atualizarIdProntuario} /> */}
+                    <select className="cadastro__cadastro--input cadastro__cadastro--select" value={this.state.idProntuario} onChange={this.atualizarIdProntuario}>
+                        <option className="dashboard__lista--select-option">Prontuário</option>                        
+                        {
+                            this.state.listaProntuarios.map(prontuario => {
+                                return (
+                                    <option key={prontuario.id} value={prontuario.id} className="dashboard__lista--select-option">{prontuario.nome}</option>
+                                )
+                            })
+                        }
+                    </select>
 
-                    <select className="cadastro__cadastro--input cadastro__cadastro--input-ultimo cadastro__cadastro--select" value={this.state.idSituacao} onChange={this.atualizarIdSituacao}>
+                    {/* <input type="text" placeholder="IdMédico" className="cadastro__cadastro--input " value={this.state.idMedico} onChange={this.atualizarIdMedico} /> */}
+                    <select className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" value={this.state.idMedico} onChange={this.atualizarIdMedico}>
+                        <option className="dashboard__lista--select-option">Médico</option>                        
+                        {
+                            this.state.listaMedicos.map(medicos => {
+                                return (
+                                    <option key={medicos.id} value={medicos.id} className="dashboard__lista--select-option">{medicos.nome}</option>
+                                )
+                            })
+                        }
+                    </select>
+
+                    <input type="date" placeholder="Data Agendada" className="cadastro__cadastro--input" value={this.state.dataAgendada} onChange={this.atualizarDataAgendada} />
+                    
+                    {/* <input type="time" placeholder="Hora Agendada" className="cadastro__cadastro--input" value={this.state.horaAgendada} onChange={this.atualizarHoraAgendada} /> */}
+                    <select className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" value={this.state.horaAgendada} onChange={this.atualizarHoraAgendada}>
+                        <option className="dashboard__lista--select-option">Hora Agendada</option>
+                        <option className="dashboard__lista--select-option" value="07:00:00">07:00</option>
+                        <option className="dashboard__lista--select-option" value="08:00:00">08:00</option>
+                        <option className="dashboard__lista--select-option" value="09:00:00">09:00</option>
+                        <option className="dashboard__lista--select-option" value="10:00:00">10:00</option>
+                        <option className="dashboard__lista--select-option" value="11:00:00">11:00</option>
+                        <option className="dashboard__lista--select-option" value="12:00:00">12:00</option>
+                        <option className="dashboard__lista--select-option" value="13:00:00">13:00</option>
+                        <option className="dashboard__lista--select-option" value="14:00:00">14:00</option>
+                        <option className="dashboard__lista--select-option" value="15:00:00">15:00</option>
+                        <option className="dashboard__lista--select-option" value="16:00:00">16:00</option>
+                        <option className="dashboard__lista--select-option" value="17:00:00">17:00</option>
+                        <option className="dashboard__lista--select-option" value="18:00:00">18:00</option>
+                        <option className="dashboard__lista--select-option" value="19:00:00">19:00</option>
+                        <option className="dashboard__lista--select-option" value="20:00:00">20:00</option>
+                        <option className="dashboard__lista--select-option" value="22:00:00">21:00</option>                        
+                    </select>
+
+                    {/* <input type="text" placeholder="IdSituacao" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.idSituacao} onChange={this.atualizarIdSituacao} /> */}
+                    <select className="cadastro__cadastro--input cadastro__cadastro--input-ultimo cadastro__cadastro--select dashboard__select-default" value={this.state.idSituacao} onChange={this.atualizarIdSituacao}>
                         <option className="dashboard__lista--select-option">Situação</option>                        
                         {
                             this.state.listaSituacao.map(situacao => {

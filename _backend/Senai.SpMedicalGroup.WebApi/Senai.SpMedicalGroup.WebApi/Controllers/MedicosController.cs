@@ -38,6 +38,23 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
+        // Lista todos os Medicos com somente o id e o nome
+        [HttpGet("SelectMedicos")]
+        public IActionResult GetMedicos()
+        {
+            try
+            {
+                using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
+                {
+                    return Ok(ctx.Medicos.Select(x => new { x.Id, x.Nome}).ToList());
+                }
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         // retorna a quantidade de Medicos cadastradas
         [HttpGet("Count")]
         public IActionResult GetCount()

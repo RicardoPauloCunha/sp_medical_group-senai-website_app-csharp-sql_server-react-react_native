@@ -57,6 +57,12 @@ class ListarConsultas extends Component {
                                                 </tr>
                                                 <tr>
                                                     <th>Data:</th>
+                                                    {/* <td>{consulta.dataAgendada.toLocaleDateString()}</td> */}
+                                                    {/* <td>{new  Intl.DateTimeFormat('pt-GB', {
+                                                        year: 'numeric',
+                                                        month: 'long',
+                                                        day: '2-digit'
+                                                    }).format(consulta.dataAgendada)}</td> */}
                                                     <td>{consulta.dataAgendada}</td>
                                                 </tr>
                                                 <tr>

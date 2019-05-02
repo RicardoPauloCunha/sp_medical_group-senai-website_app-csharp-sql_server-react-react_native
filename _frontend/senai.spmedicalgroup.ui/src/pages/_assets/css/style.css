@@ -113,7 +113,7 @@
 }
 
 .style__menu--background {
-    background: url("../img/menu-img-min.jpg");
+    background: url("../img/menu-img-360.jpg");
     background-size: cover;
 }
 
@@ -221,6 +221,7 @@
         width: 100%;
         padding: 1em 15% 0;
     }
+
     .style__logo--circulo {
         width: 41px;
         height: 41px;
@@ -247,6 +248,11 @@
 }
 
 @media (min-width: 768px) {
+    .style__menu--background {
+        background: url("../img/menu-img-768.jpg");
+        background-size: cover;
+    }
+
     .style__menu--titulo {
         margin: 0.5em 0 0.3em 0;
     }
@@ -299,12 +305,24 @@
 }
 
 @media (min-width: 1366px) {
+    .style__menu--background {
+        background: url("../img/menu-img-1366.jpg");
+        background-size: cover;
+    }
+
     .style__menu--nav-button {
         width: 8%;
     }
 
     .style__menu--titulo {
         margin: 1em 0 0.3em 0;
+    }
+}
+
+@media (min-width: 1366px) {
+    .style__menu--background {
+        background: url("../img/menu-img-1920.jpg");
+        background-size: cover;
     }
 }
 

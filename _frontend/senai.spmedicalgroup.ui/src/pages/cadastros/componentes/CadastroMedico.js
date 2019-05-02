@@ -127,9 +127,9 @@ class CadastroMedico extends Component {
                 <form className="cadastro__cadastro--form" onSubmit={this.cadastrarMedico.bind(this)}>
                     <input type="text" placeholder="Nome" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.nome} onChange={this.atualizarNome} />
                     <input type="text" placeholder="CRM" className="cadastro__cadastro--input " value={this.state.crm} onChange={this.atualizarCrm} />
+                    
                     {/* <input type="text" placeholder="IdEspecialid." className="cadastro__cadastro--input" value={this.state.idEspecialidade} onChange={this.atualizarIdEspecialidade} /> */}
-
-                    <select className="cadastro__cadastro--input cadastro__cadastro--select" value={this.state.idEspecialidade} onChange={this.atualizarIdEspecialidade}>
+                    <select className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" value={this.state.idEspecialidade} onChange={this.atualizarIdEspecialidade}>
                         <option className="dashboard__lista--select-option">Especialidade</option>
                         {
                             this.state.listaEspecialidades.map(especialiade => {
@@ -141,8 +141,7 @@ class CadastroMedico extends Component {
                     </select>
 
                     {/* <input type="text" placeholder="IdUser" className="cadastro__cadastro--input" value={this.state.idUsuario} onChange={this.atualizarIdUsuario} /> */}
-
-                    <select className="cadastro__cadastro--input cadastro__cadastro--select" value={this.state.idUsuario} onChange={this.atualizarIdUsuario}>
+                    <select className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" value={this.state.idUsuario} onChange={this.atualizarIdUsuario}>
                         <option className="dashboard__lista--select-option">Usuário</option>
                         {
                             this.state.listaUsuarios.map(usuario => {
@@ -154,8 +153,7 @@ class CadastroMedico extends Component {
                     </select>
 
                     {/* <input type="text" placeholder="IdClinica" className="cadastro__cadastro--input" value={this.state.idClinica} onChange={this.atualizarIdClinica} /> */}
-
-                    <select className="cadastro__cadastro--input cadastro__cadastro--select" value={this.state.idClinica} onChange={this.atualizarIdClinica}>
+                    <select className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" value={this.state.idClinica} onChange={this.atualizarIdClinica}>
                         <option className="dashboard__lista--select-option">Clinica</option>
                         {
                             this.state.listaClinicas.map(clinica => {
