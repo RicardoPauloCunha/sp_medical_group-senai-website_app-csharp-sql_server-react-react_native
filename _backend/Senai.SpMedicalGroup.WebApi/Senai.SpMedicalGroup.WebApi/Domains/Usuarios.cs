@@ -24,7 +24,7 @@ namespace Senai.SpMedicalGroup.WebApi.Domains
         public string Senha { get; set; }
 
         [Required(ErrorMessage = "Campo IdTipoUsuario deve ser informado.")]
-        public int IdTipoUsuario { get; set; }
+        public int? IdTipoUsuario { get; set; }
 
         public TiposUsuarios IdTipoUsuarioNavigation { get; set; }
         public ICollection<Medicos> Medicos { get; set; }

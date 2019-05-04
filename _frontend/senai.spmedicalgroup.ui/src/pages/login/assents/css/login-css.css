@@ -108,6 +108,11 @@ h1 {
     color: gray;
 }
 
+.login__login--form-erro {
+    color: white;
+    margin: 0.5em auto;
+}
+
 @media (min-width: 420px){
     .login__login--input {
         width: 65%;

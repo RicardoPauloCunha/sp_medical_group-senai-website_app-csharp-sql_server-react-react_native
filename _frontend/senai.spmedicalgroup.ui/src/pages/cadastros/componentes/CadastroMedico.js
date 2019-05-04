@@ -16,7 +16,10 @@ class CadastroMedico extends Component {
             idUsuario: "",
             listaClinicas: [],
             idClinica: "",
-            mensagem: ""
+            mensagem: "",
+            mensagemErroEspecialidade: "",
+            mensagemErroUsuario: "",
+            mensagemErroClinica: ""
         }
 
         this.atualizarNome = this.atualizarNome.bind(this);
@@ -57,20 +60,41 @@ class CadastroMedico extends Component {
             idClinica: this.state.idClinica
         }
 
+        // valições dos valores inseridos nos inputs
+        this.setState({ mensagem: "" });
+        this.setState({ mensagemErroEspecialidade: "" });
+        this.setState({ mensagemErroUsuario: "" });
+        this.setState({ mensagemErroClinica: "" });
+
+        if (medico.idEspecialidade === "") {
+            this.setState({ mensagemErroEspecialidade: "Especialidade deve ser selecionada." });
+        };
+
+        if (medico.idUsuario === "") {
+            this.setState({ mensagemErroUsuario: "Usuário deve ser selecionado." });
+        };
+
+        if (medico.idClinica === "") {
+            this.setState({ mensagemErroClinica: "Clinica deve ser selecionada." });
+        };
+
         cadastrarItem
             .cadastrar('Medicos', medico)
             .then(data => {
                 if (data.status === 200) {
                     this.setState({ mensagem: "Cadastro realizado com sucesso!" });
-                }
-                else if (data.status === 401) {
-                    this.setState({ mensagem: "Você não tem permissão para realizar essa ação" })
+                    this.setState({ idEspecialidade: "" });
+                    this.setState({ idUsuario: "" });
+                    this.setState({ idClinica: "" });
                 }
                 else {
                     this.setState({ mensagem: "Dados Inválidos" })
                 }
             })
-            .catch(erro => this.setState({ mensagem: "Ocorreu um erro durante o listagem, tente novamente" }))
+            .catch(erro => {
+                this.setState({ mensagem: "Ocorreu um erro durante o cadastro, tente novamente" });
+                console.log(erro);
+            });
     }
 
     componentDidMount() {
@@ -125,11 +149,9 @@ class CadastroMedico extends Component {
                 <div className="style__titulo--linha"></div>
 
                 <form className="cadastro__cadastro--form" onSubmit={this.cadastrarMedico.bind(this)}>
-                    <input type="text" placeholder="Nome" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.nome} onChange={this.atualizarNome} />
-                    <input type="text" placeholder="CRM" className="cadastro__cadastro--input " value={this.state.crm} onChange={this.atualizarCrm} />
-                    
-                    {/* <input type="text" placeholder="IdEspecialid." className="cadastro__cadastro--input" value={this.state.idEspecialidade} onChange={this.atualizarIdEspecialidade} /> */}
-                    <select className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" value={this.state.idEspecialidade} onChange={this.atualizarIdEspecialidade}>
+                    <input type="text" placeholder="Nome" className="cadastro__cadastro--input cadastro__cadastro--input-grande" required value={this.state.nome} onChange={this.atualizarNome} />
+                    <input type="text" placeholder="CRM" className="cadastro__cadastro--input " required value={this.state.crm} onChange={this.atualizarCrm} />
+                    <select className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" required value={this.state.idEspecialidade} onChange={this.atualizarIdEspecialidade}>
                         <option className="dashboard__lista--select-option">Especialidade</option>
                         {
                             this.state.listaEspecialidades.map(especialiade => {
@@ -139,9 +161,7 @@ class CadastroMedico extends Component {
                             })
                         }
                     </select>
-
-                    {/* <input type="text" placeholder="IdUser" className="cadastro__cadastro--input" value={this.state.idUsuario} onChange={this.atualizarIdUsuario} /> */}
-                    <select className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" value={this.state.idUsuario} onChange={this.atualizarIdUsuario}>
+                    <select className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" required value={this.state.idUsuario} onChange={this.atualizarIdUsuario}>
                         <option className="dashboard__lista--select-option">Usuário</option>
                         {
                             this.state.listaUsuarios.map(usuario => {
@@ -151,9 +171,7 @@ class CadastroMedico extends Component {
                             })
                         }
                     </select>
-
-                    {/* <input type="text" placeholder="IdClinica" className="cadastro__cadastro--input" value={this.state.idClinica} onChange={this.atualizarIdClinica} /> */}
-                    <select className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" value={this.state.idClinica} onChange={this.atualizarIdClinica}>
+                    <select className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" required value={this.state.idClinica} onChange={this.atualizarIdClinica}>
                         <option className="dashboard__lista--select-option">Clinica</option>
                         {
                             this.state.listaClinicas.map(clinica => {
@@ -167,7 +185,10 @@ class CadastroMedico extends Component {
                     <button className="style__button--blue" type="submit">Cadastrar</button>
                 </form>
 
-                <p>{this.state.mensagem}</p>
+                <p className="cadastro__cadastro--form-erro-first">{this.state.mensagem}</p>
+                <p className="cadastro__cadastro--form-erro">{this.state.mensagemErroEspecialidade}</p>
+                <p className="cadastro__cadastro--form-erro">{this.state.mensagemErroUsuario}</p>
+                <p className="cadastro__cadastro--form-erro">{this.state.mensagemErroClinica}</p>
             </div>
         )
     }

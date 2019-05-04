@@ -122,6 +122,15 @@
     margin: auto;
 }
 
+.cadastro__cadastro--form-erro-first {
+    margin: 0.5em 0;
+}
+
+.cadastro__cadastro--form-erro {
+    color: rgb(252, 109, 109);
+    margin: 0.5em 0;
+}
+
 .cadastro__cadastro--select{
     height: auto;
     text-align: center;;

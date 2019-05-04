@@ -20,7 +20,14 @@ class CadastroPaciente extends Component {
             cidade: "",
             estado: "",
             cep: "",
-            mensagem: ""
+            mensagem: "",
+            mensagemErroRg: "",
+            mensagemErroCpf: "",
+            mensagemErroDataNasc: "",
+            mensagemErroTelefone: "",
+            mensagemErroEstado: "",
+            mensagemErroCep: "",
+            mensagemErroUsuario: ""
         }
 
         this.atualizarNome = this.atualizarNome.bind(this);
@@ -99,22 +106,48 @@ class CadastroPaciente extends Component {
             cep: this.state.cep,
         };
 
-        console.log(prontuario);
+        // valições dos valores inseridos nos inputs
+        this.setState({ mensagem: "" });
+        this.setState({ mensagemErroRg: "" });
+        this.setState({ mensagemErroCpf: "" });
+        this.setState({ mensagemErroTelefone: "" });
+        this.setState({ mensagemErroEstado: "" });
+        this.setState({ mensagemErroCep: "" });
+        this.setState({ mensagemErroUsuario: "" });
+
+        if (prontuario.rg.length <= 12 || prontuario.rg.length >= 14) {
+            this.setState({ mensagemErroRg: "RG deve possuir no máximo 14 caracteres e no minimo 12 caracteres." });
+        }
+
+        if (prontuario.cpf.length < 11 || prontuario.cpf.length > 14) {
+            this.setState({ mensagemErroCpf: "CPF deve possuir no máximo 14 caracteres e no minimo 11 caracteres." });
+        }
+
+        if (prontuario.telefone.length < 9 || prontuario.cpf.length > 20) {
+            this.setState({ mensagemErroTelefone: "Telefone deve possuir no máximo 20 caracteres e no minimo 9." });
+        }
+
+        if (prontuario.estado.length > 2) {
+            this.setState({ mensagemErroEstado: "Coloque apenas a Sigla do estado, no maximo 2 caracteres." });
+        }
+
+        if (prontuario.cep.length > 9) {
+            this.setState({ mensagemErroCep: "CEP deve possuir no máximo 9 caracteres." });
+        }
+
+        if (prontuario.idUsuario === "") {
+            this.setState({ mensagemErroUsuario: "Usuário deve ser selecionada." });
+        };
 
         cadastrarItem
             .cadastrar('Prontuarios', prontuario)
             .then(data => {
                 if (data.status === 200) {
                     this.setState({ mensagem: "Cadastro realizado com sucesso!" });
-                }
-                else if (data.status === 401) {
-                    this.setState({ mensagem: "Você não tem permissão para realizar essa ação" });
-                }
-                else if (data.status === 400){
-                    this.setState({mensagem: "erro 01/05/2019"});
+                    this.setState({ idUsuario: "" });
                 }
                 else {
-                    this.setState({ mensagem: data });
+                    this.setState({ mensagem: "Dados Inválidos" });
                 }
             })
             .catch(erro => this.setState({ mensagem: "Ocorreu um erro durante o listagem, tente novamente" }))
@@ -134,9 +167,11 @@ class CadastroPaciente extends Component {
         })
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaUsuarios: data }))
-            .catch(erro => console.log(erro))
+            .catch(erro => {
+                this.setState({ mensagem: "Ocorreu um erro durante o cadastro, tente novamente" });
+                console.log(erro);
+            });
     }
-
 
     render() {
         return (
@@ -145,19 +180,17 @@ class CadastroPaciente extends Component {
                 <div className="style__titulo--linha"></div>
 
                 <form className="cadastro__cadastro--form" onSubmit={this.cadastrarPaciente.bind(this)}>
-                    <input type="text" placeholder="Nome" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.nome} onChange={this.atualizarNome} />
-                    <input type="text" placeholder="RG" className="cadastro__cadastro--input" value={this.state.rg} onChange={this.atualizarRg} />                    
-                    <input type="text" placeholder="CPF" className="cadastro__cadastro--input " value={this.state.cpf} onChange={this.atualizarCpf} />
-                    <input type="date" placeholder="Data Nasc." className="cadastro__cadastro--input" value={this.state.dataNascimento} onChange={this.atualizarDataNascimento} />
-                    <input type="text" placeholder="Telefone" className="cadastro__cadastro--input" value={this.state.telefone} onChange={this.atualizarTelefone} />
-                    <input type="text" placeholder="Rua" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.rua} onChange={this.atualizarRua} />
-                    <input type="text" placeholder="Bairro" className="cadastro__cadastro--input" value={this.state.bairro} onChange={this.atualizarBairro} />
-                    <input type="text" placeholder="Cidade" className="cadastro__cadastro--input" value={this.state.cidade} onChange={this.atualizarCidade} />
-                    <input type="text" placeholder="Estado" className="cadastro__cadastro--input" value={this.state.estado} onChange={this.atualizarEstado} />
-                    <input type="text" placeholder="CEP" className="cadastro__cadastro--input" value={this.state.cep} onChange={this.atualizarCep} />
-                    
-                    {/* <input type="text" placeholder="IdUsuario" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.idUsuario} onChange={this.atualizarIdUsuario} /> */}
-                    <select className="cadastro__cadastro--input cadastro__cadastro--input-ultimo cadastro__cadastro--select dashboard__select-default" value={this.state.idUsuario} onChange={this.atualizarIdUsuario}>
+                    <input type="text" placeholder="Nome" className="cadastro__cadastro--input cadastro__cadastro--input-grande" required value={this.state.nome} onChange={this.atualizarNome} />
+                    <input type="text" placeholder="RG" className="cadastro__cadastro--input" required value={this.state.rg} onChange={this.atualizarRg} />
+                    <input type="text" placeholder="CPF" className="cadastro__cadastro--input " required value={this.state.cpf} onChange={this.atualizarCpf} />
+                    <input type="date" placeholder="Data Nasc." className="cadastro__cadastro--input" required value={this.state.dataNascimento} onChange={this.atualizarDataNascimento} />
+                    <input type="text" placeholder="Telefone" className="cadastro__cadastro--input" required value={this.state.telefone} onChange={this.atualizarTelefone} />
+                    <input type="text" placeholder="Rua" className="cadastro__cadastro--input cadastro__cadastro--input-grande" required value={this.state.rua} onChange={this.atualizarRua} />
+                    <input type="text" placeholder="Bairro" className="cadastro__cadastro--input" required value={this.state.bairro} onChange={this.atualizarBairro} />
+                    <input type="text" placeholder="Cidade" className="cadastro__cadastro--input" required value={this.state.cidade} onChange={this.atualizarCidade} />
+                    <input type="text" placeholder="Estado" className="cadastro__cadastro--input" required value={this.state.estado} onChange={this.atualizarEstado} />
+                    <input type="text" placeholder="CEP" className="cadastro__cadastro--input" required value={this.state.cep} onChange={this.atualizarCep} />
+                    <select className="cadastro__cadastro--input cadastro__cadastro--input-ultimo cadastro__cadastro--select dashboard__select-default" required value={this.state.idUsuario} onChange={this.atualizarIdUsuario}>
                         <option className="dashboard__lista--select-option">Usuário</option>
                         {
                             this.state.listaUsuarios.map(usuario => {
@@ -171,7 +204,14 @@ class CadastroPaciente extends Component {
                     <button className="style__button--blue" type="submit">Cadastrar</button>
                 </form>
 
-                <p>{this.state.mensagem}</p>
+                <p className="cadastro__cadastro--form-erro-first">{this.state.mensagem}</p>
+                <p className="cadastro__cadastro--form-erro">{this.state.mensagemErroRg}</p>
+                <p className="cadastro__cadastro--form-erro">{this.state.mensagemErroCpf}</p>
+                <p className="cadastro__cadastro--form-erro">{this.state.mensagemErroDataNasc}</p>
+                <p className="cadastro__cadastro--form-erro">{this.state.mensagemErroTelefone}</p>
+                <p className="cadastro__cadastro--form-erro">{this.state.mensagemErroEstado}</p>
+                <p className="cadastro__cadastro--form-erro">{this.state.mensagemErroCep}</p>
+                <p className="cadastro__cadastro--form-erro">{this.state.mensagemErroUsuario}</p>
             </div>
         )
     }

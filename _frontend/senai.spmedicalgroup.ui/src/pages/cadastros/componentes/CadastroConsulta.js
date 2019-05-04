@@ -17,7 +17,10 @@ class CadastroConsulta extends Component {
             listaSituacao: [],
             idSituacao: "",
             descricao: "",
-            mensagem: ""
+            mensagem: "",
+            mensagemErroProntuario: "",
+            mensagemErroMedico: "",
+            mensagemErroSituacao: ""
         }
 
         this.atualizarIdProntuario = this.atualizarIdProntuario.bind(this);
@@ -64,20 +67,41 @@ class CadastroConsulta extends Component {
             descricao: this.state.descricao
         }
 
+        // valições dos valores inseridos nos inputs
+        this.setState({ mensagem: "" });
+        this.setState({ mensagemErroProntuario: "" });
+        this.setState({ mensagemErroMedico: "" });
+        this.setState({ mensagemErroSituacao: "" });
+
+        if (consulta.idProntuario === "") {
+            this.setState({ mensagemErroProntuario: "Prontuário deve ser deve ser selecionado." });
+        };
+        
+        if (consulta.idMedico === "") {
+            this.setState({ mensagemErroMedico: "Médico deve ser selecionada." });
+        };
+        
+        if (consulta.idSituacao === "") {
+            this.setState({ mensagemErroSituacao: "Situação deve ser selecionada." });
+        };
+
         cadastrarItem
             .cadastrar('Consultas', consulta)
             .then(data => {
                 if (data.status === 200) {
                     this.setState({ mensagem: "Cadastro realizado com sucesso!" });
-                }
-                else if (data.status === 401) {
-                    this.setState({ mensagem: "Você não tem permissão para realizar essa ação" })
+                    this.setState({ idProntuario: ""});
+                    this.setState({ idMedico: ""});
+                    this.setState({ idSituacao: ""});
                 }
                 else {
                     this.setState({ mensagem: "Dados Inválidos" })
                 }
             })
-            .catch(erro => this.setState({ mensagem: "Ocorreu um erro durante o listagem, tente novamente" }))
+            .catch(erro => {
+                this.setState({ mensagem: "Ocorreu um erro durante o cadastro, tente novamente" });
+                console.log(erro);
+            });
     }
 
     componentDidMount() {
@@ -132,8 +156,7 @@ class CadastroConsulta extends Component {
                 <div className="style__titulo--linha"></div>
 
                 <form className="cadastro__cadastro--form" onSubmit={this.cadastrarConsulta.bind(this)}>
-                    {/* <input type="text" placeholder="IdProntuário" className="cadastro__cadastro--input" value={this.state.idProntuario} onChange={this.atualizarIdProntuario} /> */}
-                    <select className="cadastro__cadastro--input cadastro__cadastro--select" value={this.state.idProntuario} onChange={this.atualizarIdProntuario}>
+                    <select className="cadastro__cadastro--input cadastro__cadastro--select" required value={this.state.idProntuario} onChange={this.atualizarIdProntuario}>
                         <option className="dashboard__lista--select-option">Prontuário</option>                        
                         {
                             this.state.listaProntuarios.map(prontuario => {
@@ -143,9 +166,7 @@ class CadastroConsulta extends Component {
                             })
                         }
                     </select>
-
-                    {/* <input type="text" placeholder="IdMédico" className="cadastro__cadastro--input " value={this.state.idMedico} onChange={this.atualizarIdMedico} /> */}
-                    <select className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" value={this.state.idMedico} onChange={this.atualizarIdMedico}>
+                    <select className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" required value={this.state.idMedico} onChange={this.atualizarIdMedico}>
                         <option className="dashboard__lista--select-option">Médico</option>                        
                         {
                             this.state.listaMedicos.map(medicos => {
@@ -155,11 +176,8 @@ class CadastroConsulta extends Component {
                             })
                         }
                     </select>
-
-                    <input type="date" placeholder="Data Agendada" className="cadastro__cadastro--input" value={this.state.dataAgendada} onChange={this.atualizarDataAgendada} />
-                    
-                    {/* <input type="time" placeholder="Hora Agendada" className="cadastro__cadastro--input" value={this.state.horaAgendada} onChange={this.atualizarHoraAgendada} /> */}
-                    <select className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" value={this.state.horaAgendada} onChange={this.atualizarHoraAgendada}>
+                    <input type="date" placeholder="Data Agendada" className="cadastro__cadastro--input" required value={this.state.dataAgendada} onChange={this.atualizarDataAgendada} />
+                    <select className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" required value={this.state.horaAgendada} onChange={this.atualizarHoraAgendada}>
                         <option className="dashboard__lista--select-option">Hora Agendada</option>
                         <option className="dashboard__lista--select-option" value="07:00:00">07:00</option>
                         <option className="dashboard__lista--select-option" value="08:00:00">08:00</option>
@@ -177,9 +195,7 @@ class CadastroConsulta extends Component {
                         <option className="dashboard__lista--select-option" value="20:00:00">20:00</option>
                         <option className="dashboard__lista--select-option" value="22:00:00">21:00</option>                        
                     </select>
-
-                    {/* <input type="text" placeholder="IdSituacao" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.idSituacao} onChange={this.atualizarIdSituacao} /> */}
-                    <select className="cadastro__cadastro--input cadastro__cadastro--input-ultimo cadastro__cadastro--select dashboard__select-default" value={this.state.idSituacao} onChange={this.atualizarIdSituacao}>
+                    <select className="cadastro__cadastro--input cadastro__cadastro--input-ultimo cadastro__cadastro--select dashboard__select-default" required value={this.state.idSituacao} onChange={this.atualizarIdSituacao}>
                         <option className="dashboard__lista--select-option">Situação</option>                        
                         {
                             this.state.listaSituacao.map(situacao => {
@@ -189,12 +205,15 @@ class CadastroConsulta extends Component {
                             })
                         }
                     </select>
-
-                    <textarea placeholder="Descrição" className="cadastro__cadastro--textarea" value={this.state.descricao} onChange={this.atualizarDescricao}></textarea>
+                    <textarea placeholder="Descrição" className="cadastro__cadastro--textarea" required value={this.state.descricao} onChange={this.atualizarDescricao}></textarea>
+                    
                     <button type="submit" className="style__button--blue">Cadastrar</button>
                 </form>
 
-                <p>{this.state.mensagem}</p>
+                <p className="cadastro__cadastro--form-erro-first">{this.state.mensagem}</p>
+                <p className="cadastro__cadastro--form-erro">{this.state.mensagemErroProntuario}</p>
+                <p className="cadastro__cadastro--form-erro">{this.state.mensagemErroMedico}</p>
+                <p className="cadastro__cadastro--form-erro">{this.state.mensagemErroSituacao}</p>
             </div>
         )
     }

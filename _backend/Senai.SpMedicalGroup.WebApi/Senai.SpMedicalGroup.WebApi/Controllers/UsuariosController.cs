@@ -33,7 +33,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             {
                 return Ok(UsuariosRepositorio.Listar());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return BadRequest();
             }

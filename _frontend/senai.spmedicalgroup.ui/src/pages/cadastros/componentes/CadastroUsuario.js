@@ -12,7 +12,9 @@ class CadastroUsuario extends Component {
             senha: "",
             listaTipoUsuarios: [],
             idTipoUsuario: "",
-            mensagem: ""
+            mensagem: "",
+            mensagemErroSenha: "",
+            mensagemErroTipo: ""
         }
 
         this.atualizarEmail = this.atualizarEmail.bind(this);
@@ -41,20 +43,36 @@ class CadastroUsuario extends Component {
             idTipoUsuario: this.state.idTipoUsuario,
         }
 
+        // valições dos valores inseridos nos inputs
+        this.setState({ mensagem: "" })
+        this.setState({ mensagemErroTipo: "" });
+        this.setState({ mensagemErroSenha: "" });
+
+        if (usuario.senha.length < 4) {
+            this.setState({ mensagemErroSenha: "Senha deve possuir no minimo 4 caracteres." });
+        }
+        else if (usuario.senha.length > 30) {
+            this.setState({ mensagemErroSenha: "Senha deve possuir no maximo que 30 caracteres." })
+        }
+        if (usuario.idTipoUsuario === "") {
+            this.setState({ mensagemErroTipo: "Tipo usuário deve ser selecionado." });
+        }
+
         cadastrarItem
             .cadastrar('Usuarios', usuario)
             .then(data => {
                 if (data.status === 200) {
                     this.setState({ mensagem: "Cadastro realizado com sucesso!" });
-                }
-                else if (data.status === 401) {
-                    this.setState({ mensagem: "Você não tem permissão para realizar essa ação" });
+                    this.setState({ idTipoUsuario: "" });
                 }
                 else {
                     this.setState({ mensagem: "Dados Inválidos" });
                 }
             })
-            .catch(erro => this.setState({ mensagem: "Ocorreu um erro durante o listagem, tente novamente" }))
+            .catch(erro => {
+                this.setState({ mensagem: "Ocorreu um erro durante o cadastro, tente novamente" });
+                console.log(erro);
+            });
     }
 
     componentDidMount() {
@@ -81,12 +99,10 @@ class CadastroUsuario extends Component {
                 <div className="style__titulo--linha"></div>
 
                 <form className="cadastro__cadastro--form" onSubmit={this.cadastrarUsuario.bind(this)}>
-                    <input type="email" placeholder="Email" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.email} onChange={this.atualizarEmail} />
-                    <input type="password" placeholder="Senha" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.senha} onChange={this.atualizarSenha} />
-                    
-                    {/* <input type="text" placeholder="IdTipoUsuario" className="cadastro__cadastro--input cadastro__cadastro--input-ultimo" value={this.state.idTipoUsuario} onChange={this.atualizarIdTipoUsuario} /> */}
-                    <select className="cadastro__cadastro--input cadastro__cadastro--input-ultimo cadastro__cadastro--select dashboard__select-default" value={this.state.idTipoUsuario} onChange={this.atualizarIdTipoUsuario}>
-                        <option className="dashboard__lista--select-option">Tipo Usuário</option>                        
+                    <input type="email" placeholder="Email" className="cadastro__cadastro--input cadastro__cadastro--input-grande" required value={this.state.email} onChange={this.atualizarEmail} />
+                    <input type="password" placeholder="Senha" className="cadastro__cadastro--input cadastro__cadastro--input-grande" required value={this.state.senha} onChange={this.atualizarSenha} />
+                    <select className="cadastro__cadastro--input cadastro__cadastro--input-ultimo cadastro__cadastro--select dashboard__select-default" required value={this.state.idTipoUsuario} onChange={this.atualizarIdTipoUsuario}>
+                        <option className="dashboard__lista--select-option">Tipo Usuário</option>
                         {
                             this.state.listaTipoUsuarios.map(tipoUsuario => {
                                 return (
@@ -95,11 +111,13 @@ class CadastroUsuario extends Component {
                             })
                         }
                     </select>
-                    
+
                     <button type="submit" className="style__button--blue">Cadastrar</button>
                 </form>
 
-                <p>{this.state.mensagem}</p>
+                <p className="cadastro__cadastro--form-erro-first">{this.state.mensagem}</p>
+                <p className="cadastro__cadastro--form-erro">{this.state.mensagemErroSenha}</p>
+                <p className="cadastro__cadastro--form-erro">{this.state.mensagemErroTipo}</p>
             </div>
         )
     }

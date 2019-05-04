@@ -18,11 +18,11 @@ namespace Senai.SpMedicalGroup.WebApi.Domains
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "RG deve ser informado.")]
-        [StringLength(14, MinimumLength = 12, ErrorMessage = "RG deve possuir no máximo 14(com . e -) caracteres e no minimo 12(apenas numeros).")]
+        [StringLength(14, MinimumLength = 11, ErrorMessage = "RG deve possuir no máximo 14 caracteres e no minimo 11 caracteres.")]
         public string Rg { get; set; }
 
         [Required(ErrorMessage = "CPF deve ser informado.")]
-        [StringLength(10, MinimumLength = 9, ErrorMessage = "CPF deve possuir no máximo 10(com -) caracteres e no minimo 9(apenas numeros).")]
+        [StringLength(14, MinimumLength = 11, ErrorMessage = "CPF deve possuir no máximo 14 caracteres e no minimo 11 caracteres.")]
         public string Cpf { get; set; }
 
         //[DataType(DataType.Date)]

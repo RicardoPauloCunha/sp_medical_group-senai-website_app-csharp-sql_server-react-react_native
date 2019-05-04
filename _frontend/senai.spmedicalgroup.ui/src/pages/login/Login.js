@@ -16,7 +16,8 @@ class Login extends Component {
 
         this.state = {
             email: "",
-            senha: ""
+            senha: "",
+            mensagemErro: ""
         }
 
         this.atualizarEmail = this.atualizarEmail.bind(this);
@@ -50,7 +51,7 @@ class Login extends Component {
                     }
                 };
             })
-            .catch(erro => console.log(erro))
+            .catch(erro => {this.setState({mensagemErro: erro.response.data})});
     }
 
     render() {
@@ -60,26 +61,27 @@ class Login extends Component {
                     <div className="login__login-background">
                         <div className="login__login">
                             <div className="login__login--home">
-                                <img src={iconHome} alt=""/>
+                                <img src={iconHome} alt="" />
                             </div>
                             <div className="style__logo--circulo">
-                                <img src={iconLogo} alt=""/>
+                                <img src={iconLogo} alt="" />
                             </div>
 
                             <h1 className="style__menu--titulo login__login--titulo">Login</h1>
 
                             <form className="login__login--form" onSubmit={this.efetuarLogin.bind(this)}>
-                                <input type="email" placeholder="Email" className="login__login--input" value={this.state.email} onChange={this.atualizarEmail} />
-                                <input type="password" placeholder="Senha" className="login__login--input" value={this.state.senha} onChange={this.atualizarSenha} />
+                                <input type="email" placeholder="Email" className="login__login--input" required value={this.state.email} onChange={this.atualizarEmail} />
+                                <input type="password" placeholder="Senha" className="login__login--input" required value={this.state.senha} onChange={this.atualizarSenha} />
                                 <button type="submit" className="style__button--white">Entrar</button>
                             </form>
+                            <p className="login__login--form-erro">{this.state.mensagemErro.mensagem}</p>
                         </div>
                     </div>
                     <div className="login__divisoria--circulo">V</div>
                     <div className="login__outlogin">
                         <p>ou</p>
-                        <img src={iconFacebook} className="login__outlogin--our-fist" alt=""/>
-                        <img src={iconGoogle} className="login__outlogin--our" alt=""/>
+                        <img src={iconFacebook} className="login__outlogin--our-fist" alt="" />
+                        <img src={iconGoogle} className="login__outlogin--our" alt="" />
                         <p>Criar uma Conta</p>
                         <div className="login__outlogin--linha"></div>
                         <p className="login__outlogin--p-pequeno">Sobre | Contrato</p>
