@@ -123,6 +123,7 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
 
         private readonly string StringConexao = "Data source=.\\SqlExpress;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA;user id=sa; pwd=132";
 
+        // lista todas as consultas, com prontuario, medico e situacao da consulta
         public List<Consultas> ListarConsultasInclude()
         {
             List<Consultas> listaConsultas = new List<Consultas>();
@@ -174,6 +175,103 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             {
                 return (ctx.Situacao.ToList());
             }
+        }
+
+        // lista todas as consultas de um usuario logado, com prontuario, medico e situacao da consulta
+        public List<Consultas> ListarConsultasUsuarioInclude(int usuarioTipo, int usuarioLog)
+        {
+            List<Consultas> consultasUsuario = new List<Consultas>();
+
+            //lista consultas de medicos logados
+            if (usuarioTipo == 2)
+            {
+                using (SqlConnection con = new SqlConnection(StringConexao))
+                {
+                    string select = "SELECT C.ID, P.NOME AS PRONTUARIO, M.NOME AS MEDICO, C.DATA_AGENDADA, C.HORA_AGENDADA, S.NOME AS SITUACAO, C.DESCRICAO FROM CONSULTAS C JOIN PRONTUARIOS P ON C.ID_PRONTUARIO = P.ID JOIN MEDICOS M ON C.ID_MEDICO = M.ID JOIN SITUACAO S ON C.ID_SITUACAO = S.ID WHERE C.ID_MEDICO = @IDUSUARIOLOG;";
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(select, con))
+                    {
+                        cmd.Parameters.AddWithValue("IDUSUARIOLOG", usuarioLog);
+
+                        SqlDataReader sqr = cmd.ExecuteReader();
+
+                        if (sqr.HasRows)
+                        {
+                            while (sqr.Read())
+                            {
+                                Consultas consulta = new Consultas()
+                                {
+                                    Id = Convert.ToInt32(sqr["ID"]),
+                                    IdProntuarioNavigation = new Prontuarios()
+                                    {
+                                        Nome = sqr["PRONTUARIO"].ToString()
+                                    },
+                                    IdMedicoNavigation = new Medicos()
+                                    {
+                                        Nome = sqr["MEDICO"].ToString()
+                                    },
+                                    DataAgendada = Convert.ToDateTime(sqr["DATA_AGENDADA"]),
+                                    IdSituacaoNavigation = new Situacao()
+                                    {
+                                        Nome = sqr["SITUACAO"].ToString(),
+                                    },
+                                    Descricao = sqr["DESCRICAO"].ToString()
+                                };
+
+                                consultasUsuario.Add(consulta);
+                            }
+                        }
+                        return consultasUsuario;
+                    }
+                }
+            }
+            // lista consultas de pacientes logados
+            else if (usuarioTipo == 3)
+            {
+                using (SqlConnection con = new SqlConnection(StringConexao))
+                {
+                    string select = "SELECT C.ID, P.NOME AS PRONTUARIO, M.NOME AS MEDICO, C.DATA_AGENDADA, C.HORA_AGENDADA, S.NOME AS SITUACAO, C.DESCRICAO FROM CONSULTAS C JOIN PRONTUARIOS P ON C.ID_PRONTUARIO = P.ID JOIN MEDICOS M ON C.ID_MEDICO = M.ID JOIN SITUACAO S ON C.ID_SITUACAO = S.ID WHERE C.ID_PRONTUARIO = @IDUSUARIOLOG;";
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(select, con))
+                    {
+                        cmd.Parameters.AddWithValue("IDUSUARIOLOG", usuarioLog);
+
+                        SqlDataReader sqr = cmd.ExecuteReader();
+
+                        if (sqr.HasRows)
+                        {
+                            while (sqr.Read())
+                            {
+                                Consultas consulta = new Consultas()
+                                {
+                                    Id = Convert.ToInt32(sqr["ID"]),
+                                    IdProntuarioNavigation = new Prontuarios()
+                                    {
+                                        Nome = sqr["PRONTUARIO"].ToString()
+                                    },
+                                    IdMedicoNavigation = new Medicos()
+                                    {
+                                        Nome = sqr["MEDICO"].ToString()
+                                    },
+                                    DataAgendada = Convert.ToDateTime(sqr["DATA_AGENDADA"]),
+                                    IdSituacaoNavigation = new Situacao()
+                                    {
+                                        Nome = sqr["SITUACAO"].ToString(),
+                                    },
+                                    Descricao = sqr["DESCRICAO"].ToString()
+                                };
+
+                                consultasUsuario.Add(consulta);
+                            }
+                        }
+                        return consultasUsuario;
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }

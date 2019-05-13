@@ -271,6 +271,44 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
+        [HttpGet("ConsultasUsuarioInclude")]
+        public IActionResult GetConsultasUsuarioInclude()
+        {
+            try
+            {
+                MedicosRepositorio medicoRep = new MedicosRepositorio();
+                ProntuariosRepositorio prontuarioRep = new ProntuariosRepositorio();
+
+                // Pega o Usuario Logado
+                int usuarioId = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                int usuarioTipo = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == "UsuarioTipo").Value);
+
+                List<Consultas> consultasUsuarios = new List<Consultas>();
+
+                // Procura pelo usuario
+                if (usuarioTipo == 1)
+                {
+                    return NotFound(new { mensagem = "O usuriário Administrador não possui consultas agendadas" });
+                }
+                else if (usuarioTipo == 2)
+                {
+                    Medicos medicoLog = medicoRep.medicoLogado(usuarioId);
+                    return Ok(ConsultasRepositorio.BuscarConsultasDeUsuario(usuarioTipo, medicoLog.Id));
+                }
+                else if (usuarioTipo == 3)
+                {
+                    Prontuarios pacienteLog = prontuarioRep.pacienteLogado(usuarioId);
+                    return Ok(ConsultasRepositorio.BuscarConsultasDeUsuario(usuarioTipo, pacienteLog.Id));
+                }
+           
+                return NotFound(new { mensagem = "Usuario não encotrado!" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
         // lista todas as situações
         [Authorize(Roles = "1")]
         [HttpGet("SelectSituacao")]

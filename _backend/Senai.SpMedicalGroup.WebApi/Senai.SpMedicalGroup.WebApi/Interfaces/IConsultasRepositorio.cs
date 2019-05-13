@@ -65,5 +65,7 @@ namespace Senai.SpMedicalGroup.WebApi.Interfaces
         List<Situacao> ListarSituacao();
 
         List<Consultas> ListarConsultasInclude();
+
+        List<Consultas> ListarConsultasUsuarioInclude(int usuarioTipo, int usuarioLog);
     }
 }
