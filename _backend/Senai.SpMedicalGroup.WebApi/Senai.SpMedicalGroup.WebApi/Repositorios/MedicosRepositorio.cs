@@ -2,6 +2,7 @@
 using Senai.SpMedicalGroup.WebApi.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -65,6 +66,7 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             return medicos;
         }
 
+        // Lista todas as especialidades de médicos
         public List<Especialidades> ListarEspecialidades()
         {
             using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
@@ -84,6 +86,50 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             }
 
             return medicoLog;
+        }
+
+        private readonly string StringConexao = "Data source =.\\SqlExpress;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA; User id=sa;pwd=132;";
+
+        // Lista Medicos com includes feito na "mão"
+        public List<Medicos> ListarMedicosInclude()
+        {
+            List<Medicos> listaMedicos = new List<Medicos>();
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string select = "SELECT M.ID, M.NOME, M.CRM, E.NOME AS ESPECIALIDADE, U.EMAIL AS USUARIO, C.NOME_FANTASIA AS CLINICA FROM MEDICOS M JOIN ESPECIALIDADES E ON M.ID_ESPECIALIDADE = E.ID JOIN USUARIOS U ON M.ID_USUARIO = U.ID JOIN CLINICAS C ON M.ID_CLINICA = C.ID;";
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand(select, con))
+                {
+                    SqlDataReader sqr = cmd.ExecuteReader();
+                    if (sqr.HasRows)
+                    {
+                        while (sqr.Read())
+                        {
+                            Medicos medico = new Medicos()
+                            {
+                                Id = Convert.ToInt32(sqr["ID"]),
+                                Nome = sqr["NOME"].ToString(),
+                                Crm = sqr["CRM"].ToString(),
+                                IdEspecialidadeNavigation = new Especialidades()
+                                {
+                                    Nome = sqr["ESPECIALIDADE"].ToString()
+                                },
+                                IdUsuarioNavigation = new Usuarios()
+                                {
+                                    Email = sqr["USUARIO"].ToString()
+                                },
+                                IdClinicaNavigation = new Clinicas()
+                                {
+                                    NomeFantasia = sqr["CLINICA"].ToString()
+                                }
+                            };
+                            listaMedicos.Add(medico);
+                        }
+                    }
+                    return listaMedicos;
+                }
+            }
         }
     }
 }

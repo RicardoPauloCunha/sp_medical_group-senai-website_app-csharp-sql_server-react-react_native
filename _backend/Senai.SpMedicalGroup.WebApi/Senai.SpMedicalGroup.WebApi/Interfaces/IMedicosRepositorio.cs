@@ -40,5 +40,7 @@ namespace Senai.SpMedicalGroup.WebApi.Interfaces
         void Deletar(Medicos medico);
 
         List<Especialidades> ListarEspecialidades();
+
+        List<Medicos> ListarMedicosInclude();
     }
 }

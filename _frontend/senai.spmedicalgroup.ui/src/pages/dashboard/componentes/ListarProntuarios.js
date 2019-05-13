@@ -16,7 +16,7 @@ class ListarProntuarios extends Component {
 
     listarProntuarios() {
         listarItem
-            .listar("Prontuarios")
+            .listar("Prontuarios/ProntuariosInclude")
             .then(resposta => resposta.json())
             .then(data => { this.setState({ listaProntuarios: data }) })
             .catch(erro => console.log(erro))
@@ -64,7 +64,7 @@ class ListarProntuarios extends Component {
                                                 </tr>
                                                 <tr>
                                                     <th>IdUsuario:</th>
-                                                    <td>{prontuario.idUsuario}</td>
+                                                    <td>{prontuario.idUsuarioNavigation.email}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Rua:</th>
@@ -123,7 +123,7 @@ class ListarProntuarios extends Component {
                                                     <td>{prontuario.cpf}</td>
                                                     <td>{prontuario.dataNascimento}</td>
                                                     <td>{prontuario.telefone}</td>
-                                                    <td>{prontuario.idUsuario}</td>
+                                                    <td>{prontuario.idUsuarioNavigation.email}</td>
                                                     <td>{prontuario.rua}</td>
                                                     <td>{prontuario.bairro}</td>
                                                     <td>{prontuario.cidade}</td>

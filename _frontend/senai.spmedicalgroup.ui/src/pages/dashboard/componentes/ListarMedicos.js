@@ -16,7 +16,7 @@ class ListarMedicos extends Component {
 
     listarMedicos() {
         listarItem
-            .listar("Medicos")
+            .listar("Medicos/MedicosInclude")
             .then(resposta => resposta.json())
             .then(data => { this.setState({ listaMedicos: data }) })
             .catch(erro => console.log(erro))
@@ -52,15 +52,15 @@ class ListarMedicos extends Component {
                                                 </tr>
                                                 <tr>
                                                     <th>IdEspecialidade:</th>
-                                                    <td>{medico.idEspecialidade}</td>
+                                                    <td>{medico.idEspecialidadeNavigation.nome}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>IdUsuario:</th>
-                                                    <td>{medico.idUsuario}</td>
+                                                    <td>{medico.idUsuarioNavigation.email}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>IdClinica:</th>
-                                                    <td>{medico.idClinica}</td>
+                                                    <td>{medico.idClinicaNavigation.nomeFantasia}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -90,9 +90,9 @@ class ListarMedicos extends Component {
                                                     <td>{medico.id}</td>
                                                     <td>{medico.nome}</td>
                                                     <td>{medico.crm}</td>
-                                                    <td>{medico.idEspecialidade}</td>
-                                                    <td>{medico.idUsuario}</td>
-                                                    <td>{medico.idClinica}</td>
+                                                    <td>{medico.idEspecialidadeNavigation.nome}</td>
+                                                    <td>{medico.idUsuarioNavigation.email}</td>
+                                                    <td>{medico.idClinicaNavigation.nomeFantasia}</td>
                                                 </tr>
                                             );
                                         })

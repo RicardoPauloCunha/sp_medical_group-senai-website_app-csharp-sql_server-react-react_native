@@ -2,6 +2,7 @@
 using Senai.SpMedicalGroup.WebApi.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -120,7 +121,53 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             return consultas;
         }
 
-        // Lista todas as situações
+        private readonly string StringConexao = "Data source=.\\SqlExpress;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA;user id=sa; pwd=132";
+
+        public List<Consultas> ListarConsultasInclude()
+        {
+            List<Consultas> listaConsultas = new List<Consultas>();
+
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string select = "SELECT C.ID, P.NOME AS PRONTUARIO, M.NOME AS MEDICO, C.DATA_AGENDADA, C.HORA_AGENDADA, S.NOME AS SITUACAO, C.DESCRICAO FROM CONSULTAS C JOIN PRONTUARIOS P ON C.ID_PRONTUARIO = P.ID JOIN MEDICOS M ON C.ID_MEDICO = M.ID JOIN SITUACAO S ON C.ID_SITUACAO = S.ID;";
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand(select, con))
+                {
+                    SqlDataReader sqr = cmd.ExecuteReader();
+
+                    if (sqr.HasRows)
+                    {
+                        while (sqr.Read())
+                        {
+                            Consultas consulta = new Consultas()
+                            {
+                                Id = Convert.ToInt32(sqr["ID"]),
+                                IdProntuarioNavigation = new Prontuarios()
+                                {
+                                    Nome = sqr["PRONTUARIO"].ToString()
+                                },
+                                IdMedicoNavigation = new Medicos()
+                                {
+                                    Nome = sqr["MEDICO"].ToString()
+                                },
+                                DataAgendada = Convert.ToDateTime(sqr["DATA_AGENDADA"]),
+                                IdSituacaoNavigation = new Situacao()
+                                {
+                                    Nome = sqr["SITUACAO"].ToString(),
+                                },
+                                Descricao = sqr["DESCRICAO"].ToString()
+                            };
+
+                            listaConsultas.Add(consulta);
+                        }
+                    }
+                    return listaConsultas;
+                }
+            }
+        }
+
+        // Lista todas as situações de consultas
         public List<Situacao> ListarSituacao()
         {
             using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())

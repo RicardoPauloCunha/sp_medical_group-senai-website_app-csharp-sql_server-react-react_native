@@ -17,7 +17,7 @@ class ListarUsuarios extends Component {
 
     listarUsuarios() {
         listarItem
-            .listar("Usuarios")
+            .listar("Usuarios/UsuariosInclude")
             .then(resposta => resposta.json())
             .then(data => { this.setState({ listaUsuarios: data }) })
             .catch(erro => console.log(erro))
@@ -54,7 +54,7 @@ class ListarUsuarios extends Component {
                                                     </tr>
                                                     <tr>
                                                         <th>IdTipoUsuario:</th>
-                                                        <td>{usuario.idTipoUsuario}</td>
+                                                        <td>{usuario.idTipoUsuarioNavigation.nome}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -82,7 +82,7 @@ class ListarUsuarios extends Component {
                                                         <td>{usuario.id}</td>
                                                         <td>{usuario.email}</td>
                                                         <td>{usuario.senha}</td>
-                                                        <td>{usuario.idTipoUsuario}</td>
+                                                        <td>{usuario.idTipoUsuarioNavigation.nome}</td>
                                                     </tr>
                                                 )
                                             })

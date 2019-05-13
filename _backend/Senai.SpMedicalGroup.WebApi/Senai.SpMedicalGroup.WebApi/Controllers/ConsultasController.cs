@@ -41,6 +41,20 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
+        // Lista consultas com prontuario, medico e situação
+        [HttpGet("ConsultasInclude")]
+        public IActionResult GetConsultasInclude()
+        {
+            try
+            {
+                return Ok(ConsultasRepositorio.ListarConsultasInclude());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
         // retorna a quantidade de Consultas cadastradas
         [HttpGet("Count")]
         public IActionResult GetCount()
@@ -49,9 +63,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             {
                 List<Consultas> consultas = ConsultasRepositorio.Listar();
 
-                int usuariosQtd = consultas.Count();
-
-                return Ok(usuariosQtd);
+                return Ok(consultas.Count());
             }
             catch (Exception)
             {

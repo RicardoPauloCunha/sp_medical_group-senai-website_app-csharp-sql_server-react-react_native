@@ -39,6 +39,20 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
+        // Lista usuários com tipos usuarios
+        [HttpGet("UsuariosInclude")]
+        public IActionResult GetUsuariosInclude()
+        {
+            try
+            {
+                return Ok(UsuariosRepositorio.ListarUsuariosInclude());
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         // Lista todos os usuarios somente com o id e o email
         [HttpGet("SelectUsuarios")]
         public IActionResult GetUsuarios()
@@ -56,7 +70,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
-        // retorna a quantidade de Usuarios cadastradas
+        // Retorna a quantidade de Usuarios cadastradas
         [HttpGet("Count")]
         public IActionResult GetCount()
         {
@@ -64,9 +78,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             {
                 List<Usuarios> usuarios = UsuariosRepositorio.Listar();
 
-                int usuariosQtd = usuarios.Count();
-
-                return Ok(usuariosQtd);
+                return Ok(usuarios.Count());
             }
             catch (Exception)
             {
@@ -171,7 +183,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
-        //lista tipos usuários
+        // Lista tipos usuários
         [HttpGet("SelectTiposUsuarios")]
         public IActionResult GetTiposUsuarios()
         {

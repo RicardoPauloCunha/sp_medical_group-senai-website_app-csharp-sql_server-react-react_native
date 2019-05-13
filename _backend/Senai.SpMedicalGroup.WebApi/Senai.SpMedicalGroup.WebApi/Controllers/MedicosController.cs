@@ -38,6 +38,20 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
+        // Lista Medicos com Especialidade, Usuario, Clinica
+        [HttpGet("MedicosInclude")]
+        public IActionResult GetUsuariosInclude()
+        {
+            try
+            {
+                return Ok(MedicosRepositorio.ListarMedicosInclude());
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         // Lista todos os Medicos com somente o id e o nome
         [HttpGet("SelectMedicos")]
         public IActionResult GetMedicos()
@@ -63,9 +77,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             {
                 List<Medicos> medicos = MedicosRepositorio.Listar();
 
-                int usuariosQtd = medicos.Count();
-
-                return Ok(usuariosQtd);
+                return Ok(medicos.Count());
             }
             catch (Exception)
             {
@@ -156,7 +168,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
-        // lista todas as especilidade de medicos
+        // Lista todas as especilidade de medicos
         [HttpGet("SelectEspecialidades")]
         public IActionResult GetEspecilidades()
         {

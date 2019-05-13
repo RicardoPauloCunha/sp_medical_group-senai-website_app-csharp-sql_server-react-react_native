@@ -68,7 +68,7 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             return usuarios;
         }
 
-        // lista os tipos de usuarios
+        // Lista os tipos de usuarios
         public List<TiposUsuarios> ListarTiposUsuarios()
         {
             List<TiposUsuarios> tiposUsuarios = new List<TiposUsuarios>();
@@ -105,6 +105,43 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             }
 
             return usuarioLogado;
+        }
+
+        private readonly string StringConexao = "Data source =.\\SqlExpress;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA; User id=sa;pwd=132;";
+
+        // Lista usuários com includes feito na "mão"
+        public List<Usuarios> ListarUsuariosInclude()
+        {
+            List<Usuarios> listaUsuarios = new List<Usuarios>();
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string select = "SELECT U.ID, U.EMAIL, U.SENHA, T.NOME AS TIPOUSUARIO FROM USUARIOS U JOIN TIPOS_USUARIOS T ON U.ID_TIPO_USUARIO = T.ID;";
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand(select, con))
+                {
+                    SqlDataReader sqr = cmd.ExecuteReader();
+                    if(sqr.HasRows)
+                    {
+                        while (sqr.Read())
+                        {
+                            Usuarios usuario = new Usuarios()
+                            {
+                                Id = Convert.ToInt32(sqr["ID"]),
+                                Email = sqr["EMAIL"].ToString(),
+                                Senha = sqr["SENHA"].ToString(),
+                                IdTipoUsuarioNavigation = new TiposUsuarios()
+                                {
+                                    Nome = sqr["TIPOUSUARIO"].ToString()
+                                }
+
+                            };
+                            listaUsuarios.Add(usuario);
+                        }
+                    }
+                    return listaUsuarios;
+                }
+            }
         }
     }
 }

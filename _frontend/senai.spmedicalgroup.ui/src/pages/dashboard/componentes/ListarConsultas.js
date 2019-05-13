@@ -16,7 +16,7 @@ class ListarConsultas extends Component {
 
     listarConsultas() {
         listarItem
-            .listar("Consultas")
+            .listar("Consultas/ConsultasInclude")
             .then(resposta => resposta.json())
             .then(data => { this.setState({ listaConsultas: data }) })
             .catch(erro => console.log(erro))
@@ -49,11 +49,11 @@ class ListarConsultas extends Component {
                                             <tbody>
                                                 <tr>
                                                     <th>Prontuario:</th>
-                                                    <td>{consulta.idProntuario}</td>
+                                                    <td>{consulta.idProntuarioNavigation.nome}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Medico:</th>
-                                                    <td>{consulta.idMedico}</td>
+                                                    <td>{consulta.idMedicoNavigation.nome}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Data:</th>
@@ -71,7 +71,7 @@ class ListarConsultas extends Component {
                                                 </tr>
                                                 <tr>
                                                     <th>Situação:</th>
-                                                    <td>{consulta.idSituacao}</td>
+                                                    <td>{consulta.idSituacaoNavigation.nome}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Descricao:</th>
@@ -104,11 +104,11 @@ class ListarConsultas extends Component {
                                             return (
                                                 <tr key={consulta.id} className="consultas__table--info dashboard__table--info">
                                                     <td>{consulta.id}</td>
-                                                    <td>{consulta.idProntuario}</td>
-                                                    <td>{consulta.idMedico}</td>
+                                                    <td>{consulta.idProntuarioNavigation.nome}</td>
+                                                    <td>{consulta.idMedicoNavigation.nome}</td>
                                                     <td>{consulta.dataAgendada}</td>
                                                     <td>{consulta.horaAgendada}</td>
-                                                    <td>{consulta.idSituacao}</td>
+                                                    <td>{consulta.idSituacaoNavigation.nome}</td>
                                                     <td className="consultas__ldescista--desc">{consulta.descricao}</td>
                                                 </tr>
                                             );

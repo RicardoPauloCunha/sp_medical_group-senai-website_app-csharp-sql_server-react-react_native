@@ -49,5 +49,7 @@ namespace Senai.SpMedicalGroup.WebApi.Interfaces
         Usuarios Logar(LoginViewModel login);
 
         List<TiposUsuarios> ListarTiposUsuarios();
+
+        List<Usuarios> ListarUsuariosInclude();
     }
 }

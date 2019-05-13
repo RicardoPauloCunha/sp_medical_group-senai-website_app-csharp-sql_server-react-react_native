@@ -38,5 +38,7 @@ namespace Senai.SpMedicalGroup.WebApi.Interfaces
         /// </summary>
         /// <param name="prontuario">Prontuario para deletar</param>
         void Deletar(Prontuarios prontuario);
+
+        List<Prontuarios> ListarProntuariosInclude();
     }
 }

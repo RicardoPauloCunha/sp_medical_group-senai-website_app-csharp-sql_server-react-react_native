@@ -38,6 +38,20 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
+        // Listar Prontuarios com usuarios
+        [HttpGet("ProntuariosInclude")]
+        public IActionResult GetProntuariosInclude()
+        {
+            try
+            {
+                return Ok(ProntuariosRepositorio.ListarProntuariosInclude());
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         // Lista todos os Prontuarios somente com id o nome
         [HttpGet("SelectProntuarios")]
         public IActionResult GetProntuarios()
@@ -63,9 +77,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             {
                 List<Prontuarios> prontuarios = ProntuariosRepositorio.Listar();
 
-                int usuariosQtd = prontuarios.Count();
-
-                return Ok(usuariosQtd);
+                return Ok(prontuarios.Count);
             }
             catch (Exception)
             {
