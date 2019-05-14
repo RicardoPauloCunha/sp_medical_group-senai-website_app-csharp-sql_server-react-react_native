@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import listarItem from "./_listarItem";
+import Moment from "react-moment";
 
 import "../assents/css/dashboard.css";
 import "../../_assets/css/style.css";
@@ -57,13 +58,7 @@ class ListarConsultas extends Component {
                                                 </tr>
                                                 <tr>
                                                     <th>Data:</th>
-                                                    {/* <td>{consulta.dataAgendada.toLocaleDateString()}</td> */}
-                                                    {/* <td>{new  Intl.DateTimeFormat('pt-GB', {
-                                                        year: 'numeric',
-                                                        month: 'long',
-                                                        day: '2-digit'
-                                                    }).format(consulta.dataAgendada)}</td> */}
-                                                    <td>{consulta.dataAgendada}</td>
+                                                    <td><Moment format="DD/MM/YYYY">{consulta.dataAgendada}</Moment></td>
                                                 </tr>
                                                 <tr>
                                                     <th>Hora:</th>
@@ -106,7 +101,7 @@ class ListarConsultas extends Component {
                                                     <td>{consulta.id}</td>
                                                     <td>{consulta.idProntuarioNavigation.nome}</td>
                                                     <td>{consulta.idMedicoNavigation.nome}</td>
-                                                    <td>{consulta.dataAgendada}</td>
+                                                    <td><Moment format="DD/MM/YYYY">{consulta.dataAgendada}</Moment></td>
                                                     <td>{consulta.horaAgendada}</td>
                                                     <td>{consulta.idSituacaoNavigation.nome}</td>
                                                     <td className="consultas__ldescista--desc">{consulta.descricao}</td>

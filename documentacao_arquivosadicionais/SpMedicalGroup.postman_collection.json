@@ -12,7 +12,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "Listar.Get",
+					"name": "ListarConsultas.Get",
 					"request": {
 						"url": "http://localhost:5000/api/Consultas",
 						"method": "GET",
@@ -29,7 +29,41 @@
 					"response": []
 				},
 				{
-					"name": "Cadastrar.Post",
+					"name": "ListarConsultasInclude.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Consultas/ConsultasInclude",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiVXN1YXJpb1RpcG8iOiIxIiwiZXhwIjoxNTU3NzU5NDU4LCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.mksQkaI99KqXF6bJzWYMFTBsqJ1jhv-2rjkDUpHWgUk",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "QuantidadeConsultas.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Consultas/Count",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiVXN1YXJpb1RpcG8iOiIxIiwiZXhwIjoxNTU3NzUwOTYyLCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.JE_hQlegxDJQl-aObwilQrQMhvF4oM4SWCd5luSEe3o-jeKpPA",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CadastrarConsultas.Post",
 					"request": {
 						"url": "http://localhost:5000/api/Consultas",
 						"method": "POST",
@@ -54,7 +88,7 @@
 					"response": []
 				},
 				{
-					"name": "Alterar.Put",
+					"name": "AlterarConsultas.Put",
 					"request": {
 						"url": "http://localhost:5000/api/Consultas",
 						"method": "PUT",
@@ -79,7 +113,52 @@
 					"response": []
 				},
 				{
-					"name": "Deletar.Delete",
+					"name": "AlterarDescricaoConsulta.Put",
+					"request": {
+						"url": "http://localhost:5000/AlterarDescricaoConsulta",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 7,\n    \"descricao\": \"Exames de rotina completa, regular\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "AlterarSituacaoConsulta.Put",
+					"request": {
+						"url": "http://localhost:5000/AlterarSituacaoConsulta",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpY2FyZG8ubGVtb3NAc3BtZWRpY2FsZ3JvdXAuY29tLmJyIiwianRpIjoiOSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IjIiLCJleHAiOjE1NTI5OTg2NDUsImlzcyI6IlNwTWVkaWNhbEdyb3VwLldlYkFwaSIsImF1ZCI6IlNwTWVkaWNhbEdyb3VwLldlYkFwaSJ9.o6kNrtRCBphjlljsOMdaL6JxUTjjUF7uaSvbsjGPmQE",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 6,\n    \"idSituacao\": 2,\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeletarConsultas.Delete",
 					"request": {
 						"url": "http://localhost:5000/api/Consultas/8",
 						"method": "DELETE",
@@ -130,46 +209,18 @@
 					"response": []
 				},
 				{
-					"name": "AlterarDescricaoConsulta.Put",
+					"name": "ListaConsultasUsuarioInclude.Get",
 					"request": {
-						"url": "http://localhost:5000/AlterarDescricaoConsulta",
-						"method": "PUT",
+						"url": "http://localhost:5000/api/Consultas/ConsultasUsuarioInclude",
+						"method": "GET",
 						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"id\": 7,\n    \"descricao\": \"Exames de rotina completa, regular\"\n}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "AlterarSituacaoConsulta.Put",
-					"request": {
-						"url": "http://localhost:5000/AlterarSituacaoConsulta",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpY2FyZG8ubGVtb3NAc3BtZWRpY2FsZ3JvdXAuY29tLmJyIiwianRpIjoiOSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IjIiLCJleHAiOjE1NTI5OTg2NDUsImlzcyI6IlNwTWVkaWNhbEdyb3VwLldlYkFwaSIsImF1ZCI6IlNwTWVkaWNhbEdyb3VwLldlYkFwaSJ9.o6kNrtRCBphjlljsOMdaL6JxUTjjUF7uaSvbsjGPmQE",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpY2FyZG8ubGVtb3NAc3BtZWRpY2FsZ3JvdXAuY29tLmJyIiwianRpIjoiOSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IjIiLCJVc3VhcmlvVGlwbyI6IjIiLCJleHAiOjE1NTc4MzQxODYsImlzcyI6IlNwTWVkaWNhbEdyb3VwLldlYkFwaSIsImF1ZCI6IlNwTWVkaWNhbEdyb3VwLldlYkFwaSJ9.XTOKVTTQcXFYLzp_UC-GS443UG4FYJ5DAsIhlC7BvJU",
 								"description": ""
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\": 6,\n    \"idSituacao\": 2,\n}"
-						},
+						"body": {},
 						"description": ""
 					},
 					"response": []
@@ -181,14 +232,14 @@
 			"description": "",
 			"item": [
 				{
-					"name": "Listar.Get",
+					"name": "ListarMedicos.Get",
 					"request": {
 						"url": "http://localhost:5000/api/Medicos",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiVXN1YXJpb1RpcG8iOiIxIiwiZXhwIjoxNTU1NDIwNzU3LCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.fGSZA4Iqk7nXO2WxMWjGw9nbXSwKahRuwMXMOFuTiYs",
 								"description": ""
 							}
 						],
@@ -198,7 +249,58 @@
 					"response": []
 				},
 				{
-					"name": "Cadastrar.Post",
+					"name": "ListarMedicosInclude.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Medicos/MedicosInclude",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiVXN1YXJpb1RpcG8iOiIxIiwiZXhwIjoxNTU3NzU5NDU4LCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.mksQkaI99KqXF6bJzWYMFTBsqJ1jhv-2rjkDUpHWgUk",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ListarMedicosIdNome.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Medicos/SelectMedicos",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiVXN1YXJpb1RpcG8iOiIxIiwiZXhwIjoxNTU3NzUwOTYyLCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.JE_hQlegxDJQl-aObwilQrQMhvF4oM4SWCd5luSEe3o",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "QuantidadeMedicos.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Medicos/Count",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiVXN1YXJpb1RpcG8iOiIxIiwiZXhwIjoxNTU3NzUwOTYyLCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.JE_hQlegxDJQl-aObwilQrQMhvF4oM4SWCd5luSEe3o",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CadastrarMedico.Post",
 					"request": {
 						"url": "http://localhost:5000/api/Medicos",
 						"method": "POST",
@@ -240,7 +342,7 @@
 					"response": []
 				},
 				{
-					"name": "Alterar.Put",
+					"name": "AlterarMedico.Put",
 					"request": {
 						"url": "http://localhost:5000/api/Medicos",
 						"method": "PUT",
@@ -265,7 +367,7 @@
 					"response": []
 				},
 				{
-					"name": "Deletar.Delete",
+					"name": "DeletarMedico.Delete",
 					"request": {
 						"url": "http://localhost:5000/api/Medicos/4",
 						"method": "DELETE",
@@ -280,22 +382,90 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "ListarEspecialidadesMedico.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Medicos/SelectEspecialidades",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiVXN1YXJpb1RpcG8iOiIxIiwiZXhwIjoxNTU1NDIwNzU3LCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.fGSZA4Iqk7nXO2WxMWjGw9nbXSwKahRuwMXMOFuTiYs",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "Pacientes",
+			"name": "Prontuarios",
 			"description": "",
 			"item": [
 				{
-					"name": "Listar.Get",
+					"name": "ListarProntuarios.Get",
 					"request": {
 						"url": "http://localhost:5000/api/Prontuarios",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiZXhwIjoxNTUyNTcyNDgzLCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.X_Bn3H_98XAOEQofpUGSvzOBaO5CjEviDRQPqO1jnkc",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiVXN1YXJpb1RpcG8iOiIxIiwiZXhwIjoxNTU1NDIwNzU3LCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.fGSZA4Iqk7nXO2WxMWjGw9nbXSwKahRuwMXMOFuTiYs",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ListarProntuariosInclude.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Prontuarios/ProntuariosInclude",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiVXN1YXJpb1RpcG8iOiIxIiwiZXhwIjoxNTU3NzU5NDU4LCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.mksQkaI99KqXF6bJzWYMFTBsqJ1jhv-2rjkDUpHWgUk",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ListarProntuariosIdNome.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Prontuarios/SelectProntuarios",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiVXN1YXJpb1RpcG8iOiIxIiwiZXhwIjoxNTU3NzUwOTYyLCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.JE_hQlegxDJQl-aObwilQrQMhvF4oM4SWCd5luSEe3o",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "QuantidadeProntuarios.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Prontuarios/Count",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiVXN1YXJpb1RpcG8iOiIxIiwiZXhwIjoxNTU3NzUwOTYyLCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.JE_hQlegxDJQl-aObwilQrQMhvF4oM4SWCd5luSEe3o",
 								"description": ""
 							}
 						],
@@ -322,7 +492,7 @@
 					"response": []
 				},
 				{
-					"name": "Cadastrar.Post",
+					"name": "CadastrarProntuario.Post",
 					"request": {
 						"url": "http://localhost:5000/api/Prontuarios",
 						"method": "POST",
@@ -347,7 +517,7 @@
 					"response": []
 				},
 				{
-					"name": "Atualizar.Put",
+					"name": "AtualizarProntuario.Put",
 					"request": {
 						"url": "http://localhost:5000/api/Prontuarios",
 						"method": "PUT",
@@ -372,7 +542,7 @@
 					"response": []
 				},
 				{
-					"name": "Deletar.Delete",
+					"name": "DeletarProntuario.Delete",
 					"request": {
 						"url": "http://localhost:5000/api/Prontuarios/11",
 						"method": "DELETE",
@@ -395,14 +565,65 @@
 			"description": "",
 			"item": [
 				{
-					"name": "ListaUsuarios.Get",
+					"name": "ListarUsuarios.Get",
 					"request": {
-						"url": "http://localhost:5000/api/Usuarios",
+						"url": "http://localhost:5000/api/Usuarios/UsuariosInclude",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiZXhwIjoxNTUyNDc2NzYxLCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.beb5d1yGtsixjnJckhS03midXUw-pLG-Xwt7BrKeYu8",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiVXN1YXJpb1RpcG8iOiIxIiwiZXhwIjoxNTU3NzUyNTY3LCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.8DChvqbFtTSuD8fE5_9H0MCRYB5tEfyUYNrPy9jkfcc",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ListarUsuariosInclude.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Usuarios/UsuariosInclude",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiVXN1YXJpb1RpcG8iOiIxIiwiZXhwIjoxNTU3NzU5NDU4LCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.mksQkaI99KqXF6bJzWYMFTBsqJ1jhv-2rjkDUpHWgUk",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ListarUsuariosIdEmail.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Usuarios/SelectUsuarios",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiVXN1YXJpb1RpcG8iOiIxIiwiZXhwIjoxNTU3NzUwOTYyLCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.JE_hQlegxDJQl-aObwilQrQMhvF4oM4SWCd5luSEe3o",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "QuantidadeUsuarios.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Usuarios/Count",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiVXN1YXJpb1RpcG8iOiIxIiwiZXhwIjoxNTU3NzUwOTYyLCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.JE_hQlegxDJQl-aObwilQrQMhvF4oM4SWCd5luSEe3o",
 								"description": ""
 							}
 						],
@@ -429,7 +650,7 @@
 					"response": []
 				},
 				{
-					"name": "ListaUsuariosDePacientesEMedicos.Get",
+					"name": "ListarUsuariosDePacientesEMedicos.Get",
 					"request": {
 						"url": "http://localhost:5000/UsuariosPacientesMedicos",
 						"method": "GET",
@@ -446,7 +667,7 @@
 					"response": []
 				},
 				{
-					"name": "Cadastrar.Post",
+					"name": "CadastrarUsuario.Post",
 					"request": {
 						"url": "http://localhost:5000/api/Usuarios",
 						"method": "POST",
@@ -471,7 +692,7 @@
 					"response": []
 				},
 				{
-					"name": "Altera.Put",
+					"name": "AlterarUsuario.Put",
 					"request": {
 						"url": "http://localhost:5000/api/Usuarios",
 						"method": "PUT",
@@ -491,7 +712,7 @@
 					"response": []
 				},
 				{
-					"name": "Deletar.Delete",
+					"name": "DeletarUsuario.Delete",
 					"request": {
 						"url": "http://localhost:5000/api/Usuarios/15",
 						"method": "DELETE",
@@ -506,6 +727,17 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "ListarTiposUsuarios.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Usuarios/SelectTiposUsuarios",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
@@ -514,7 +746,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "Listar.Get",
+					"name": "ListarClinicas.Get",
 					"request": {
 						"url": "http://localhost:5000/api/Clinicas",
 						"method": "GET",
@@ -531,7 +763,41 @@
 					"response": []
 				},
 				{
-					"name": "Cadastrar.Post",
+					"name": "ListarClinicasIdNome.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Clinicas/SelectClinicas",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiVXN1YXJpb1RpcG8iOiIxIiwiZXhwIjoxNTU3NzUwOTYyLCJpc3MiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkiLCJhdWQiOiJTcE1lZGljYWxHcm91cC5XZWJBcGkifQ.JE_hQlegxDJQl-aObwilQrQMhvF4oM4SWCd5luSEe3o",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarUmaClinica.Get",
+					"request": {
+						"url": "http://localhost:5000/api/Clinicas/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CadastrarClinica.Post",
 					"request": {
 						"url": "http://localhost:5000/api/Clinicas",
 						"method": "POST",
@@ -556,24 +822,7 @@
 					"response": []
 				},
 				{
-					"name": "BuscarUmaClinica.Get",
-					"request": {
-						"url": "http://localhost:5000/api/Clinicas/1",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer",
-								"description": ""
-							}
-						],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Deletar.Delete",
+					"name": "DeletarClinica.Delete",
 					"request": {
 						"url": "http://localhost:5000/api/Clinicas/2",
 						"method": "DELETE",
@@ -590,7 +839,7 @@
 					"response": []
 				},
 				{
-					"name": "Alterar.Put",
+					"name": "AlterarClinica.Put",
 					"request": {
 						"url": "http://localhost:5000/api/Clinicas",
 						"method": "PUT",

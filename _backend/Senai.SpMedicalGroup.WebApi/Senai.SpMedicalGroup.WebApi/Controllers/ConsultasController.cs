@@ -271,6 +271,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
             }
         }
 
+        // lista todas as consultas de um usuario logado, com prontuario, medico e situação
         [HttpGet("ConsultasUsuarioInclude")]
         public IActionResult GetConsultasUsuarioInclude()
         {
@@ -304,21 +305,6 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
                 return NotFound(new { mensagem = "Usuario não encotrado!" });
             }
             catch (Exception ex)
-            {
-                return BadRequest();
-            }
-        }
-
-        // lista todas as situações
-        [Authorize(Roles = "1")]
-        [HttpGet("SelectSituacao")]
-        public IActionResult GetSituacao()
-        {
-            try
-            {
-                return Ok(ConsultasRepositorio.ListarSituacao());
-            }
-            catch (Exception)
             {
                 return BadRequest();
             }

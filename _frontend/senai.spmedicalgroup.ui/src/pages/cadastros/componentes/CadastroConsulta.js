@@ -14,20 +14,17 @@ class CadastroConsulta extends Component {
             idMedico: "",
             dataAgendada: "",
             horaAgendada: "",
-            listaSituacao: [],
             idSituacao: "",
             descricao: "",
             mensagem: "",
             mensagemErroProntuario: "",
             mensagemErroMedico: "",
-            mensagemErroSituacao: ""
         }
 
         this.atualizarIdProntuario = this.atualizarIdProntuario.bind(this);
         this.atualizarIdMedico = this.atualizarIdMedico.bind(this);
         this.atualizarDataAgendada = this.atualizarDataAgendada.bind(this);
         this.atualizarHoraAgendada = this.atualizarHoraAgendada.bind(this);
-        this.atualizarIdSituacao = this.atualizarIdSituacao.bind(this);
         this.atualizarDescricao = this.atualizarDescricao.bind(this);
     }
 
@@ -45,10 +42,6 @@ class CadastroConsulta extends Component {
 
     atualizarHoraAgendada(event) {
         this.setState({ horaAgendada: event.target.value });
-    }
-
-    atualizarIdSituacao(event) {
-        this.setState({ idSituacao: event.target.value });
     }
 
     atualizarDescricao(event) {
@@ -71,7 +64,6 @@ class CadastroConsulta extends Component {
         this.setState({ mensagem: "" });
         this.setState({ mensagemErroProntuario: "" });
         this.setState({ mensagemErroMedico: "" });
-        this.setState({ mensagemErroSituacao: "" });
 
         if (consulta.idProntuario === "") {
             this.setState({ mensagemErroProntuario: "Prontuário deve ser deve ser selecionado." });
@@ -79,10 +71,6 @@ class CadastroConsulta extends Component {
         
         if (consulta.idMedico === "") {
             this.setState({ mensagemErroMedico: "Médico deve ser selecionada." });
-        };
-        
-        if (consulta.idSituacao === "") {
-            this.setState({ mensagemErroSituacao: "Situação deve ser selecionada." });
         };
 
         cadastrarItem
@@ -105,22 +93,8 @@ class CadastroConsulta extends Component {
     }
 
     componentDidMount() {
-        this.listarSitucao();
         this.listarMedicos();
         this.listarProntuarios();
-    }
-
-    listarSitucao() {
-        fetch("http://localhost:5000/api/Consultas/SelectSituacao", {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + localStorage.getItem("usuarioautenticado-token-spmedgroup")
-            }
-        })
-            .then(resposta => resposta.json())
-            .then(data => this.setState({ listaSituacao: data }))
-            .catch(erro => console.log(erro))
     }
 
     listarMedicos() {
@@ -178,7 +152,7 @@ class CadastroConsulta extends Component {
                     </select>
                     <input type="date" placeholder="Data Agendada" className="cadastro__cadastro--input" required value={this.state.dataAgendada} onChange={this.atualizarDataAgendada} />
                     <select className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" required value={this.state.horaAgendada} onChange={this.atualizarHoraAgendada}>
-                        <option className="dashboard__lista--select-option">Hora Agendada</option>
+                        <option className="dashboard__lista--select-option" value="">Hora Agendada</option>
                         <option className="dashboard__lista--select-option" value="07:00:00">07:00</option>
                         <option className="dashboard__lista--select-option" value="08:00:00">08:00</option>
                         <option className="dashboard__lista--select-option" value="09:00:00">09:00</option>
@@ -194,16 +168,6 @@ class CadastroConsulta extends Component {
                         <option className="dashboard__lista--select-option" value="19:00:00">19:00</option>
                         <option className="dashboard__lista--select-option" value="20:00:00">20:00</option>
                         <option className="dashboard__lista--select-option" value="22:00:00">21:00</option>                        
-                    </select>
-                    <select className="cadastro__cadastro--input cadastro__cadastro--input-ultimo cadastro__cadastro--select dashboard__select-default" required value={this.state.idSituacao} onChange={this.atualizarIdSituacao}>
-                        <option className="dashboard__lista--select-option">Situação</option>                        
-                        {
-                            this.state.listaSituacao.map(situacao => {
-                                return (
-                                    <option key={situacao.id} value={situacao.id} className="dashboard__lista--select-option">{situacao.nome}</option>
-                                )
-                            })
-                        }
                     </select>
                     <textarea placeholder="Descrição" className="cadastro__cadastro--textarea" required value={this.state.descricao} onChange={this.atualizarDescricao}></textarea>
                     

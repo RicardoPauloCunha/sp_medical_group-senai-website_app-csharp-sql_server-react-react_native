@@ -62,8 +62,6 @@ namespace Senai.SpMedicalGroup.WebApi.Interfaces
         /// <returns>Retorna a consulta atualizada</returns>
         Consultas AlterarSituacaoPaciente(Consultas situacaoRebecida, Consultas consultaRecebida);
 
-        List<Situacao> ListarSituacao();
-
         List<Consultas> ListarConsultasInclude();
 
         List<Consultas> ListarConsultasUsuarioInclude(int usuarioTipo, int usuarioLog);

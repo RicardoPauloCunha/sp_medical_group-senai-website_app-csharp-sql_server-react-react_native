@@ -5,6 +5,12 @@
     margin: auto;
 }
 
+.dashboard__body-titulo {
+    margin-top: 0.5em;
+    color: #808080;
+    text-align: center;
+}
+
 .dashboard__estatic--item {
     width: 7em;
     height: auto;
@@ -116,6 +122,10 @@
     .consultas__consulta--item-infos {
         padding: 1em;
     }
+
+    .dashboard__body-titulo {
+        margin-top: 1em;
+    }
 }
 
 @media (min-width: 1366px) {
@@ -124,5 +134,8 @@
     }
     .dashboard__lista--table-container {
         display: block;
+    }
+    .dashboard__body-titulo {
+        margin-top: 2em;
     }
 }

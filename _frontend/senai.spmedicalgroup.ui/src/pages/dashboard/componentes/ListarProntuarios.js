@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import listarItem from "./_listarItem";
+import Moment from "react-moment";
 
 import "../assents/css/dashboard.css";
 import "../../_assets/css/style.css";
@@ -56,7 +57,7 @@ class ListarProntuarios extends Component {
                                                 </tr>
                                                 <tr>
                                                     <th>DataNascimento:</th>
-                                                    <td>{prontuario.dataNascimento}</td>
+                                                    <td><Moment format="DD/MM/YYYY">{prontuario.dataNascimento}</Moment></td>
                                                 </tr>
                                                 <tr>
                                                     <th>Telefone:</th>
@@ -121,7 +122,7 @@ class ListarProntuarios extends Component {
                                                     <td>{prontuario.nome}</td>
                                                     <td>{prontuario.rg}</td>
                                                     <td>{prontuario.cpf}</td>
-                                                    <td>{prontuario.dataNascimento}</td>
+                                                    <td><Moment format="DD/MM/YYYY">{prontuario.dataNascimento}</Moment></td>
                                                     <td>{prontuario.telefone}</td>
                                                     <td>{prontuario.idUsuarioNavigation.email}</td>
                                                     <td>{prontuario.rua}</td>

@@ -91,6 +91,7 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
         // Cadastra uma nova Consulta
         public void Cadastrar(Consultas consultaRecebida)
         {
+            consultaRecebida.IdSituacao = 1;
             using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
             {
                 ctx.Consultas.Add(consultaRecebida);
@@ -141,6 +142,9 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
                     {
                         while (sqr.Read())
                         {
+                            var hora = sqr["HORA_AGENDADA"];
+                            TimeSpan horaSpan = (TimeSpan)Convert.ChangeType(hora, typeof(TimeSpan));
+
                             Consultas consulta = new Consultas()
                             {
                                 Id = Convert.ToInt32(sqr["ID"]),
@@ -153,6 +157,7 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
                                     Nome = sqr["MEDICO"].ToString()
                                 },
                                 DataAgendada = Convert.ToDateTime(sqr["DATA_AGENDADA"]),
+                                HoraAgendada = horaSpan,
                                 IdSituacaoNavigation = new Situacao()
                                 {
                                     Nome = sqr["SITUACAO"].ToString(),
@@ -165,15 +170,6 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
                     }
                     return listaConsultas;
                 }
-            }
-        }
-
-        // Lista todas as situações de consultas
-        public List<Situacao> ListarSituacao()
-        {
-            using (SpMedicalGroupContext ctx = new SpMedicalGroupContext())
-            {
-                return (ctx.Situacao.ToList());
             }
         }
 
@@ -200,6 +196,9 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
                         {
                             while (sqr.Read())
                             {
+                                var hora = sqr["HORA_AGENDADA"];
+                                TimeSpan horaSpan = (TimeSpan)Convert.ChangeType(hora, typeof(TimeSpan));
+
                                 Consultas consulta = new Consultas()
                                 {
                                     Id = Convert.ToInt32(sqr["ID"]),
@@ -212,6 +211,7 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
                                         Nome = sqr["MEDICO"].ToString()
                                     },
                                     DataAgendada = Convert.ToDateTime(sqr["DATA_AGENDADA"]),
+                                    HoraAgendada = horaSpan,
                                     IdSituacaoNavigation = new Situacao()
                                     {
                                         Nome = sqr["SITUACAO"].ToString(),

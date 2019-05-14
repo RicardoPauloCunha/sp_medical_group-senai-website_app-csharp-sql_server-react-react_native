@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Moment from "react-moment";
 
 import "../assets/css/consultas.css";
 import "../../_assets/css/style.css";
@@ -33,7 +34,12 @@ class Consultas extends Component {
 
     render() {
         return (
-            <div className="body">
+            <div className="body-consultas">
+
+                <div className="body-consultas--titulo">
+                    <h2>Minhas Consultas</h2>
+                    <div className="style__titulo--linha"></div>
+                </div>
                 {
                     this.state.consultas.map(consulta => {
                         return (
@@ -46,11 +52,11 @@ class Consultas extends Component {
                                             <tbody>
                                                 <tr>
                                                     <th>Medico:</th>
-                                                    <td>{consulta.idMedico}</td>
+                                                    <td>{consulta.idMedicoNavigation.nome}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Data:</th>
-                                                    <td>{consulta.dataAgendada}</td>
+                                                    <td><Moment format="DD/MM/YYYY">{consulta.dataAgendada}</Moment></td>
                                                 </tr>
                                                 <tr>
                                                     <th>Hora:</th>
@@ -58,7 +64,7 @@ class Consultas extends Component {
                                                 </tr>
                                                 <tr>
                                                     <th>Situação:</th>
-                                                    <td>{consulta.idSituacao}</td>
+                                                    <td>{consulta.idSituacaoNavigation.nome}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Descricao:</th>
@@ -76,17 +82,17 @@ class Consultas extends Component {
                                                 <tbody>
                                                     <tr className="consultas__table--header">
                                                         <th>Id</th>
-                                                        <th>IdMedico</th>
+                                                        <th>Medico</th>
                                                         <th>DataAgendada</th>
                                                         <th>HoraAgendade</th>
-                                                        <th>IdSituacao</th>
+                                                        <th>Situacao</th>
                                                     </tr>
                                                     <tr className="consultas__table--info">
                                                         <td>{consulta.id}</td>
-                                                        <td>{consulta.idMedico}</td>
-                                                        <td>{consulta.dataAgendada.replace("T", " ").split(".")[0]}</td>
+                                                        <td>{consulta.idMedicoNavigation.nome}</td>
+                                                        <td><Moment format="DD/MM/YYYY">{consulta.dataAgendada}</Moment></td>
                                                         <td>{consulta.horaAgendada}</td>
-                                                        <td>{consulta.idSituacao}</td>
+                                                        <td>{consulta.idSituacaoNavigation.nome}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

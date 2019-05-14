@@ -28,8 +28,8 @@ namespace Senai.SpMedicalGroup.WebApi.Domains
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //optionsBuilder.UseSqlServer("Data source =.\\SqlExpress;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA; User id=sa;pwd=132");
-                optionsBuilder.UseSqlServer("Data source =.\\;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA; Integrated Security=True");
+                optionsBuilder.UseSqlServer("Data source =.\\SqlExpress;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA; User id=sa;pwd=132");
+                //optionsBuilder.UseSqlServer("Data source =.\\;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA; Integrated Security=True");
             }
         }
 

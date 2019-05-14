@@ -13,6 +13,7 @@ import ListaIf from "./componentes/listasIf";
 
 import "./assents/css/dashboard.css";
 import "../_assets/css/style.css";
+import "../consultas/assets/css/consultas.css";
 
 class Dashboard extends Component {
     constructor() {
@@ -38,6 +39,12 @@ class Dashboard extends Component {
                 <MenuMin />
 
                 <div className="style__main--container">
+
+                    <div className="dashboard__body-titulo">
+                        <h2>Estatísticas</h2>
+                        <div className="style__titulo--linha"></div>
+                    </div>
+
                     <QuantidadeItensLista />
 
                     <div className="dashboard__item--container dashboard__lista">
