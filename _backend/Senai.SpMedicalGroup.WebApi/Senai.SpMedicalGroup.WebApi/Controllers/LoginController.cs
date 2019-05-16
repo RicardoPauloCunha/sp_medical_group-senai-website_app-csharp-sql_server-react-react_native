@@ -35,7 +35,7 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
 
                 if (usuarioLogado == null)
                 {
-                    return NotFound(new { mensagem = "Usuario não encontrado! Email ou Senha incorretos." });
+                    return NotFound(new { mensagem = "Usuario não encontrado!! Email ou Senha incorretos." });
                 }
 
                 var claims = new[]

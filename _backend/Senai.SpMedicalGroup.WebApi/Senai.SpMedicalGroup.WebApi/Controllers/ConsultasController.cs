@@ -294,12 +294,12 @@ namespace Senai.SpMedicalGroup.WebApi.Controllers
                 else if (usuarioTipo == 2)
                 {
                     Medicos medicoLog = medicoRep.medicoLogado(usuarioId);
-                    return Ok(ConsultasRepositorio.BuscarConsultasDeUsuario(usuarioTipo, medicoLog.Id));
+                    return Ok(ConsultasRepositorio.ListarConsultasUsuarioInclude(usuarioTipo, medicoLog.Id));
                 }
                 else if (usuarioTipo == 3)
                 {
                     Prontuarios pacienteLog = prontuarioRep.pacienteLogado(usuarioId);
-                    return Ok(ConsultasRepositorio.BuscarConsultasDeUsuario(usuarioTipo, pacienteLog.Id));
+                    return Ok(ConsultasRepositorio.ListarConsultasUsuarioInclude(usuarioTipo, pacienteLog.Id));
                 }
            
                 return NotFound(new { mensagem = "Usuario não encotrado!" });
