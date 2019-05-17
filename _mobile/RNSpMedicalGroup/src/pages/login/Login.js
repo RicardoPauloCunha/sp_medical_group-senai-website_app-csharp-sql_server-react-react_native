@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, AsyncStorage, ImageBackground, Image } from 'react-native';
 import api from '../../services/api';
 import jwt from 'jwt-decode';
+import LinearGradient from 'react-native-linear-gradient';
+
+import stylesLogin from '../../assents/styles/login/styles';
 
 export default class Login extends Component {
     static navigationOptions = {
@@ -14,7 +17,8 @@ export default class Login extends Component {
         this.state = {
             email: "mariana@outlook.com",
             senha: "mariana132",
-            mensagem: ""
+            mensagem: "",
+            buttonColor: ""
         }
     }
 
@@ -39,44 +43,64 @@ export default class Login extends Component {
                 }
                 else {
                     this.setState({ mensagem: "App não da suporte para usuários Administradores!!" });
-                    console.warn(this.state.mensagem)
                 }
             };
         }
-        catch (erro) {
-            console.warn(`Ocorreu um erro: ${erro}`);
+        catch (error) {
+            console.warn(`Ocorreu um erro: ${error}`);
         }
     }
 
     render() {
         return (
-            <View style={styles.container}>
-                <TextInput
-                    placeholder="Email"
-                    onChangeText={email => this.setState({ email })}
-                />
+            <ImageBackground
+                source={require("../../assents/img/login/backgroundImg.jpg")}
+                style={StyleSheet.absoluteFillObject}
+            >
+                <View />
+                <LinearGradient
+                    start={{ x: 0, y: 1 }}
+                    end={{ x: 1, y: 0 }}
+                    colors={["rgba(0, 255, 0, 0.6)", "rgba(0, 0, 255, 0.6)"]}
+                    style={stylesLogin.overlay}
+                ></LinearGradient>
+                <View style={stylesLogin.main}>
+                    <View style={stylesLogin}>
+                        <Image
+                            source={require("../../assents/img/components/icon-logo-circulo.png")}
+                            style={stylesLogin.logo}
+                        />
+                    </View>
 
-                <TextInput
-                    placeholder="Senha"
-                    onChangeText={senha => this.setState({ senha })}
-                />
+                    <View style={stylesLogin.form}>
+                        <Text style={stylesLogin.titulo}>{"Login".toLocaleUpperCase()}</Text>
 
-                <TouchableOpacity
-                    onPress={this._efetuarLogin}
-                >
-                    <Text>Entrar</Text>
-                </TouchableOpacity>
-                <Text>{this.state.mensagem}</Text>
-            </View>
+                        <TextInput
+                            style={stylesLogin.input}
+                            placeholderTextColor="gray"
+                            placeholder="Email"
+                            onChangeText={email => this.setState({ email })}
+                        />
+
+                        <TextInput
+                            style={stylesLogin.input}
+                            placeholder="Senha"
+                            placeholderTextColor="gray"
+                            onChangeText={senha => this.setState({ senha })}
+                        />
+
+                        <TouchableOpacity
+                            style={stylesLogin.button}
+                            onPress={this._efetuarLogin}
+                        >
+                            <Text style={stylesLogin.buttonText}>Entrar</Text>
+                        </TouchableOpacity>
+
+                        <Text style={stylesLogin.mensagemErro}>{this.state.mensagem}</Text>
+                    </View>
+                </View>
+            </ImageBackground>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    }
-});

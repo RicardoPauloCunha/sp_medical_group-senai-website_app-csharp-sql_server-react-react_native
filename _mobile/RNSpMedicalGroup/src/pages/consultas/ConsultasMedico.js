@@ -1,6 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView, Text, FlatList, AsyncStorage } from 'react-native';
 import api from '../../services/api';
+
+import styles from "../../assents/styles/consultas/styles";
 
 export default class ConsultasMedico extends Component {
     static navigationOptions = {
@@ -22,7 +24,7 @@ export default class ConsultasMedico extends Component {
     carregarlistaConsultas = async () => {
         try {
             const token = await AsyncStorage.getItem("UsuarioToken");
-            
+
             const respota = await api.get("Consultas/ConsultasUsuarioInclude", {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -38,26 +40,25 @@ export default class ConsultasMedico extends Component {
 
     render() {
         return (
-            <ScrollView>
-                <View style={styles.container}>
+            <View style={styles.container}>
+                <View>
                     <Text>Consultas dos Pacientes!!</Text>
                 </View>
-                <View>
-                    <FlatList 
+                <ScrollView>
+                    <FlatList
                         data={this.state.listaConsultas}
                         keyExtractor={item => item.id}
                         renderItem={this.renderizarItems}
                     />
-                </View>
-            </ScrollView>
+                </ScrollView>
+            </View>
         )
     }
 
-    renderizarItems = ({item}) => (
+    renderizarItems = ({ item }) => (
         <View>
             <Text>{item.id}</Text>
             <Text>{item.idProntuarioNavigation.nome}</Text>
-            <Text>{item.idMedicoNavigation.nome}</Text>
             <Text>{item.dataAgendada}</Text>
             <Text>{item.horaAgendada}</Text>
             <Text>{item.idSituacaoNavigation.nome}</Text>
@@ -65,18 +66,3 @@ export default class ConsultasMedico extends Component {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#F5FCFF"
-    },
-    flat: {
-        flex: 1
-    },
-    flatItem: {
-        width: 200,
-        backgroundColor: "red"
-    }
-});

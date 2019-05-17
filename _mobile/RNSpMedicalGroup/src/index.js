@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { createAppContainer, createStackNavigator, createDrawerNavigator, createSwitchNavigator, StackNavigator, DrawerItems } from 'react-navigation';
-import { View, Button, Text, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Button, Text, StyleSheet, SafeAreaView, AsyncStorage} from 'react-native';
 
 import Login from './pages/login/Login';
 import ConsultasPaciente from './pages/consultas/ConsultasPaciente';
