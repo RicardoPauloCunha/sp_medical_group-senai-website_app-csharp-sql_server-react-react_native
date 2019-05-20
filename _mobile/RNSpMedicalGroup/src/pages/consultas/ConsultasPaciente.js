@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, Text, FlatList, AsyncStorage, Image } from 'react-native';
+import { View, Text, FlatList, AsyncStorage, Image } from 'react-native';
 import api from '../../services/api';
-import LinearGradient from 'react-native-linear-gradient';
-// import moment from 'moment';
+import moment from 'moment';
 
-import stylesConsulta from '../../assents/styles/consultas/styles';
+import stylesConsulta from '../../assents/styles/consultas/style';
+import SituacaoCase from './components/consultaSituacao';
+import Header from './components/header';
 
 export default class ConsultasPaciente extends Component {
     static navigationOptions = {
@@ -43,38 +44,42 @@ export default class ConsultasPaciente extends Component {
     render() {
         return (
             <View style={stylesConsulta.container}>
-                <LinearGradient
-                    start={{ x: 0, y: 1 }}
-                    end={{ x: 1, y: 0 }}
-                    colors={["rgba(0, 255, 0, 0.6)", "rgba(0, 0, 255, 0.6)"]}
-                    style={stylesConsulta.header}
-                >
-                    {/* <Image
-                        source={require("../../assents/img/components/icon-logo-circulo.png")}
-                        style={stylesConsulta.iconLogo}
-                    /> */}
-                    <Text style={stylesConsulta.titulo}>{"Consultas".toLocaleUpperCase()}</Text>
-                    <View style={stylesConsulta.linha}></View>
-                </LinearGradient>
-                <ScrollView>
-                    <FlatList
-                        data={this.state.listaConsultas}
-                        keyExtractor={item => item.id}
-                        renderItem={this.renderizarItems}
-                    />
-                </ScrollView>
+                <Header tituloHeader="Consultas" />
+                <FlatList
+                    style={stylesConsulta.main}
+                    data={this.state.listaConsultas}
+                    keyExtractor={item => item.id}
+                    renderItem={this.renderizarItems}
+                />
+                <View style={stylesConsulta.footer}></View>
             </View>
         )
     }
 
     renderizarItems = ({ item }) => (
-        <View>
-            <Text>{item.id}</Text>
-            <Text>{item.idMedicoNavigation.nome}</Text>
-            <Text>{item.dataAgendada}</Text>
-            <Text>{item.horaAgendada}</Text>
-            <Text>{item.idSituacaoNavigation.nome}</Text>
-            <Text>{item.descricao}</Text>
+        <View style={stylesConsulta.itemContainer}>
+            <View style={stylesConsulta.itemHeader}>
+                <Text style={stylesConsulta.itemHeaderTitulo}>Protocologo ID: {item.id}</Text>
+                <View style={stylesConsulta.itemMain}>
+                    <View style={stylesConsulta.itemTable}>
+                        <View style={stylesConsulta.itemTh}>
+                            <Text style={stylesConsulta.th}>Médico:</Text>
+                            <Text style={stylesConsulta.th}>Data:</Text>
+                            <Text style={stylesConsulta.th}>Horário:</Text>
+                            <Text style={stylesConsulta.th}>Situação:</Text>
+                            <Text style={stylesConsulta.th}>Descrição:</Text>
+                        </View>
+                        <View style={stylesConsulta.itemTd}>
+                            <Text style={stylesConsulta.td}>{item.idMedicoNavigation.nome}</Text>
+                            <Text style={stylesConsulta.td}>{moment(new Date(item.dataAgendada)).format("DD/MM/YYYY")}</Text>
+                            <Text style={stylesConsulta.td}>{item.horaAgendada}</Text>
+                            <SituacaoCase idSituacao={item.idSituacaoNavigation.nome} />
+                            <Text style={stylesConsulta.td}>{item.descricao}</Text>
+                        </View>
+                    </View>
+
+                </View>
+            </View>
         </View>
     )
 }

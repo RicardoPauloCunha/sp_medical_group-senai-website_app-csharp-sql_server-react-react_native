@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { createAppContainer, createStackNavigator, createDrawerNavigator, createSwitchNavigator, StackNavigator, DrawerItems } from 'react-navigation';
-import { View, Button, Text, StyleSheet, SafeAreaView, AsyncStorage} from 'react-native';
+import { View, Button, Text, StyleSheet, SafeAreaView, AsyncStorage } from 'react-native';
 
 import Login from './pages/login/Login';
 import ConsultasPaciente from './pages/consultas/ConsultasPaciente';
@@ -26,7 +26,11 @@ const PacienteMainDrawerNav = createAppContainer(
                         {/* Rotas do Menu */}
                         <DrawerItems {...props} />
                         {/* Butão Deslogar */}
-                        <Button title="Logout" onPress={() => props.navigation.navigate('AuthStackNav')} />
+                        <Button title="Logout" onPress={() => {
+                            AsyncStorage.removeItem("UsuarioToken");
+                            console.warn("ok");
+                            props.navigation.navigate('AuthStackNav');
+                        }} />
                     </SafeAreaView>
 
                 </View>
@@ -50,7 +54,12 @@ const MedicoMainDrawerNav = createAppContainer(
                     {/* Rotas do Menu */}
                     <DrawerItems {...props} />
                     {/* Butão Deslogar */}
-                    <Button title="Logout" onPress={() => props.navigation.navigate('AuthStackNav')} />
+                    <Button title="Logout" onPress={() => {
+                        console.warn(AsyncStorage.getItem("UsuarioToken"));
+                        AsyncStorage.removeItem("UsuarioToken");
+                        console.warn(AsyncStorage.getItem("UsuarioToken"));
+                        props.navigation.navigate('AuthStackNav');
+                    }} />
                 </View>
             ),
             drawerOpenRoute: 'DrawerOpen',
@@ -70,5 +79,4 @@ export default createAppContainer(
             initialRouteName: "AuthStackNav"
         }
     )
-);
-
+); 

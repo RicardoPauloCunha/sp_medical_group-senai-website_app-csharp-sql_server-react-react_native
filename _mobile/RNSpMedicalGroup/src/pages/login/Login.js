@@ -4,7 +4,7 @@ import api from '../../services/api';
 import jwt from 'jwt-decode';
 import LinearGradient from 'react-native-linear-gradient';
 
-import stylesLogin from '../../assents/styles/login/styles';
+import stylesLogin from '../../assents/styles/login/style';
 
 export default class Login extends Component {
     static navigationOptions = {
@@ -15,8 +15,10 @@ export default class Login extends Component {
         super(props);
 
         this.state = {
-            email: "mariana@outlook.com",
-            senha: "mariana132",
+            // email: "mariana@outlook.com",
+            // senha: "mariana132",
+            email: "ricardo.lemos@spmedicalgroup.com.br",
+            senha: "spricardo132",
             mensagem: "",
             buttonColor: ""
         }

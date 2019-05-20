@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, Text, FlatList, AsyncStorage } from 'react-native';
+import { View, Text, FlatList, AsyncStorage } from 'react-native';
 import api from '../../services/api';
+import moment from 'moment';
 
-import styles from "../../assents/styles/consultas/styles";
+import stylesConsulta from '../../assents/styles/consultas/style';
+import SituacaoCase from './components/consultaSituacao';
+import Header from './components/header';
 
 export default class ConsultasMedico extends Component {
     static navigationOptions = {
@@ -40,29 +43,43 @@ export default class ConsultasMedico extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <View>
-                    <Text>Consultas dos Pacientes!!</Text>
-                </View>
-                <ScrollView>
-                    <FlatList
-                        data={this.state.listaConsultas}
-                        keyExtractor={item => item.id}
-                        renderItem={this.renderizarItems}
-                    />
-                </ScrollView>
+            <View style={stylesConsulta.container}>
+                <Header tituloHeader="Consultas"/>
+                <FlatList
+                    style={stylesConsulta.main}
+                    data={this.state.listaConsultas}
+                    keyExtractor={item => item.id}
+                    renderItem={this.renderizarItems}
+                />
+                <View style={stylesConsulta.footer}></View>
             </View>
         )
     }
 
     renderizarItems = ({ item }) => (
-        <View>
-            <Text>{item.id}</Text>
-            <Text>{item.idProntuarioNavigation.nome}</Text>
-            <Text>{item.dataAgendada}</Text>
-            <Text>{item.horaAgendada}</Text>
-            <Text>{item.idSituacaoNavigation.nome}</Text>
-            <Text>{item.descricao}</Text>
+        <View style={stylesConsulta.itemContainer}>
+            <View style={stylesConsulta.itemHeader}>
+                <Text style={stylesConsulta.itemHeaderTitulo}>Protocologo ID: {item.id}</Text>
+                <View style={stylesConsulta.itemMain}>
+                    <View style={stylesConsulta.itemTable}>
+                        <View style={stylesConsulta.itemTh}>
+                            <Text style={stylesConsulta.th}>Paciente:</Text>
+                            <Text style={stylesConsulta.th}>Data:</Text>
+                            <Text style={stylesConsulta.th}>Horário:</Text>
+                            <Text style={stylesConsulta.th}>Situação:</Text>
+                            <Text style={stylesConsulta.th}>Descrição:</Text>
+                        </View>
+                        <View style={stylesConsulta.itemTd}>
+                            <Text style={stylesConsulta.td}>{item.idProntuarioNavigation.nome}</Text>
+                            <Text style={stylesConsulta.td}>{moment(new Date(item.dataAgendada)).format("DD/MM/YYYY")}</Text>
+                            <Text style={stylesConsulta.td}>{item.horaAgendada}</Text>
+                            <SituacaoCase idSituacao={item.idSituacaoNavigation.nome} />
+                            <Text style={stylesConsulta.td}>{item.descricao}</Text>
+                        </View>
+                    </View>
+
+                </View>
+            </View>
         </View>
     )
 }

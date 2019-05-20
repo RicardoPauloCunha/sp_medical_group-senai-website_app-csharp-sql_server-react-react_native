@@ -1,9 +1,6 @@
-import {StyleSheet} from "react-native";
+import { StyleSheet } from "react-native";
 
-const stylesConsulta = StyleSheet.create({
-    container: {
-        flex: 1
-    },
+const stylesComponent = StyleSheet.create({
     header: {
         width: "100%",
         alignItems: "center"
@@ -23,7 +20,7 @@ const stylesConsulta = StyleSheet.create({
         height: 1,
         backgroundColor: "white",
         marginBottom: 12,
-    },  
+    },
 })
 
-export default stylesConsulta;
+export default stylesComponent;
