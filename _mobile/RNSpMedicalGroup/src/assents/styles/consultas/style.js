@@ -28,7 +28,7 @@ const stylesConsulta = StyleSheet.create({
     itemHeaderTitulo: {
         marginLeft: 4,
         color: "white",
-        fontSize: 17
+        fontSize: 18
     },
     itemMain: {
         backgroundColor: "white",
@@ -43,7 +43,7 @@ const stylesConsulta = StyleSheet.create({
         width: "30%",
     },
     th: {
-        fontSize: 16,
+        fontSize: 17,
         color: "gray"
     },
     itemTd: {
@@ -51,16 +51,17 @@ const stylesConsulta = StyleSheet.create({
 
     },
     td: {
-        fontSize: 16,
+        fontSize: 17,
         color: "#5f5f5f"
     },
     footer: {
         height: 20,
+        backgroundColor: "rgb(245, 245, 245)"
     },
 
     // component
     tdSituacao: {
-        fontSize: 16,
+        fontSize: 17,
         color: "#5f5f5f",
         borderBottomWidth: 2,
         alignSelf: 'flex-start',

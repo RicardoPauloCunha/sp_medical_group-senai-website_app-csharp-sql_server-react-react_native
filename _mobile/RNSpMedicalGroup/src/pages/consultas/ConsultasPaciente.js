@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, AsyncStorage, Image } from 'react-native';
+import { View, Text, FlatList, Image } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import api from '../../services/api';
 import moment from 'moment';
 
@@ -19,7 +20,7 @@ export default class ConsultasPaciente extends Component {
             listaConsultas: []
         }
     }
-
+    
     componentDidMount() {
         this.carregarlistaConsultas();
     }
@@ -48,7 +49,7 @@ export default class ConsultasPaciente extends Component {
                 <FlatList
                     style={stylesConsulta.main}
                     data={this.state.listaConsultas}
-                    keyExtractor={item => item.id}
+                    keyExtractor={item => item.id.toString()}
                     renderItem={this.renderizarItems}
                 />
                 <View style={stylesConsulta.footer}></View>

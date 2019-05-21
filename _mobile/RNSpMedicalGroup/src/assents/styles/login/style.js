@@ -28,11 +28,11 @@ const stylesLogin = StyleSheet.create({
     input: {
         width: "100%",
         height: 40,
-        backgroundColor: "rgba(255, 255, 255, 0.9)",
+        backgroundColor: "rgba(255, 255, 255, 0.7)",
         borderRadius: 10,
         color: "gray",
         marginBottom: 15,
-        fontSize: 16,
+        fontSize: 17,
         paddingLeft: 10,
     },
     button: {

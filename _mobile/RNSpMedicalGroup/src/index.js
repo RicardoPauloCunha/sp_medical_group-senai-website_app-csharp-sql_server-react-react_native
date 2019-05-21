@@ -1,46 +1,72 @@
 import React, { Component } from 'react';
 import { createAppContainer, createStackNavigator, createDrawerNavigator, createSwitchNavigator, StackNavigator, DrawerItems } from 'react-navigation';
-import { View, Button, Text, StyleSheet, SafeAreaView, AsyncStorage } from 'react-native';
+import { View, TouchableOpacity, Text, SafeAreaView, Image } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+import jwt from 'jwt-decode';
 
 import Login from './pages/login/Login';
 import ConsultasPaciente from './pages/consultas/ConsultasPaciente';
 import ConsultasMedico from './pages/consultas/ConsultasMedico';
+import UsuarioLogado from './services/getUserLog';
+import stylesComponent from './assents/styles/components/style';
 
+// Rota de Login
 const AuthStackNav = createStackNavigator(
     {
         Login
     }
 );
 
+// Rota de Usuário logado como paciente
 const PacienteMainDrawerNav = createAppContainer(
     createDrawerNavigator(
         {
-            mainPage: { screen: ConsultasPaciente }
+            mainPage: { screen: ConsultasPaciente },
         },
         {
             // Conteudo do drawer
             contentComponent: (props) => (
-                <View style={{ flex: 1 }}>
+                <View style={stylesComponent.drawer}>
                     <SafeAreaView>
-                        <Text style={{ margin: 20, textAlign: "center" }}>Paciente Logado</Text>
-                        {/* Rotas do Menu */}
-                        <DrawerItems {...props} />
-                        {/* Butão Deslogar */}
-                        <Button title="Logout" onPress={() => {
-                            AsyncStorage.removeItem("UsuarioToken");
-                            console.warn("ok");
-                            props.navigation.navigate('AuthStackNav');
-                        }} />
-                    </SafeAreaView>
+                        <View style={stylesComponent.drawerHeader}>
+                            <Image
+                                source={require("./assents/img/components/icon-logo-circulo.png")}
+                                style={stylesComponent.drawerLogo}
+                            />
+                            <Text style={stylesComponent.drawerTitulo}>Sp Medical Group</Text>
+                        </View>
 
+                        <DrawerItems {...props} />
+
+                        <View style={{justifyContent: "center", alignItems: "center"}}>
+                            <View style={stylesComponent.drawerLinha}></View>
+                        </View>
+
+                        <TouchableOpacity
+                            title="Logout"
+                            onPress={async () => {
+                                await AsyncStorage.removeItem("UsuarioToken");
+                                props.navigation.navigate("AuthStackNav")
+                            }}
+                            style={stylesComponent.buttonDrawer}
+                        >
+                            <Text style={stylesComponent.buttonDrawerText}>Sair</Text>
+                        </TouchableOpacity>
+                    </SafeAreaView>
                 </View>
             ),
+            contentOptions: {
+                activeBackgroundColor: "#82c1d7",
+                activeTintColor: "white",
+            },
+            drawerWidth: 250,
             drawerOpenRoute: 'DrawerOpen',
             drawerCloseRoute: 'DrawerClose',
             drawerToggleRoute: 'DrawerToggle'
         })
 );
 
+//Rota de paciente logado como Médico
 const MedicoMainDrawerNav = createAppContainer(
     createDrawerNavigator(
         {
@@ -49,25 +75,47 @@ const MedicoMainDrawerNav = createAppContainer(
         {
             // Conteudo do drawer
             contentComponent: (props) => (
-                <View style={{ flex: 1 }}>
-                    <Text style={{ margin: 20, textAlign: "center" }}>Médico Logado</Text>
-                    {/* Rotas do Menu */}
-                    <DrawerItems {...props} />
-                    {/* Butão Deslogar */}
-                    <Button title="Logout" onPress={() => {
-                        console.warn(AsyncStorage.getItem("UsuarioToken"));
-                        AsyncStorage.removeItem("UsuarioToken");
-                        console.warn(AsyncStorage.getItem("UsuarioToken"));
-                        props.navigation.navigate('AuthStackNav');
-                    }} />
+                <View style={stylesComponent.drawer}>
+                    <SafeAreaView>
+                        <View style={stylesComponent.drawerHeader}>
+                            <Image
+                                source={require("./assents/img/components/icon-logo-circulo.png")}
+                                style={stylesComponent.drawerLogo}
+                            />
+                            <Text style={stylesComponent.drawerTitulo}>Sp Medical Group</Text>
+                        </View>
+
+                        <DrawerItems {...props} />
+
+                        <View style={{justifyContent: "center", alignItems: "center"}}>
+                            <View style={stylesComponent.drawerLinha}></View>
+                        </View>
+
+                        <TouchableOpacity
+                            title="Logout"
+                            onPress={async () => {
+                                await AsyncStorage.removeItem("UsuarioToken");
+                                props.navigation.navigate("AuthStackNav")
+                            }}
+                            style={stylesComponent.buttonDrawer}
+                        >
+                            <Text style={stylesComponent.buttonDrawerText}>Sair</Text>
+                        </TouchableOpacity>
+                    </SafeAreaView>
                 </View>
             ),
+            contentOptions: {
+                activeBackgroundColor: "#82c1d7",
+                activeTintColor: "white",
+            },
+            drawerWidth: 250,
             drawerOpenRoute: 'DrawerOpen',
             drawerCloseRoute: 'DrawerClose',
             drawerToggleRoute: 'DrawerToggle'
         })
 );
 
+//Switch Rotes
 export default createAppContainer(
     createSwitchNavigator(
         {

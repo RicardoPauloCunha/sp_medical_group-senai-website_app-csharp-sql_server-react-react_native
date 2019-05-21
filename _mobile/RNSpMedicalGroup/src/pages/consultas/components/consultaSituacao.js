@@ -7,7 +7,7 @@ export default class SituacaoCase extends Component {
         switch (this.props.idSituacao) {
             case "Agendada": {
                 return (
-                    <Text style={[stylesConsulta.tdSituacao, { borderColor: "#F0E68C"}]}>Agendada</Text>
+                    <Text style={[stylesConsulta.tdSituacao, { borderColor: "#FFFF00"}]}>Agendada</Text>
                 );
             }
             case "Realizada": {

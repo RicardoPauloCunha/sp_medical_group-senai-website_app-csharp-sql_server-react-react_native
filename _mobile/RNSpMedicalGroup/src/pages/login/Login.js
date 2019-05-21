@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, AsyncStorage, ImageBackground, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, ImageBackground, Image } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import api from '../../services/api';
 import jwt from 'jwt-decode';
 import LinearGradient from 'react-native-linear-gradient';
@@ -15,10 +16,10 @@ export default class Login extends Component {
         super(props);
 
         this.state = {
-            // email: "mariana@outlook.com",
-            // senha: "mariana132",
-            email: "ricardo.lemos@spmedicalgroup.com.br",
-            senha: "spricardo132",
+            email: "mariana@outlook.com",
+            senha: "mariana132",
+            // email: "ricardo.lemos@spmedicalgroup.com.br",
+            // senha: "spricardo132",
             mensagem: "",
             buttonColor: ""
         }
