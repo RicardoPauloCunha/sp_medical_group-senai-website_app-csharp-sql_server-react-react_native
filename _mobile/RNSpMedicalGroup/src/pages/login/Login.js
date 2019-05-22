@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, ImageBackground, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, ImageBackground, Image, TouchableHighlight, StatusBar } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '../../services/api';
 import jwt from 'jwt-decode';
@@ -16,21 +16,25 @@ export default class Login extends Component {
         super(props);
 
         this.state = {
-            email: "mariana@outlook.com",
-            senha: "mariana132",
-            // email: "ricardo.lemos@spmedicalgroup.com.br",
-            // senha: "spricardo132",
+            // email: "mariana@outlook.com",
+            // senha: "mariana132",
+            email: "ricardo.lemos@spmedicalgroup.com.br",
+            senha: "spricardo132",
             mensagem: "",
-            buttonColor: ""
+            btnpressStatus: false,
+            iptPressStatus1: false,
+            iptPressStatus2: false,
         }
     }
-
     _efetuarLogin = async () => {
+        this.setState({ mensagem: "" });
+        this.setState({ btnpressStatus: true })
+
         try {
             const resposta = await api.post("/Login", {
                 email: this.state.email,
                 senha: this.state.senha
-            });
+            })
 
             if (resposta.status === 200) {
                 const token = resposta.data.token;
@@ -47,11 +51,29 @@ export default class Login extends Component {
                 else {
                     this.setState({ mensagem: "App não da suporte para usuários Administradores!!" });
                 }
-            };
+            }
         }
         catch (error) {
-            console.warn(`Ocorreu um erro: ${error}`);
+            this.setState({ mensagem: "Email ou Senha Inválidos!!" })
+            this.setState({ btnpressStatus: false })
         }
+    }
+
+    // efeitos 
+    // focus input
+    _onIptFocus() {
+        this.setState({ iptPressStatus1: true });
+    }
+    _onIptFocus2() {
+        this.setState({ iptPressStatus2: true });
+    }
+
+    // focus lost input
+    _onIptBlur() {
+        this.setState({ iptPressStatus1: false });
+    }
+    _onIptBlur2() {
+        this.setState({ iptPressStatus2: false });
     }
 
     render() {
@@ -60,6 +82,7 @@ export default class Login extends Component {
                 source={require("../../assents/img/login/backgroundImg.jpg")}
                 style={StyleSheet.absoluteFillObject}
             >
+                <StatusBar hidden={true}></StatusBar>
                 <View />
                 <LinearGradient
                     start={{ x: 0, y: 1 }}
@@ -79,24 +102,31 @@ export default class Login extends Component {
                         <Text style={stylesLogin.titulo}>{"Login".toLocaleUpperCase()}</Text>
 
                         <TextInput
-                            style={stylesLogin.input}
+                            style={this.state.iptPressStatus1 ? stylesLogin.inputPress : stylesLogin.input}
                             placeholderTextColor="gray"
                             placeholder="Email"
                             onChangeText={email => this.setState({ email })}
+                            onFocus={this._onIptFocus.bind(this)}
+                            onBlur={this._onIptBlur.bind(this)}
                         />
 
                         <TextInput
-                            style={stylesLogin.input}
+                            style={this.state.iptPressStatus2 ? stylesLogin.inputPress : stylesLogin.input}
                             placeholder="Senha"
                             placeholderTextColor="gray"
+                            secureTextEntry={true}
                             onChangeText={senha => this.setState({ senha })}
+                            onFocus={this._onIptFocus2.bind(this)}
+                            onBlur={this._onIptBlur2.bind(this)}
                         />
 
                         <TouchableOpacity
-                            style={stylesLogin.button}
+                            activeOpacity={0.7}
+                            delayLongPress={1}
+                            style={this.state.btnpressStatus ? stylesLogin.buttonPress : stylesLogin.button}
                             onPress={this._efetuarLogin}
                         >
-                            <Text style={stylesLogin.buttonText}>Entrar</Text>
+                            <Text style={this.state.btnpressStatus ? stylesLogin.buttonTextPress : stylesLogin.buttonText}>Entrar</Text>
                         </TouchableOpacity>
 
                         <Text style={stylesLogin.mensagemErro}>{this.state.mensagem}</Text>

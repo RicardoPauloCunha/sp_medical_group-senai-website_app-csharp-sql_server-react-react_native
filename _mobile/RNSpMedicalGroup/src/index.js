@@ -44,6 +44,7 @@ const PacienteMainDrawerNav = createAppContainer(
 
                         <TouchableOpacity
                             title="Logout"
+                            activeOpacity={0.4}
                             onPress={async () => {
                                 await AsyncStorage.removeItem("UsuarioToken");
                                 props.navigation.navigate("AuthStackNav")

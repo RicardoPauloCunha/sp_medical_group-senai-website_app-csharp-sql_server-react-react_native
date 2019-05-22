@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, Image } from 'react-native';
+import { View, Text, FlatList, Image, StatusBar} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '../../services/api';
 import moment from 'moment';
@@ -7,6 +7,7 @@ import moment from 'moment';
 import stylesConsulta from '../../assents/styles/consultas/style';
 import SituacaoCase from './components/consultaSituacao';
 import Header from './components/header';
+import stylesComponent from '../../assents/styles/components/style';
 
 export default class ConsultasPaciente extends Component {
     static navigationOptions = {
@@ -17,10 +18,11 @@ export default class ConsultasPaciente extends Component {
         super(props);
 
         this.state = {
-            listaConsultas: []
+            listaConsultas: [],
+            mensagem: ""
         }
     }
-    
+
     componentDidMount() {
         this.carregarlistaConsultas();
     }
@@ -38,13 +40,15 @@ export default class ConsultasPaciente extends Component {
             this.setState({ listaConsultas: respota.data })
         }
         catch (erro) {
-            console.warn(`Ocorreu um erro: ${erro}`);
+            this.setState({ mensagem: `Ocorreu um erro durante a requisição: ${erro}` });
         }
     }
 
     render() {
         return (
             <View style={stylesConsulta.container}>
+                <StatusBar hidden={true}></StatusBar>
+
                 <Header tituloHeader="Consultas" />
                 <FlatList
                     style={stylesConsulta.main}

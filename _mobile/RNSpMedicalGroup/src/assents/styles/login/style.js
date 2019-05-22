@@ -51,6 +51,35 @@ const stylesLogin = StyleSheet.create({
         fontSize: 18,
     },
 
+    // Press
+    buttonTextPress: {
+        margin: 7,
+        marginLeft: 20,
+        marginRight: 20,
+        color: "#82c1d7",
+        fontSize: 18,
+    },
+    buttonPress: {
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 20,
+        borderColor: "white",
+        backgroundColor: "white",
+        borderWidth: 1,
+        marginTop: 15,
+    },
+    inputPress: {
+        width: "100%",
+        height: 40,
+        backgroundColor: "rgba(255, 255, 255, 0.9)",
+        borderRadius: 10,
+        color: "gray",
+        marginBottom: 15,
+        fontSize: 17,
+        paddingLeft: 10,
+    },
+
+    // Erro mensagem
     mensagemErro: {
         color: "white",
         margin: 20,

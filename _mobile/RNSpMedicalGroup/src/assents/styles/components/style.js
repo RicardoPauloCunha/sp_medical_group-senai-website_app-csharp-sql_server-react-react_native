@@ -51,6 +51,13 @@ const stylesComponent = StyleSheet.create({
     buttonDrawerText: {
         fontSize: 16,
         color: "#82c1d7"
+    },
+
+    mensagemErroRequest: {
+        textAlign: "center",
+        fontSize: 18,
+        color: "#5f5f5f",
+        margin: 10
     }
 })
 

@@ -3,11 +3,12 @@ import { StyleSheet } from "react-native";
 const stylesConsulta = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "rgb(245, 245, 245)",
     },
     main: {
         width: "100%",
         paddingTop: 10,
-        backgroundColor: "rgb(245, 245, 245)",
+        // backgroundColor: "rgb(245, 245, 245)",
     },
     flatList: {
     },
@@ -56,7 +57,6 @@ const stylesConsulta = StyleSheet.create({
     },
     footer: {
         height: 20,
-        backgroundColor: "rgb(245, 245, 245)"
     },
 
     // component
