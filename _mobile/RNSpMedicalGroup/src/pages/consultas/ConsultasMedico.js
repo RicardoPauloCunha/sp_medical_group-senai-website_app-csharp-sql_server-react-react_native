@@ -67,22 +67,29 @@ export default class ConsultasMedico extends Component {
                 <Text style={stylesConsulta.itemHeaderTitulo}>Protocologo ID: {item.id}</Text>
                 <View style={stylesConsulta.itemMain}>
                     <View style={stylesConsulta.itemTable}>
-                        <View style={stylesConsulta.itemTh}>
-                            <Text style={stylesConsulta.th}>Paciente:</Text>
-                            <Text style={stylesConsulta.th}>Data:</Text>
-                            <Text style={stylesConsulta.th}>Horário:</Text>
-                            <Text style={stylesConsulta.th}>Situação:</Text>
-                            <Text style={stylesConsulta.th}>Descrição:</Text>
-                        </View>
-                        <View style={stylesConsulta.itemTd}>
+                        <View style={stylesConsulta.tr}>
+                            <Text style={stylesConsulta.th}>Médico: </Text>
                             <Text style={stylesConsulta.td}>{item.idProntuarioNavigation.nome}</Text>
-                            <Text style={stylesConsulta.td}>{moment(new Date(item.dataAgendada)).format("DD/MM/YYYY")}</Text>
-                            <Text style={stylesConsulta.td}>{item.horaAgendada}</Text>
+                        </View>
+                        <View style={stylesConsulta.tr}>
+                            <Text style={stylesConsulta.th}>Situação: </Text>
                             <SituacaoCase idSituacao={item.idSituacaoNavigation.nome} />
+                        </View>
+                        <View style={stylesConsulta.time}>
+                            <View style={stylesConsulta.tr}>
+                                <Text style={stylesConsulta.th}>Data: </Text>
+                                <Text style={stylesConsulta.td}>{moment(new Date(item.dataAgendada)).format("DD/MM/YYYY")}</Text>
+                            </View>
+                            <View style={stylesConsulta.tr}>
+                                <Text style={stylesConsulta.th}>Hora: </Text>
+                                <Text style={stylesConsulta.td}>{item.horaAgendada}</Text>
+                            </View>
+                        </View>
+                        <View style={stylesConsulta.tr}>
+                            <Text style={stylesConsulta.th}>Descrição: </Text>
                             <Text style={stylesConsulta.td}>{item.descricao}</Text>
                         </View>
                     </View>
-
                 </View>
             </View>
         </View>

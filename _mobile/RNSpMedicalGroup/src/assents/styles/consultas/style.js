@@ -35,25 +35,17 @@ const stylesConsulta = StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 10,
         marginTop: 5,
-        padding: 5,
+        padding: 7,
     },
     itemTable: {
-        flexDirection: "row",
-    },
-    itemTh: {
-        width: "30%",
     },
     th: {
         fontSize: 17,
         color: "gray"
     },
-    itemTd: {
-        width: "70%",
-
-    },
     td: {
-        fontSize: 17,
-        color: "#5f5f5f"
+        fontSize: 18,
+        color: "#565656"
     },
     footer: {
         height: 20,
@@ -62,13 +54,21 @@ const stylesConsulta = StyleSheet.create({
     // component
     tdSituacao: {
         fontSize: 17,
-        color: "#5f5f5f",
+        color: "#565656",
         borderBottomWidth: 2,
         alignSelf: 'flex-start',
-        width: "auto",
-        // borderRadius: 20,
-        // textAlign: "center"
-        // borderWidth: 1,        
+        width: "auto",       
+    },
+
+    // nem style consulta
+    tr: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+        marginBottom: 1
+    },
+    time: {
+        flexDirection: "row",
+        justifyContent: "space-between"
     },
 })
 
