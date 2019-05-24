@@ -6,7 +6,7 @@ import jwt from 'jwt-decode';
 import LinearGradient from 'react-native-linear-gradient';
 
 import stylesLogin from '../../assents/styles/login/style';
-import Loader from './components/loader';
+import stylesComponent from '../../assents/styles/components/style';
 
 export default class Login extends Component {
     static navigationOptions = {
@@ -17,10 +17,6 @@ export default class Login extends Component {
         super(props);
 
         this.state = {
-            // email: "mariana@outlook.com",
-            // senha: "mariana132",
-            // email: "ricardo.lemos@spmedicalgroup.com.br",
-            // senha: "spricardo132",
             email: "",
             senha: "",
             mensagem: "",
@@ -65,7 +61,11 @@ export default class Login extends Component {
 
             if (resposta.status === 200) {
 
-                this.setState({ loading: false });
+                setTimeout(() => {
+                    this.setState({
+                        loading: false,
+                    });
+                }, 2500);
 
                 const token = resposta.data.token;
                 await AsyncStorage.setItem("UsuarioToken", token);
@@ -113,9 +113,6 @@ export default class Login extends Component {
                 source={require("../../assents/img/login/backgroundImg.jpg")}
                 style={StyleSheet.absoluteFillObject}
             >
-                <Loader
-                    loading={this.state.loading}
-                />
                 <StatusBar hidden={true}></StatusBar>
                 <View />
                 <LinearGradient
@@ -165,7 +162,14 @@ export default class Login extends Component {
                             <Text style={this.state.btnpressStatus ? stylesLogin.buttonTextPress : stylesLogin.buttonText}>Entrar</Text>
                         </TouchableOpacity>
 
-                        <Text style={stylesLogin.mensagemErro}>{this.state.mensagem}</Text>
+                        {
+                            this.state.loading ?
+                                <View style={stylesComponent.loading}>
+                                    <ActivityIndicator size="large" color="#ffffff" />
+                                </View>
+                                :
+                                <Text style={stylesLogin.mensagemErro}>{this.state.mensagem}</Text>
+                        }
                     </View>
                 </View>
             </ImageBackground>

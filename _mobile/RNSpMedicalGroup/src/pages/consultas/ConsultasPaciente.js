@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, Image, StatusBar } from 'react-native';
+import { View, Text, FlatList, Image, StatusBar, ActivityIndicator} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '../../services/api';
 import moment from 'moment';
@@ -19,7 +19,8 @@ export default class ConsultasPaciente extends Component {
 
         this.state = {
             listaConsultas: [],
-            mensagem: ""
+            mensagem: "",
+            loading: true
         }
     }
 
@@ -35,9 +36,11 @@ export default class ConsultasPaciente extends Component {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            })
+            });
 
-            this.setState({ listaConsultas: respota.data })
+            this.setState({loading: false});
+
+            this.setState({ listaConsultas: respota.data });
         }
         catch (erro) {
             this.setState({ mensagem: `Ocorreu um erro durante a requisição: ${erro}` });
@@ -50,12 +53,22 @@ export default class ConsultasPaciente extends Component {
                 <StatusBar hidden={true}></StatusBar>
 
                 <Header tituloHeader="Consultas" />
-                <FlatList
+                {
+                    this.state.loading ?
+                    <View style={stylesComponent.loading}>
+                        <ActivityIndicator 
+                            size="large"
+                            color="#82c1d7"
+                        />
+                    </View>
+                    :
+                    <FlatList
                     style={stylesConsulta.main}
                     data={this.state.listaConsultas}
                     keyExtractor={item => item.id.toString()}
                     renderItem={this.renderizarItems}
                 />
+                }
                 <View style={stylesConsulta.footer}></View>
             </View>
         )

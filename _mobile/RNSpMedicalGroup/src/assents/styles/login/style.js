@@ -82,7 +82,7 @@ const stylesLogin = StyleSheet.create({
     // Erro mensagem
     mensagemErro: {
         color: "white",
-        margin: 20,
+        marginTop: 20,
         textAlign: "center"
     }
 })
