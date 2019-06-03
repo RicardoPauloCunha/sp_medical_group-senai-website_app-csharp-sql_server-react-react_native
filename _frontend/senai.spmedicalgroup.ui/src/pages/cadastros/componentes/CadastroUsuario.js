@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import cadastrarItem from "./_cadastrarItem";
+import firebase from 'firebase';
 
 import "../assents/css/cadastro.css";
 
@@ -80,7 +81,7 @@ class CadastroUsuario extends Component {
     }
 
     listarTiposUsuarios() {
-        fetch("http://localhost:5000/api/Usuarios/SelectTiposUsuarios", {
+        fetch("http://192.168.3.105:5000/api/Usuarios/SelectTiposUsuarios", {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',

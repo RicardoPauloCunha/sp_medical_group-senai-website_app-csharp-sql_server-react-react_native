@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, Image, StatusBar, ActivityIndicator} from 'react-native';
+import { View, Text, FlatList, Image, StatusBar, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '../../services/api';
 import moment from 'moment';
@@ -38,7 +38,7 @@ export default class ConsultasPaciente extends Component {
                 }
             });
 
-            this.setState({loading: false});
+            this.setState({ loading: false });
 
             this.setState({ listaConsultas: respota.data });
         }
@@ -48,30 +48,39 @@ export default class ConsultasPaciente extends Component {
     }
 
     render() {
-        return (
-            <View style={stylesConsulta.container}>
-                <StatusBar hidden={true}></StatusBar>
+        if (this.state.listaConsultas.length === 0) {
+            return (
+                <View>
+                    <Text>Usuário não possui nenhuma consulta</Text>
+                </View>
+            )
+        }
+        else {
+            return (
+                <View style={stylesConsulta.container}>
+                    <StatusBar hidden={true}></StatusBar>
 
-                <Header tituloHeader="Consultas" />
-                {
-                    this.state.loading ?
-                    <View style={stylesComponent.loading}>
-                        <ActivityIndicator 
-                            size="large"
-                            color="#82c1d7"
-                        />
-                    </View>
-                    :
-                    <FlatList
-                    style={stylesConsulta.main}
-                    data={this.state.listaConsultas}
-                    keyExtractor={item => item.id.toString()}
-                    renderItem={this.renderizarItems}
-                />
-                }
-                <View style={stylesConsulta.footer}></View>
-            </View>
-        )
+                    <Header tituloHeader="Consultas" />
+                    {
+                        this.state.loading ?
+                            <View style={stylesComponent.loading}>
+                                <ActivityIndicator
+                                    size="large"
+                                    color="#82c1d7"
+                                />
+                            </View>
+                            :
+                            <FlatList
+                                style={stylesConsulta.main}
+                                data={this.state.listaConsultas}
+                                keyExtractor={item => item.id.toString()}
+                                renderItem={this.renderizarItems}
+                            />
+                    }
+                    <View style={stylesConsulta.footer}></View>
+                </View>
+            )
+        }
     }
 
     renderizarItems = ({ item }) => (

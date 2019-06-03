@@ -169,7 +169,7 @@ class CadastroConsulta extends Component {
                         <option className="dashboard__lista--select-option" value="20:00:00">20:00</option>
                         <option className="dashboard__lista--select-option" value="22:00:00">21:00</option>                        
                     </select>
-                    <textarea placeholder="Descrição" className="cadastro__cadastro--textarea" required value={this.state.descricao} onChange={this.atualizarDescricao}></textarea>
+                    <textarea placeholder="Descrição" className="cadastro__cadastro--textarea" value={this.state.descricao} onChange={this.atualizarDescricao}></textarea>
                     
                     <button type="submit" className="style__button--blue">Cadastrar</button>
                 </form>

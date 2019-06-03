@@ -10,6 +10,7 @@ import {UsuarioAutenticado} from "./services/auth";
 import {parseJwt} from "./services/auth";
 import Dashboard from './pages/dashboard/Dashboard';
 import Cadastros from './pages/cadastros/Cadastros';
+import Localizacoes from './pages/localizacoes/Localizacoes';
 
 // Verifica se é Admin
 const PermissaoAdmin = ({component : Component}) => (
@@ -60,6 +61,7 @@ const Routing = (
                 <PermissaoMedico path="/ConsultasMedico" component={ConsultasMedico} />
                 <PermissaoAdmin path="/Cadastros" component={Cadastros} />
                 <PermissaoAdmin path="/Dashboard" component={Dashboard} />
+                <Route path="/" component={Localizacoes} />
             </Switch>
         </div>
     </Router>

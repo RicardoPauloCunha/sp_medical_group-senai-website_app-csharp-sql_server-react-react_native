@@ -1,6 +1,6 @@
 export default {
     cadastrar(endpoint, item) {
-        let url = `http://localhost:5000/api/${endpoint}`;
+        let url = `http://192.168.3.105:5000/api/${endpoint}`;
 
         return fetch(url, {
             method: "POST",

@@ -49,7 +49,7 @@ class ConsultasMedico extends Component {
 
         console.log(item);
 
-        fetch('http://localhost:5000/AlterarDescricaoConsulta', {
+        fetch('http://192.168.3.105:5000/AlterarDescricaoConsulta', {
             method: "PUT",
             body: JSON.stringify(item),
             headers: {
