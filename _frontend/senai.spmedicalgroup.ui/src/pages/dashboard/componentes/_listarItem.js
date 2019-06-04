@@ -1,6 +1,8 @@
+import urlApi from '../../services/urlApi';
+
 export default {
     listar(endpoint) {
-        return fetch(`http://192.168.3.105:5000/api/${endpoint}`, {
+        return fetch(`${urlApi}api/${endpoint}`, {
             method: "GET",
             headers: {
                 'Content-Type' : 'application/json',

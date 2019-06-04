@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import { parseJwt } from "../../services/auth";
+import urlApi from '../../services/urlApi';
 
 import "./assents/css/login-css.css";
 import "../_assets/css/style.css";
@@ -35,7 +36,7 @@ class Login extends Component {
     efetuarLogin(event) {
         event.preventDefault();
 
-        Axios.post('http://192.168.3.105:5000/api/Login', {
+        Axios.post(`${urlApi}api/Login`, {
             email: this.state.email,
             senha: this.state.senha
         })

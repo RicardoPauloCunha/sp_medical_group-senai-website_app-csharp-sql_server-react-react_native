@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Moment from "react-moment";
+import urlApi from '../../services/urlApi';
 
 import "../assets/css/consultas.css";
 import "../../_assets/css/style.css";
@@ -49,7 +50,7 @@ class ConsultasMedico extends Component {
 
         console.log(item);
 
-        fetch('http://192.168.3.105:5000/AlterarDescricaoConsulta', {
+        fetch(`${urlApi}AlterarDescricaoConsulta`, {
             method: "PUT",
             body: JSON.stringify(item),
             headers: {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import cadastrarItem from "./_cadastrarItem";
 import firebase from 'firebase';
+import urlApi from '../../services/urlApi';
 
 import "../assents/css/cadastro.css";
 
@@ -81,7 +82,7 @@ class CadastroUsuario extends Component {
     }
 
     listarTiposUsuarios() {
-        fetch("http://192.168.3.105:5000/api/Usuarios/SelectTiposUsuarios", {
+        fetch(`${urlApi}api/Usuarios/SelectTiposUsuarios`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',

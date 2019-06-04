@@ -1,6 +1,8 @@
+import urlApi from '../../services/urlApi';
+
 export default {
     count(endpoint) {
-        return fetch(`http://192.168.3.105:5000/api/${endpoint}/Count`, {
+        return fetch(`${urlApi}api/${endpoint}/Count`, {
             method: "GET",
             headers: {
                 'Content-Type' : 'application/json',

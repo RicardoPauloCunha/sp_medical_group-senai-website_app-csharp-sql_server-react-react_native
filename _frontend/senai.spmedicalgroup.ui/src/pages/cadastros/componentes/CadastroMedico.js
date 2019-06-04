@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import cadastrarItem from "./_cadastrarItem";
+import urlApi from '../../services/urlApi';
 
 import "../assents/css/cadastro.css";
 
@@ -104,7 +105,7 @@ class CadastroMedico extends Component {
     }
 
     listarEspecialidades() {
-        fetch("http://localhost:5000/api/Medicos/SelectEspecialidades", {
+        fetch(`${urlApi}api/Medicos/SelectEspecialidades`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -117,7 +118,7 @@ class CadastroMedico extends Component {
     }
 
     listarUsuarios() {
-        fetch("http://localhost:5000/api/Usuarios/SelectUsuarios", {
+        fetch(`${urlApi}api/Usuarios/SelectUsuarios`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -130,7 +131,7 @@ class CadastroMedico extends Component {
     }
 
     listarClinicas() {
-        fetch("http://localhost:5000/api/Clinicas/SelectClinicas", {
+        fetch(`${urlApi}api/Clinicas/SelectClinicas`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',

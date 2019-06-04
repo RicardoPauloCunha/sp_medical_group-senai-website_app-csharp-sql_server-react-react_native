@@ -1,6 +1,8 @@
+import urlApi from '../../services/urlApi';
+
 export default {
     cadastrar(endpoint, item) {
-        let url = `http://192.168.3.105:5000/api/${endpoint}`;
+        let url = `${urlApi}api/${endpoint}`;
 
         return fetch(url, {
             method: "POST",

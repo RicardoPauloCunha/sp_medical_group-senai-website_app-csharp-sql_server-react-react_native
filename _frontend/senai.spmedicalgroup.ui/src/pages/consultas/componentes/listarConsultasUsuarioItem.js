@@ -1,6 +1,8 @@
+import urlApi from '../../services/urlApi';
+
 export default {
     listar() {
-        return fetch('http://192.168.3.105:5000/api/Consultas/ConsultasUsuarioInclude', {
+        return fetch(`${urlApi}api/Consultas/ConsultasUsuarioInclude`, {
             method: "GET",
             headers: {
                 "Content-Type" : "application/json",
