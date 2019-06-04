@@ -1,4 +1,4 @@
-import urlApi from '../../services/urlApi';
+import urlApi from '../../../services/urlApi';
 
 export default {
     listar(endpoint) {

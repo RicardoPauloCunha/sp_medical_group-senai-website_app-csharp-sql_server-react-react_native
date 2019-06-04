@@ -8,7 +8,7 @@ const firebaseConfig = {
     storageBucket: "spmedicalgroup-database-api.appspot.com",
     messagingSenderId: "334193342301",
     appId: "1:334193342301:web:0db1bcb5e2b41477"
-};
+  };
 
 firebase.initializeApp(firebaseConfig);
 

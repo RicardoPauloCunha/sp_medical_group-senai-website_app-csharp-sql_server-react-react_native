@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import cadastrarItem from "./_cadastrarItem";
-import urlApi from '../../services/urlApi';
+import urlApi from '../../../services/urlApi';
 
 import "../assents/css/cadastro.css";
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Moment from "react-moment";
-import urlApi from '../../services/urlApi';
+import urlApi from '../../../services/urlApi';
 
 import "../assets/css/consultas.css";
 import "../../_assets/css/style.css";

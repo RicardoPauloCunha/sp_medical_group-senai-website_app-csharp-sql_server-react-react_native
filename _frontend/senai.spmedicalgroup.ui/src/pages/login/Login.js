@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Axios from "axios";
 import { parseJwt } from "../../services/auth";
 import urlApi from '../../services/urlApi';
+import firebase from '../../services/firebaseConfig';
 
 import "./assents/css/login-css.css";
 import "../_assets/css/style.css";
@@ -42,6 +43,9 @@ class Login extends Component {
         })
             .then(data => {
                 if (data.status === 200) {
+
+                    this._efetuarLoginFirebase();
+
                     localStorage.setItem("usuarioautenticado-token-spmedgroup", data.data.token);
                     if (parseJwt().UsuarioTipo === "1") {
                         this.props.history.push("/Dashboard");
@@ -53,6 +57,17 @@ class Login extends Component {
                 };
             })
             .catch(erro => {this.setState({mensagemErro: erro.response.data})});
+    }
+
+    _efetuarLoginFirebase = async () => {
+        await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.senha)
+        .then(function(resposta) {
+            console.log(resposta.user);
+            console.log(resposta)
+        })
+        .catch(function(error) {
+            this.setState({mensagemErro: "Ocorreu uma falha no login do firebase" + error})
+        });
     }
 
     render() {

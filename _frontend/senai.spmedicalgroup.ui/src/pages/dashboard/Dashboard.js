@@ -64,6 +64,12 @@ class Dashboard extends Component {
                                 </select>
                             </Link>
 
+                            <Link to="/Localizacoes" className="dashboard__lista--select-button">
+                                <select className="dashboard__lista--select">
+                                    <option value="0" className="dashboard__lista--select-option">Localizacoes</option>
+                                </select>
+                            </Link>
+
                         </div>
                     </div>
                     <ListaIf idLista={this.state.selectOption} />

@@ -61,7 +61,7 @@ const Routing = (
                 <PermissaoMedico path="/ConsultasMedico" component={ConsultasMedico} />
                 <PermissaoAdmin path="/Cadastros" component={Cadastros} />
                 <PermissaoAdmin path="/Dashboard" component={Dashboard} />
-                <Route path="/" component={Localizacoes} />
+                <Route path="/Localizacoes" component={Localizacoes} />
             </Switch>
         </div>
     </Router>

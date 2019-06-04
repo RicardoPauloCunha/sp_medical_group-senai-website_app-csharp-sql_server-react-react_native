@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import cadastrarItem from "./_cadastrarItem";
-import firebase from 'firebase';
-import urlApi from '../../services/urlApi';
+import firebase from '../../../services/firebaseConfig';
+import urlApi from '../../../services/urlApi';
 
 import "../assents/css/cadastro.css";
 
@@ -75,6 +75,16 @@ class CadastroUsuario extends Component {
                 this.setState({ mensagem: "Ocorreu um erro durante o cadastro, tente novamente" });
                 console.log(erro);
             });
+
+            this._cadastrarUsuarioFirebase();
+    }
+
+    _cadastrarUsuarioFirebase = async () => {
+        await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.senha).catch(function (error) {
+            var errorCode = error.code;
+            var errorMensagem = error.message;
+            console.log(errorCode + " " + errorMensagem);
+        });
     }
 
     componentDidMount() {
