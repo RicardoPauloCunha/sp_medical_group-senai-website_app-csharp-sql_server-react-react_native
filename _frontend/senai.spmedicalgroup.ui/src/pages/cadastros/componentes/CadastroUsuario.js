@@ -80,7 +80,10 @@ class CadastroUsuario extends Component {
     }
 
     _cadastrarUsuarioFirebase = async () => {
-        await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.senha).catch(function (error) {
+        await firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.state.email, this.state.senha)
+        .catch(function (error) {
             var errorCode = error.code;
             var errorMensagem = error.message;
             console.log(errorCode + " " + errorMensagem);

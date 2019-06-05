@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import firebase from '../../services/firebaseConfig';
 
 import MenuMin from "../_componentes/menuMin";
 import RodaPe from "../_componentes/rodaPe";
@@ -31,6 +32,18 @@ class Dashboard extends Component {
     // função select
     atualizaSelectOption(event) {
         this.setState({ selectOption: event.target.value });
+    }
+
+    _mensagem() {
+        var messaging = firebase.messaging();
+
+        messaging.requestPermission()
+        .then(function(resposta) {
+            console.log("Permição de Notificação aceita: " + resposta);
+        })
+        .catch(function(erro) {
+            console.log("Erro de pemissão de Notificação: " + erro);
+        })
     }
 
     render() {

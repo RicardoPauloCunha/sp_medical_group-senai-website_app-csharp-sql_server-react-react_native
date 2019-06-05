@@ -56,18 +56,19 @@ class Login extends Component {
                     }
                 };
             })
-            .catch(erro => {this.setState({mensagemErro: erro.response.data})});
+            .catch(erro => { this.setState({ mensagemErro: erro.response.data }) });
     }
 
     _efetuarLoginFirebase = async () => {
-        await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.senha)
-        .then(function(resposta) {
-            console.log(resposta.user);
-            console.log(resposta)
-        })
-        .catch(function(error) {
-            this.setState({mensagemErro: "Ocorreu uma falha no login do firebase" + error})
-        });
+        await firebase
+            .auth()
+            .signInWithEmailAndPassword(this.state.email, this.state.senha)
+            .then(function (resposta) {
+                console.log(resposta)
+            })
+            .catch(
+                this.setState({ mensagemErro: "Ocorreu uma falha no login do firebase!" })
+            );
     }
 
     render() {
