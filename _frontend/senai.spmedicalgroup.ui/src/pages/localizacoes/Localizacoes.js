@@ -59,6 +59,30 @@ class Localizacoes extends Component {
             })
     }
 
+    _enviarNotificacao = async () => {
+        const messaging = firebase.messaging();
+        await messaging.requestPermission();
+        const token = await messaging.getToken();
+
+        fetch('https://fcm.googleapis.com/fcm/send', {
+            method: "POST",
+            body: JSON.stringify({
+                notification: {
+                    title: "SP Medical Group",
+                    body: "Uma nova Localizacao foi cadastrada"
+                },
+                to: token
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: "key=AAAATc95t10:APA91bEXNSTuKbOif9mBlNIrhuO5RiEYVfNoEvm0BEMsLK3Ksedk9hTdBHwsimK_O5i0rnmYg6Swc6q7wjtah50SYn5lStu8on3pt96f3o3z86o2EhBCC6EqdGyWtApw721-zzeskmx1"
+            }
+        })
+            .catch(erro => {
+                console.log("Enviar Notificarion error: " + erro);
+            })
+    }
+
     render() {
         return (
             <div>
@@ -94,6 +118,10 @@ class Localizacoes extends Component {
                     />
                     <button type="submit">Cadastrar</button>
                 </form>
+
+                <button onClick={this._enviarNotificacao}>
+                    Enviar notification
+                </button>
 
                 <h3>Listar</h3>
                 <ul>
