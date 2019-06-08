@@ -1,40 +1,45 @@
 import React, { Component } from 'react';
 import firebase from '../../services/firebaseConfig';
+import { Link } from "react-router-dom";
+
+import './assents/css/style.css';
+import "../cadastros/assents/css/cadastro.css";
+import "../_assets/css/style.css";
+import MenuMin from "../_componentes/menuMin";
+import Rodape from "../_componentes/rodaPe";
+import MapaGoogle from './components/MapaGoogle';
+import urlApi from '../../services/urlApi';
+
 
 class Localizacoes extends Component {
     constructor() {
         super();
 
         this.state = {
+            descricao: "",
             idadePac: "",
             longitude: "",
             latitude: "",
             especialidadeMed: "",
-            listaLocalizacoes: []
+            listaEspecialidades: []
         }
     }
 
     componentDidMount() {
-        this._listarLocalizacoesRealTime();
+        this._listarEspecialidades();
     }
 
-    _listarLocalizacoesRealTime() {
-        firebase.firestore().collection("Enderecos")
-            .onSnapshot((localizacoes) => {
-                let localArray = [];
-
-                localizacoes.forEach((local) => {
-                    localArray.push({
-                        id: local.id,
-                        idadePac: local.data().IdadePaciente,
-                        latitude: local.data().Latitude,
-                        longitude: local.data().Longitude,
-                        especialidadeMed: local.data().EspecialidadeMedico
-                    })
-                })
-
-                this.setState({ listaLocalizacoes: localArray });
-            })
+    _listarEspecialidades() {
+        fetch(`${urlApi}api/Medicos/SelectEspecialidades`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + localStorage.getItem("usuarioautenticado-token-spmedgroup")
+            }
+        })
+            .then(resposta => resposta.json())
+            .then(data => this.setState({ listaEspecialidades: data }))
+            .catch(erro => console.log(erro))
     }
 
     _atualizaEstado(event) {
@@ -59,82 +64,52 @@ class Localizacoes extends Component {
             })
     }
 
-    _enviarNotificacao = async () => {
-        const messaging = firebase.messaging();
-        await messaging.requestPermission();
-        const token = await messaging.getToken();
-
-        fetch('https://fcm.googleapis.com/fcm/send', {
-            method: "POST",
-            body: JSON.stringify({
-                notification: {
-                    title: "SP Medical Group",
-                    body: "Uma nova Localizacao foi cadastrada"
-                },
-                to: token
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: "key=AAAATc95t10:APA91bEXNSTuKbOif9mBlNIrhuO5RiEYVfNoEvm0BEMsLK3Ksedk9hTdBHwsimK_O5i0rnmYg6Swc6q7wjtah50SYn5lStu8on3pt96f3o3z86o2EhBCC6EqdGyWtApw721-zzeskmx1"
-            }
-        })
-            .catch(erro => {
-                console.log("Enviar Notificarion error: " + erro);
-            })
-    }
-
     render() {
         return (
             <div>
-                <h3>Cadastrar</h3>
-                <form onSubmit={this._cadastrarLocalizacao.bind(this)}>
-                    <input
-                        name="idadePac"
-                        type="text"
-                        placeholder="Idade do Paciente"
-                        value={this.state.descricaoPac}
-                        onChange={this._atualizaEstado.bind(this)}
-                    />
-                    <input
-                        name="latitude"
-                        type="text"
-                        placeholder="Latitude"
-                        value={this.state.descricaoPac}
-                        onChange={this._atualizaEstado.bind(this)}
-                    />
-                    <input
-                        name="longitude"
-                        type="text"
-                        placeholder="Longitude"
-                        value={this.state.descricaoPac}
-                        onChange={this._atualizaEstado.bind(this)}
-                    />
-                    <input
-                        name="especialidadeMed"
-                        type="text"
-                        placeholder="Especialidade Médico"
-                        value={this.state.descricaoPac}
-                        onChange={this._atualizaEstado.bind(this)}
-                    />
-                    <button type="submit">Cadastrar</button>
-                </form>
 
-                <button onClick={this._enviarNotificacao}>
-                    Enviar notification
-                </button>
+                <MenuMin />
 
-                <h3>Listar</h3>
-                <ul>
-                    {
-                        this.state.listaLocalizacoes.map((local) => {
-                            return (
-                                <li key={local.id}>
-                                    <p>{local.id}, {local.idadePac}, {local.latitude}, {local.longitude}, {local.especialidadeMed}</p>
-                                </li>
-                            )
-                        })
-                    }
-                </ul>
+                <div>
+                    <h2 className="mapTitulo">Localizacoes</h2>
+                    <div className="style__titulo--linha"></div>
+                    <MapaGoogle />
+                </div>
+
+                <div className="cadastro__cadastro">
+                    <div className="cadastro__cadastro--item">
+
+                        <h2>Cadastrar Localização</h2>
+                        <div className="style__titulo--linha"></div>
+
+                        <form className="cadastro__cadastro--form" onSubmit={this._cadastrarLocalizacao.bind(this)}>
+                            <input name="descricao" type="text" placeholder="Descrição" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.descricao} onChange={this._atualizaEstado.bind(this)} required />
+                            <input name="idadePac" type="text" placeholder="Idade do Paciente" className="cadastro__cadastro--input" value={this.state.descricaoPac} onChange={this._atualizaEstado.bind(this)} required />
+                            <input name="latitude" type="text" placeholder="Latitude" className="cadastro__cadastro--input" value={this.state.latitude} onChange={this._atualizaEstado.bind(this)} required />
+                            <input name="longitude" type="text" placeholder="Longitude" className="cadastro__cadastro--input" value={this.state.longitude} onChange={this._atualizaEstado.bind(this)} required />
+                            <select name="especialidadeMed" className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" value={this.state.especialidadeMed} onChange={this._atualizaEstado.bind(this)} required >
+                                <option className="dashboard__lista--select-option">Especialidade</option>
+                                {
+                                    this.state.listaEspecialidades.map(especialiade => {
+                                        return (
+                                            <option key={especialiade.id} value={especialiade.id} className="dashboard__lista--select-option">{especialiade.nome}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                            <button className="style__button--blue" type="submit">Cadastrar</button>
+                        </form>
+
+                        <div className="cadastro__cadastro--button">
+                            <Link to="/Dashboard">
+                                <button type="submit" className="style__button--blue">Voltar</button>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+
+                <Rodape />
+
             </div>
         );
     }
