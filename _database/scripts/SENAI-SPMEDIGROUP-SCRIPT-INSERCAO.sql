@@ -1,4 +1,4 @@
-USE SENAI_SPMEDICALGROUP_MANHA;
+
 
 INSERT INTO TIPOS_USUARIOS
 VALUES ('Administrador')
@@ -19,13 +19,13 @@ VALUES ('admin@gmail.com', 'admin132', '1')
 , ('helena.souza@spmedicalgroup.com.br', 'sphelena132', '2');
 
 INSERT INTO PRONTUARIOS (NOME, RG, CPF, DATA_NASCIMENTO, TELEFONE, ID_USUARIO, RUA, BAIRRO, CIDADE, ESTADO, CEP)
-VALUES ('Ligia', '43522543-5', '94839859000', '13-10-1982', '11 3456-7654', 2, 'Rua Estado de Israel, 240', '','São Paulo', 'SP', '04022-000')
-, ('Alexandre', '32654345-7', '73556944057', '23-07-2001', '11 98765-6543', 3, 'Av. Paulista, 1578', 'Bela Vista', 'São Paulo', 'SP', '01310-200')
-, ('Fernando', '54636525-3', '16839338002', '10-10-1978', '11 97208-4453', 4, 'Av. Ibirapuera, 2927', 'Indianópolis','São Paulo', 'SP', '04029-200')
-, ('Henrique', '54366362-5', '14332654765', '13-10-1985', '11 3456-6543', 5, 'R. Vitória 120', 'Vila Sao Jorge', 'Barueri', 'SP', '06402-030')
-, ('João', '32544444-1', '91305348010', '27-08-1975', '11 7656-6377', 6, 'R. Ver. Geraldo de Camargo, 66', 'Santa Luzia', 'Ribeirão Pires', 'SP', '09405-380')
-, ('Bruno', '54566266-7', '79799299004', '21-03-1972', '11 95436-8769', 7, 'Alameda dos Arapanés, 945', 'Indianópolis','São Paulo', 'SP', '04524-001')
-, ('Mariana', '54566266-8', '13771913039', '05-03-2018','11 95425-4252', 8, 'R. São Antonio, 232', 'Vila Universal', 'Barueri', 'SP', '06407-140');
+VALUES ('Ligia', '43522543-5', '94839859000', '1982-10-13', '11 3456-7654', 2, 'Rua Estado de Israel, 240', '','São Paulo', 'SP', '04022-000')
+, ('Alexandre', '32654345-7', '73556944057', '2001-07-23', '11 98765-6543', 3, 'Av. Paulista, 1578', 'Bela Vista', 'São Paulo', 'SP', '01310-200')
+, ('Fernando', '54636525-3', '16839338002', '1978-10-10', '11 97208-4453', 4, 'Av. Ibirapuera, 2927', 'Indianópolis','São Paulo', 'SP', '04029-200')
+, ('Henrique', '54366362-5', '14332654765', '1985-10-13', '11 3456-6543', 5, 'R. Vitória 120', 'Vila Sao Jorge', 'Barueri', 'SP', '06402-030')
+, ('João', '32544444-1', '91305348010', '1975-08-27', '11 7656-6377', 6, 'R. Ver. Geraldo de Camargo, 66', 'Santa Luzia', 'Ribeirão Pires', 'SP', '09405-380')
+, ('Bruno', '54566266-7', '79799299004', '1972-03-21', '11 95436-8769', 7, 'Alameda dos Arapanés, 945', 'Indianópolis','São Paulo', 'SP', '04524-001')
+, ('Mariana', '54566266-8', '13771913039', '2018-03-05','11 95425-4252', 8, 'R. São Antonio, 232', 'Vila Universal', 'Barueri', 'SP', '06407-140');
 
 INSERT INTO CLINICAS (NOME_FANTASIA, RAZAO_SOCIAL, HORARIO_FUNCIONAMENTO, CNPJ, RUA, BAIRRO, CIDADE, ESTADO, CEP)
 VALUES ('SP Medical Group', 'SP Medical Group', 'Seg - Sex, 07:00 - 22:00', '86.400.902/0001-30', 'Av. Barão Limeira, 532', '', 'São Paulo', 'SP', '92401-220');
@@ -60,10 +60,10 @@ VALUES ('Agendada')
 , ('Cancelada');
 
 INSERT INTO CONSULTAS (ID_PRONTUARIO, ID_MEDICO, DATA_AGENDADA, HORA_AGENDADA, ID_SITUACAO, DESCRICAO)
-VALUES (7, 3, '20-01-2019', '15:00:00', 2, 'Consulta regular')
-, (2, 2, '20-01-2019', '10:00:00', 3, 'Consulta regular')
-, (3, 2, '20-01-2019', '11:00:00', 2, 'Consulta regular')
-, (1, 2, '20-01-2019', '10:00:00', 2, 'Consulta regular')
-, (4, 1, '20-01-2019', '11:00:45', 3, 'Consulta regular')
-, (7, 3, '20-01-2019', '15:00:00', 1, 'Consulta regular')
-, (3, 1, '20-01-2019', '11:00:45', 1, 'Consulta regular');
+VALUES (15, 3, '2019-01-20', '15:00:00', 2, 'Consulta regular')
+, (10, 2, '2019-01-20', '10:00:00', 3, 'Consulta regular')
+, (11, 2, '2019-01-20', '11:00:00', 2, 'Consulta regular')
+, (3, 2, '2019-01-20', '10:00:00', 2, 'Consulta regular')
+, (12, 1, '2019-01-20', '11:45:00', 3, 'Consulta regular')
+, (15, 3, '2019-01-20', '15:00:00', 1, 'Consulta regular')
+, (11, 1, '2019-01-20', '11:45:00', 1, 'Consulta regular');

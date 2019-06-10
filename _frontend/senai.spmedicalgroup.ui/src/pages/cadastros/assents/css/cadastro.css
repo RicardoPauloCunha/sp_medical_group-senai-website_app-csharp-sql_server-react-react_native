@@ -76,14 +76,14 @@
 }
 
 .cadastro__cadastro--input::placeholder {
-    /* text-align: center; */
     color: rgb(80, 80, 80);
 }
 
 .cadastro__cadastro--input:focus {
     outline: none;
-    background-color: #c2e9f3;
+    background-color: #c0e1e9;
     border: solid 1px #67abc4;
+    color: rgb(80, 80, 80);
 }
 
 .cadastro__cadastro--textarea {
@@ -124,6 +124,7 @@
 
 .cadastro__cadastro--form-erro-first {
     margin: 0.5em 0;
+    color: gray;
 }
 
 .cadastro__cadastro--form-erro {
@@ -218,6 +219,8 @@
 
     .cadastro__cadastro--input {
         font-size: 1em;
+        text-align: left;
+        color: rgb(155, 153, 153);
     }
 
     .cadastro__cadastro--textarea {

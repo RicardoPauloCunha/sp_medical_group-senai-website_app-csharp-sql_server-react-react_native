@@ -63,9 +63,6 @@ class Login extends Component {
         await firebase
             .auth()
             .signInWithEmailAndPassword(this.state.email, this.state.senha)
-            .then(function (resposta) {
-                console.log(resposta)
-            })
             .catch(
                 this.setState({ mensagemErro: "Ocorreu uma falha no login do firebase!" })
             );

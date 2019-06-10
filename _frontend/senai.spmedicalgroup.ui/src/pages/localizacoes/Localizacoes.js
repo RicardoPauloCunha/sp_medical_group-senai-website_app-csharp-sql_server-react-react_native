@@ -21,7 +21,9 @@ class Localizacoes extends Component {
             longitude: "",
             latitude: "",
             especialidadeMed: "",
-            listaEspecialidades: []
+            listaEspecialidades: [],
+            mensagem: "",
+            mensagemErroEspcMed: ""
         }
     }
 
@@ -49,6 +51,15 @@ class Localizacoes extends Component {
     _cadastrarLocalizacao(event) {
         event.preventDefault();
 
+        // reseta as mensagens de erro
+        this.setState({ mensagem: "" });
+        this.setState({ mensagemErroEspcMed: "" });
+        
+        if (this.state.especialidadeMed <= 0)
+        {
+            this.setState({mensagemErroEspcMed: "Especialidade do médico de ser informada"})
+        }
+
         firebase.firestore().collection("Enderecos")
             .add({
                 EspecialidadeMedico: this.state.especialidadeMed,
@@ -56,12 +67,19 @@ class Localizacoes extends Component {
                 Latitude: this.state.latitude,
                 Longitude: this.state.longitude
             })
-            .then(resultado => {
-                console.log("Cadastro realizado com sucesso");
+            .then(data => {
+                if (data.status === 200) {
+                    this.setState({ mensagem: "Cadastro realizado com sucesso!" });
+                    this.setState({ mensagemErroEspcMed: "" });
+                }
+                else {
+                    this.setState({ mensagem: "Dados Inválidos" })
+                }
             })
-            .catch(error => {
-                console.log(error)
-            })
+            .catch(erro => {
+                this.setState({ mensagem: "Ocorreu um erro durante o cadastro, tente novamente" });
+                console.log(erro);
+            });
     }
 
     render() {
@@ -70,7 +88,7 @@ class Localizacoes extends Component {
 
                 <MenuMin />
 
-                <div>
+                <div className="teste">
                     <h2 className="mapTitulo">Localizacoes</h2>
                     <div className="style__titulo--linha"></div>
                     <MapaGoogle />
@@ -85,8 +103,6 @@ class Localizacoes extends Component {
                         <form className="cadastro__cadastro--form" onSubmit={this._cadastrarLocalizacao.bind(this)}>
                             <input name="descricao" type="text" placeholder="Descrição" className="cadastro__cadastro--input cadastro__cadastro--input-grande" value={this.state.descricao} onChange={this._atualizaEstado.bind(this)} required />
                             <input name="idadePac" type="text" placeholder="Idade do Paciente" className="cadastro__cadastro--input" value={this.state.descricaoPac} onChange={this._atualizaEstado.bind(this)} required />
-                            <input name="latitude" type="text" placeholder="Latitude" className="cadastro__cadastro--input" value={this.state.latitude} onChange={this._atualizaEstado.bind(this)} required />
-                            <input name="longitude" type="text" placeholder="Longitude" className="cadastro__cadastro--input" value={this.state.longitude} onChange={this._atualizaEstado.bind(this)} required />
                             <select name="especialidadeMed" className="cadastro__cadastro--input cadastro__cadastro--select dashboard__select-default" value={this.state.especialidadeMed} onChange={this._atualizaEstado.bind(this)} required >
                                 <option className="dashboard__lista--select-option">Especialidade</option>
                                 {
@@ -97,8 +113,13 @@ class Localizacoes extends Component {
                                     })
                                 }
                             </select>
+                            <input name="latitude" type="text" placeholder="Latitude" className="cadastro__cadastro--input" value={this.state.latitude} onChange={this._atualizaEstado.bind(this)} required />
+                            <input name="longitude" type="text" placeholder="Longitude" className="cadastro__cadastro--input" value={this.state.longitude} onChange={this._atualizaEstado.bind(this)} required />
                             <button className="style__button--blue" type="submit">Cadastrar</button>
                         </form>
+
+                        <p className="cadastro__cadastro--form-erro-first">{this.state.mensagem}</p>
+                        <p className="cadastro__cadastro--form-erro">{this.state.mensagemErroEspcMed}</p>
 
                         <div className="cadastro__cadastro--button">
                             <Link to="/Dashboard">

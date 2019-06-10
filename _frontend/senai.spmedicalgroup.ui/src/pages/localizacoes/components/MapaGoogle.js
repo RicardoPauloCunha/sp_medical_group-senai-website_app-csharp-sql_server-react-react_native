@@ -8,20 +8,7 @@ class MapaGoogle extends Component {
         super();
 
         this.state = {
-            listaLocalizacoes: [{
-                id: 1,
-                idadePac: 23,
-                latitude: -23.444,
-                longitude: -34.666,
-                especialidadeMed: "Terapeuta"
-            },
-            {
-                id: 2,
-                idadePac: 65,
-                latitude: -23.5345442,
-                longitude: -46.6493879,
-                especialidadeMed: "Terapeuta"
-            }]
+            listaLocalizacoes: []
         }
     }
 
@@ -57,13 +44,14 @@ class MapaGoogle extends Component {
                         lat: -23.5345442,
                         lng: -46.6493879
                     }}
-                    style={{ width: '90%', height: '70%', margin: "auto", marginTop: "0.5em"  }}
+                    style={{ width: '90%', height: '90%', margin: "auto", position: "relative"}}
                     zoom={14}
                     >
                     {
                         this.state.listaLocalizacoes.map((localizacao) => {
                             return (
                                 <Marker
+                                    key={localizacao.id}
                                     title={`Especialidade: ${localizacao.id}, Idade Paciente: ${localizacao.idadePac}`}
                                     position={{ lat: localizacao.latitude, lng: localizacao.longitude }}
                                 />
@@ -77,5 +65,5 @@ class MapaGoogle extends Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: ("AIzaSyD6g51cxMvwPJnVZ-Aj7edXMdq64qa6M1Y")
+    apiKey: ("AIzaSyAxUjkdg2IgukwkZLICUxtt6n01b2m4Ud4")
 })(MapaGoogle);
