@@ -122,7 +122,7 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             return consultas;
         }
 
-        private readonly string StringConexao = "Data source=.\\SqlExpress;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA;user id=sa; pwd=132";
+        private readonly string StringConexao = "Server=tcp:serversenaircd.database.windows.net,1433;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA;Persist Security Info=False;User ID=ricardopaulo;Password=Dcrp246dragon;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         // lista todas as consultas, com prontuario, medico e situacao da consulta
         public List<Consultas> ListarConsultasInclude()

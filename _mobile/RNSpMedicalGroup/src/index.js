@@ -10,6 +10,8 @@ import ConsultasMedico from './pages/consultas/ConsultasMedico';
 import UsuarioLogado from './services/getUserLog';
 import stylesComponent from './assents/styles/components/style';
 
+console.disableYellowBox = true;
+
 // Rota de Login
 const AuthStackNav = createStackNavigator(
     {

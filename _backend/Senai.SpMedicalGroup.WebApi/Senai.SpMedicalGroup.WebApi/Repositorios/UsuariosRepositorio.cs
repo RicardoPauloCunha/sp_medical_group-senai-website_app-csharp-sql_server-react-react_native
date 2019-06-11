@@ -107,7 +107,7 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             return usuarioLogado;
         }
 
-        private readonly string StringConexao = "Data source =.\\SqlExpress;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA; User id=sa;pwd=132;";
+        private readonly string StringConexao = "Server=tcp:serversenaircd.database.windows.net,1433;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA;Persist Security Info=False;User ID=ricardopaulo;Password=Dcrp246dragon;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         // Lista usuários com includes feito na "mão"
         public List<Usuarios> ListarUsuariosInclude()

@@ -44,10 +44,9 @@ class Login extends Component {
             .then(data => {
                 if (data.status === 200) {
 
-                    this._efetuarLoginFirebase();
-
                     localStorage.setItem("usuarioautenticado-token-spmedgroup", data.data.token);
                     if (parseJwt().UsuarioTipo === "1") {
+                        this._efetuarLoginFirebase();
                         this.props.history.push("/Dashboard");
                     } else if (parseJwt().UsuarioTipo === "2") {
                         this.props.history.push("/ConsultasMedico");

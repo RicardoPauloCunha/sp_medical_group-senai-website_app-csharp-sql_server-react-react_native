@@ -16,6 +16,10 @@ class MapaGoogle extends Component {
         this._listarLocalizacoesRealTime();
     }
 
+    // componentWillUnmount() {
+    //     this._listarLocalizacoesRealTime();
+    // }
+
     _listarLocalizacoesRealTime() {
         firebase.firestore().collection("Enderecos")
             .onSnapshot((localizacoes) => {
@@ -24,10 +28,11 @@ class MapaGoogle extends Component {
                 localizacoes.forEach((local) => {
                     localArray.push({
                         id: local.id,
+                        especialidadeMed: local.data().EspecialidadeMedico,
+                        descricao: local.data().Descricao,
                         idadePac: local.data().IdadePaciente,
                         latitude: local.data().Latitude,
-                        longitude: local.data().Longitude,
-                        especialidadeMed: local.data().EspecialidadeMedico
+                        longitude: local.data().Longitude
                     })
                 })
 
@@ -52,7 +57,7 @@ class MapaGoogle extends Component {
                             return (
                                 <Marker
                                     key={localizacao.id}
-                                    title={`Especialidade: ${localizacao.id}, Idade Paciente: ${localizacao.idadePac}`}
+                                    title={`Descrição do caso: ${localizacao.descricao}, Especialidade do Médico que realizou a consulta: ${localizacao.especialidadeMed}`}
                                     position={{ lat: localizacao.latitude, lng: localizacao.longitude }}
                                 />
                             )

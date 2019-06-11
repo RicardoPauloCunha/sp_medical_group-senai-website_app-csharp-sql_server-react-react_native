@@ -50,9 +50,26 @@ export default class ConsultasPaciente extends Component {
     render() {
         if (this.state.listaConsultas.length === 0) {
             return (
-                <View>
-                    <Text>Usuário não possui nenhuma consulta</Text>
+                <View style={stylesConsulta.container}>
+                    <StatusBar hidden={true}></StatusBar>
+
+                    <Header tituloHeader="Consultas" />
+                    {
+                        this.state.loading ?
+                            <View style={stylesComponent.loading}>
+                                <ActivityIndicator
+                                    size="large"
+                                    color="#82c1d7"
+                                />
+                            </View>
+                            :
+                            <View>
+                                <Text>Usuário não possui nenhuma consulta</Text>
+                            </View>
+                    }
+                    <View style={stylesConsulta.footer}></View>
                 </View>
+
             )
         }
         else {

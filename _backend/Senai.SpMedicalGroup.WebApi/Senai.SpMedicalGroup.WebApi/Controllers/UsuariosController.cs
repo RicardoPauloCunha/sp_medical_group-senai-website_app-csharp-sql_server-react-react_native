@@ -12,7 +12,7 @@ using Senai.SpMedicalGroup.WebApi.Repositorios;
 
 namespace Senai.SpMedicalGroup.WebApi.Controllers
 {
-    //[Authorize(Roles = "1")]
+    [Authorize(Roles = "1")]
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]

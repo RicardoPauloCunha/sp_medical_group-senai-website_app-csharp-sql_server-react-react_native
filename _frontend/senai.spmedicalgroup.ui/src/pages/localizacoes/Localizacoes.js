@@ -54,27 +54,22 @@ class Localizacoes extends Component {
         // reseta as mensagens de erro
         this.setState({ mensagem: "" });
         this.setState({ mensagemErroEspcMed: "" });
-        
-        if (this.state.especialidadeMed <= 0)
-        {
-            this.setState({mensagemErroEspcMed: "Especialidade do médico de ser informada"})
+
+        if (this.state.especialidadeMed <= 0) {
+            this.setState({ mensagemErroEspcMed: "Especialidade do médico de ser informada" })
         }
 
         firebase.firestore().collection("Enderecos")
             .add({
-                EspecialidadeMedico: this.state.especialidadeMed,
-                IdadePaciente: parseInt(this.state.idadePac),
+                Descricao: this.state.descricao,
+                EspecialidadeMed: this.state.especialidadeMed,
+                IdadePac: parseInt(this.state.idadePac),
                 Latitude: this.state.latitude,
                 Longitude: this.state.longitude
             })
             .then(data => {
-                if (data.status === 200) {
-                    this.setState({ mensagem: "Cadastro realizado com sucesso!" });
-                    this.setState({ mensagemErroEspcMed: "" });
-                }
-                else {
-                    this.setState({ mensagem: "Dados Inválidos" })
-                }
+                this.setState({ mensagem: "Cadastro realizado com sucesso!" });
+                this.setState({ mensagemErroEspcMed: "" });
             })
             .catch(erro => {
                 this.setState({ mensagem: "Ocorreu um erro durante o cadastro, tente novamente" });
@@ -108,7 +103,7 @@ class Localizacoes extends Component {
                                 {
                                     this.state.listaEspecialidades.map(especialiade => {
                                         return (
-                                            <option key={especialiade.id} value={especialiade.id} className="dashboard__lista--select-option">{especialiade.nome}</option>
+                                            <option key={especialiade.id} value={especialiade.nome} className="dashboard__lista--select-option">{especialiade.nome}</option>
                                         )
                                     })
                                 }

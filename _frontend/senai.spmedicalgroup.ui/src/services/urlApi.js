@@ -1,3 +1,3 @@
-const urlApi = "http://192.168.3.105:5000/";
+const urlApi = "https://apispmedgroup.azurewebsites.net/";
 
 export default urlApi;
