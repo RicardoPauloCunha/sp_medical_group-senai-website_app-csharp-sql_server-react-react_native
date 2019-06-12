@@ -38,7 +38,7 @@ class ListarConsultas extends Component {
                 <h2>Lista de Consultas</h2>
                 <div className="style__titulo--linha"></div>
 
-                <div className="consultas__consulta">
+                <div className="consultas__consulta consultas__consultas--tamanho">
 
                     {
                         this.state.listaConsultas.map(consulta => {
@@ -48,32 +48,32 @@ class ListarConsultas extends Component {
                                     <div className="consultas__consulta--item-infos">
                                         <table >
                                             <tbody>
-                                                <tr>
-                                                    <th>Prontuario:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">Prontuario:</td>
                                                     <td>{consulta.idProntuarioNavigation.nome}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>Medico:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">Medico:</td>
                                                     <td>{consulta.idMedicoNavigation.nome}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>Data:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">Data:</td>
                                                     <td><Moment format="DD/MM/YYYY">{consulta.dataAgendada}</Moment></td>
                                                 </tr>
-                                                <tr>
-                                                    <th>Hora:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">Hora:</td>
                                                     <td>{consulta.horaAgendada}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>Situação:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">Situação:</td>
                                                     <td>{consulta.idSituacaoNavigation.nome}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>Descricao:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">Descricao:</td>
+                                                    <td>{consulta.descricao}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <p className="consultas__consulta--item-infos-desc">{consulta.descricao}</p>
                                     </div>
                                 </div>
                             );

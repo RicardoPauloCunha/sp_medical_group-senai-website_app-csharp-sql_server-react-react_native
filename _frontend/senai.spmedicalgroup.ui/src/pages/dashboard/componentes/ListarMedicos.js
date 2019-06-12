@@ -32,7 +32,7 @@ class ListarMedicos extends Component {
                 <h2>Lista de Médicos</h2>
                 <div className="style__titulo--linha"></div>
 
-                <div className="consultas__consulta">
+                <div className="consultas__consulta consultas__consultas--tamanho">
 
                     {
                         this.state.listaMedicos.map(medico => {
@@ -42,24 +42,24 @@ class ListarMedicos extends Component {
                                     <div className="consultas__consulta--item-infos">
                                         <table >
                                             <tbody>
-                                                <tr>
-                                                    <th>Nome:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">Nome:</td>
                                                     <td>{medico.nome}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>CRM:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">CRM:</td>
                                                     <td>{medico.crm}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>IdEspecialidade:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">Especialidade:</td>
                                                     <td>{medico.idEspecialidadeNavigation.nome}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>IdUsuario:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">Usuario:</td>
                                                     <td>{medico.idUsuarioNavigation.email}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>IdClinica:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">Clinica:</td>
                                                     <td>{medico.idClinicaNavigation.nomeFantasia}</td>
                                                 </tr>
                                             </tbody>
@@ -78,9 +78,9 @@ class ListarMedicos extends Component {
                                         <th>Id</th>
                                         <th>Nome</th>
                                         <th>CRM</th>
-                                        <th>IdEspecialidade</th>
-                                        <th>IdUsuario</th>
-                                        <th>IdClinica</th>
+                                        <th>Especialidade</th>
+                                        <th>Usuario</th>
+                                        <th>Clinica</th>
                                     </tr>
 
                                     {

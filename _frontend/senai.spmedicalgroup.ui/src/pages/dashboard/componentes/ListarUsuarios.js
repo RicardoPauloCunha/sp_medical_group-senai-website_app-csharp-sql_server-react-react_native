@@ -34,7 +34,7 @@ class ListarUsuarios extends Component {
                     <h2>Lista de Usuários</h2>
                     <div className="style__titulo--linha"></div>
 
-                    <div className="consultas__consulta">
+                    <div className="consultas__consulta consultas__consultas--tamanho">
 
                         {
                             this.state.listaUsuarios.map(usuario => {
@@ -44,16 +44,16 @@ class ListarUsuarios extends Component {
                                         <div className="consultas__consulta--item-infos">
                                             <table >
                                                 <tbody>
-                                                    <tr>
-                                                        <th>Email:</th>
+                                                    <tr className="consultas__consulta--item-tr">
+                                                        <td className="consultas__consulta--item-th">Email:</td>
                                                         <td>{usuario.email}</td>
                                                     </tr>
-                                                    <tr>
-                                                        <th>CRM:</th>
+                                                    <tr className="consultas__consulta--item-tr">
+                                                        <td className="consultas__consulta--item-th">Senha:</td>
                                                         <td>{usuario.senha}</td>
                                                     </tr>
-                                                    <tr>
-                                                        <th>IdTipoUsuario:</th>
+                                                    <tr className="consultas__consulta--item-tr">
+                                                        <td className="consultas__consulta--item-th">Tipo Usuario:</td>
                                                         <td>{usuario.idTipoUsuarioNavigation.nome}</td>
                                                     </tr>
                                                 </tbody>
@@ -72,7 +72,7 @@ class ListarUsuarios extends Component {
                                             <th>Id</th>
                                             <th>Email</th>
                                             <th>Senha</th>
-                                            <th>IdTipoUsuario</th>
+                                            <th>TipoUsuario</th>
                                         </tr>
 
                                         {

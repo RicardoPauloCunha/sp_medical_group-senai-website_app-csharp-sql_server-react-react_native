@@ -33,7 +33,7 @@ class ListarProntuarios extends Component {
                 <h2>Lista de Prontuários</h2>
                 <div className="style__titulo--linha"></div>
 
-                <div className="consultas__consulta consultas__consulta-prontuario">
+                <div className="consultas__consulta consultas__consulta-prontuario consultas__consultas--tamanho">
 
                     {
                         this.state.listaProntuarios.map(prontuario => {
@@ -43,48 +43,44 @@ class ListarProntuarios extends Component {
                                     <div className="consultas__consulta--item-infos">
                                         <table >
                                             <tbody>
-                                                <tr>
-                                                    <th>Nome:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">Nome:</td>
                                                     <td>{prontuario.nome}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>RG:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">RG:</td>
                                                     <td>{prontuario.rg}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>CPF:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">CPF:</td>
                                                     <td>{prontuario.cpf}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>DataNascimento:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">Data de Nascimento:</td>
                                                     <td><Moment format="DD/MM/YYYY">{prontuario.dataNascimento}</Moment></td>
                                                 </tr>
-                                                <tr>
-                                                    <th>Telefone:</th>
-                                                    <td>{prontuario.telefone}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>IdUsuario:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">Usuario:</td>
                                                     <td>{prontuario.idUsuarioNavigation.email}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>Rua:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">Rua:</td>
                                                     <td>{prontuario.rua}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>Bairro:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">Bairro:</td>
                                                     <td>{prontuario.bairro}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>Cidade:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">Cidade:</td>
                                                     <td>{prontuario.cidade}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>Estado:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">Estado:</td>
                                                     <td>{prontuario.estado}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>CEP:</th>
+                                                <tr className="consultas__consulta--item-tr">
+                                                    <td className="consultas__consulta--item-th">CEP:</td>
                                                     <td>{prontuario.cep}</td>
                                                 </tr>
                                             </tbody>
@@ -104,9 +100,9 @@ class ListarProntuarios extends Component {
                                         <th>Nome</th>
                                         <th>RG</th>
                                         <th>CPF</th>
-                                        <th>DataNascimento</th>
+                                        <th>Data Nascimento</th>
                                         <th>Telefone</th>
-                                        <th>IdUsuario</th>
+                                        <th>Usuario</th>
                                         <th>Rua</th>
                                         <th>Bairro</th>
                                         <th>Cidade</th>
