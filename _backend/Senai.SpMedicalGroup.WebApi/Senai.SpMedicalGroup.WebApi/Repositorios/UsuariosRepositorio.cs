@@ -12,6 +12,8 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
 {
     public class UsuariosRepositorio : IUsuariosRepositorio
     {
+        private readonly string stringConexao = "Data source =.\\SQLSERVERJIROS;Initial Catalog=SpMedicalGroup; User id=sa; pwd=ji_15?27101001_roS";
+
         // Altera um Usuario
         public void Alterar(Usuarios usuarioRecebido)
         {
@@ -107,13 +109,11 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             return usuarioLogado;
         }
 
-        private readonly string StringConexao = "Server=tcp:serversenaircd.database.windows.net,1433;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA;Persist Security Info=False;User ID=ricardopaulo;Password=Dcrp246dragon;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
         // Lista usuários com includes feito na "mão"
         public List<Usuarios> ListarUsuariosInclude()
         {
             List<Usuarios> listaUsuarios = new List<Usuarios>();
-            using (SqlConnection con = new SqlConnection(StringConexao))
+            using (SqlConnection con = new SqlConnection(stringConexao))
             {
                 string select = "SELECT U.ID, U.EMAIL, U.SENHA, T.NOME AS TIPOUSUARIO FROM USUARIOS U JOIN TIPOS_USUARIOS T ON U.ID_TIPO_USUARIO = T.ID;";
                 con.Open();

@@ -38,12 +38,12 @@ class Dashboard extends Component {
         var messaging = firebase.messaging();
 
         messaging.requestPermission()
-        .then(function(resposta) {
-            console.log("Permição de Notificação aceita: " + resposta);
-        })
-        .catch(function(erro) {
-            console.log("Erro de pemissão de Notificação: " + erro);
-        })
+            .then(function (resposta) {
+                console.log("Permição de Notificação aceita: " + resposta);
+            })
+            .catch(function (erro) {
+                console.log("Erro de pemissão de Notificação: " + erro);
+            })
     }
 
     render() {
@@ -72,15 +72,11 @@ class Dashboard extends Component {
                             </select>
 
                             <Link to="/Cadastros" className="dashboard__lista--select-button">
-                                <select className="dashboard__lista--select">
-                                    <option value="0" className="dashboard__lista--select-option">Cadastrar</option>
-                                </select>
+                                <button className="dashboard__lista--select">Pagina de Cadastros</button>
                             </Link>
 
                             <Link to="/Localizacoes" className="dashboard__lista--select-button">
-                                <select className="dashboard__lista--select">
-                                    <option value="0" className="dashboard__lista--select-option">Localizacoes</option>
-                                </select>
+                                <button className="dashboard__lista--select">Adicionar Localização</button>
                             </Link>
 
                         </div>

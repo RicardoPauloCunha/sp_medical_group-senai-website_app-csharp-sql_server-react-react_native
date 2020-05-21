@@ -10,6 +10,8 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
 {
     public class MedicosRepositorio : IMedicosRepositorio
     {
+        private readonly string stringConexao = "Data source =.\\SQLSERVERJIROS;Initial Catalog=SpMedicalGroup; User id=sa; pwd=ji_15?27101001_roS";
+
         // Altera um medico
         public void Alterar(Medicos medicoRecebido)
         {
@@ -88,13 +90,11 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             return medicoLog;
         }
 
-        private readonly string StringConexao = "Server=tcp:serversenaircd.database.windows.net,1433;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA;Persist Security Info=False;User ID=ricardopaulo;Password=Dcrp246dragon;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
         // Lista Medicos com includes feito na "mão"
         public List<Medicos> ListarMedicosInclude()
         {
             List<Medicos> listaMedicos = new List<Medicos>();
-            using (SqlConnection con = new SqlConnection(StringConexao))
+            using (SqlConnection con = new SqlConnection(stringConexao))
             {
                 string select = "SELECT M.ID, M.NOME, M.CRM, E.NOME AS ESPECIALIDADE, U.EMAIL AS USUARIO, C.NOME_FANTASIA AS CLINICA FROM MEDICOS M JOIN ESPECIALIDADES E ON M.ID_ESPECIALIDADE = E.ID JOIN USUARIOS U ON M.ID_USUARIO = U.ID JOIN CLINICAS C ON M.ID_CLINICA = C.ID;";
                 con.Open();

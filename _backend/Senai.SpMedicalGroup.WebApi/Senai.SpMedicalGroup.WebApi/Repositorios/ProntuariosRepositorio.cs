@@ -10,6 +10,8 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
 {
     public class ProntuariosRepositorio : IProntuariosRepositorio
     {
+        private readonly string stringConexao = "Data source =.\\SQLSERVERJIROS;Initial Catalog=SpMedicalGroup; User id=sa; pwd=ji_15?27101001_roS";
+
         // Altera um Prontuario
         public void Alterar(Prontuarios prontuarioRecebido)
         {
@@ -66,12 +68,10 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             return prontuarios;
         }
 
-        private readonly string StringConexao = "Server=tcp:serversenaircd.database.windows.net,1433;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA;Persist Security Info=False;User ID=ricardopaulo;Password=Dcrp246dragon;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
         public List<Prontuarios> ListarProntuariosInclude()
         {
             List<Prontuarios> listaProntuarios = new List<Prontuarios>();
-            using (SqlConnection con = new SqlConnection(StringConexao))
+            using (SqlConnection con = new SqlConnection(stringConexao))
             {
                 string select = "SELECT P.ID, P.NOME, P.RG, P.CPF, P.DATA_NASCIMENTO, P.TELEFONE, U.EMAIL AS USUARIO, P.RUA, P.BAIRRO, P.CIDADE, P.ESTADO, P.CEP FROM PRONTUARIOS P JOIN USUARIOS U ON P.ID_USUARIO = U.ID;";
                 con.Open();

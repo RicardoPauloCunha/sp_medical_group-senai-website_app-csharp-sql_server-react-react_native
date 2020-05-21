@@ -10,6 +10,8 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
 {
     public class ConsultasRepositorio : IConsultasRepositorio
     {
+        private readonly string stringConexao = "Data source =.\\SQLSERVERJIROS;Initial Catalog=SpMedicalGroup; User id=sa; pwd=ji_15?27101001_roS";
+
         // Atualiza uma Consulta
         public void Alterar(Consultas consultaRecebida)
         {
@@ -122,14 +124,12 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             return consultas;
         }
 
-        private readonly string StringConexao = "Server=tcp:serversenaircd.database.windows.net,1433;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA;Persist Security Info=False;User ID=ricardopaulo;Password=Dcrp246dragon;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
         // lista todas as consultas, com prontuario, medico e situacao da consulta
         public List<Consultas> ListarConsultasInclude()
         {
             List<Consultas> listaConsultas = new List<Consultas>();
 
-            using (SqlConnection con = new SqlConnection(StringConexao))
+            using (SqlConnection con = new SqlConnection(stringConexao))
             {
                 string select = "SELECT C.ID, P.NOME AS PRONTUARIO, M.NOME AS MEDICO, C.DATA_AGENDADA, C.HORA_AGENDADA, S.NOME AS SITUACAO, C.DESCRICAO FROM CONSULTAS C JOIN PRONTUARIOS P ON C.ID_PRONTUARIO = P.ID JOIN MEDICOS M ON C.ID_MEDICO = M.ID JOIN SITUACAO S ON C.ID_SITUACAO = S.ID;";
                 con.Open();
@@ -181,7 +181,7 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             //lista consultas de medicos logados
             if (usuarioTipo == 2)
             {
-                using (SqlConnection con = new SqlConnection(StringConexao))
+                using (SqlConnection con = new SqlConnection(stringConexao))
                 {
                     string select = "SELECT C.ID, P.NOME AS PRONTUARIO, M.NOME AS MEDICO, C.DATA_AGENDADA, C.HORA_AGENDADA, S.NOME AS SITUACAO, C.DESCRICAO FROM CONSULTAS C JOIN PRONTUARIOS P ON C.ID_PRONTUARIO = P.ID JOIN MEDICOS M ON C.ID_MEDICO = M.ID JOIN SITUACAO S ON C.ID_SITUACAO = S.ID WHERE C.ID_MEDICO = @IDUSUARIOLOG;";
                     con.Open();
@@ -229,7 +229,7 @@ namespace Senai.SpMedicalGroup.WebApi.Repositorios
             // lista consultas de pacientes logados
             else if (usuarioTipo == 3)
             {
-                using (SqlConnection con = new SqlConnection(StringConexao))
+                using (SqlConnection con = new SqlConnection(stringConexao))
                 {
                     string select = "SELECT C.ID, P.NOME AS PRONTUARIO, M.NOME AS MEDICO, C.DATA_AGENDADA, C.HORA_AGENDADA, S.NOME AS SITUACAO, C.DESCRICAO FROM CONSULTAS C JOIN PRONTUARIOS P ON C.ID_PRONTUARIO = P.ID JOIN MEDICOS M ON C.ID_MEDICO = M.ID JOIN SITUACAO S ON C.ID_SITUACAO = S.ID WHERE C.ID_PRONTUARIO = @IDUSUARIOLOG;";
                     con.Open();

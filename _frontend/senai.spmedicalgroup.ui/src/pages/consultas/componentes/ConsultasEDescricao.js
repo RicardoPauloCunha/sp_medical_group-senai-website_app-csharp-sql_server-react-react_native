@@ -106,8 +106,8 @@ class ConsultasMedico extends Component {
                                             </tbody>
                                         </table>
                                         <form className="consultas__consulta--item-infos-desc consultas__consulta--item-infos-desc-displaynone" consulta-id={consulta.id} onSubmit={this.incluirDescricao.bind(this)}>
-                                            <textarea className="consultas__consulta--item-input-desc" placeholder="Incluir Descrição" value={this.state.descricao} onChange={this.atualizarDescricao.bind(this)}></textarea>
-                                            <button type="submit" className="style__button--blue">Incluir Descrição</button>
+                                            <textarea className="consultas__consulta--item-input-desc" placeholder="Coloque a nova descrição" value={this.state.descricao} onChange={this.atualizarDescricao.bind(this)}></textarea>
+                                            <button type="submit" className="style__button--blue">Alterar Descrição</button>
                                         </form>
                                     </div>
                                 </div>
@@ -147,8 +147,8 @@ class ConsultasMedico extends Component {
 
                                             {/* <IncluirDescricao idConsulta={consulta.id}/> */}
                                             <form className="consultas__consulta--item-infos-desc" consulta-id={consulta.id} onSubmit={this.incluirDescricao.bind(this)}>
-                                                <textarea className="consultas__consulta--item-input-desc" placeholder="Incluir Descrição" value={this.state.descricao} onChange={this.atualizarDescricao.bind(this)}></textarea>
-                                                <button type="submit" className="style__button--blue">Incluir Descrição</button>
+                                                <textarea className="consultas__consulta--item-input-desc" placeholder="Coloque a nova descrição" value={this.state.descricao} onChange={this.atualizarDescricao.bind(this)}></textarea>
+                                                <button type="submit" className="style__button--blue">Alterar Descrição</button>
                                             </form>
 
                                         </div>

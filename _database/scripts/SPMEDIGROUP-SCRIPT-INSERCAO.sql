@@ -1,4 +1,6 @@
 
+USE SpMedicalGroup;
+GO
 
 INSERT INTO TIPOS_USUARIOS
 VALUES ('Administrador')
@@ -60,10 +62,10 @@ VALUES ('Agendada')
 , ('Cancelada');
 
 INSERT INTO CONSULTAS (ID_PRONTUARIO, ID_MEDICO, DATA_AGENDADA, HORA_AGENDADA, ID_SITUACAO, DESCRICAO)
-VALUES (15, 3, '2019-01-20', '15:00:00', 2, 'Consulta regular')
-, (10, 2, '2019-01-20', '10:00:00', 3, 'Consulta regular')
-, (11, 2, '2019-01-20', '11:00:00', 2, 'Consulta regular')
-, (3, 2, '2019-01-20', '10:00:00', 2, 'Consulta regular')
-, (12, 1, '2019-01-20', '11:45:00', 3, 'Consulta regular')
-, (15, 3, '2019-01-20', '15:00:00', 1, 'Consulta regular')
-, (11, 1, '2019-01-20', '11:45:00', 1, 'Consulta regular');
+VALUES (3, 3, '2019-01-20', '15:00:00', 2, 'Consulta regular')
+, (6, 2, '2019-01-20', '10:00:00', 3, 'Consulta regular')
+, (7, 2, '2019-01-20', '11:00:00', 2, 'Consulta regular')
+, (2, 2, '2019-01-20', '10:00:00', 2, 'Consulta regular')
+, (1, 1, '2019-01-20', '11:45:00', 3, 'Consulta regular')
+, (3, 3, '2019-01-20', '15:00:00', 1, 'Consulta regular')
+, (5, 1, '2019-01-20', '11:45:00', 1, 'Consulta regular');

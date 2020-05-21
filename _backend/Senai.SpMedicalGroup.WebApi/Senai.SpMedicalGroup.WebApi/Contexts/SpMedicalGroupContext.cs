@@ -28,9 +28,7 @@ namespace Senai.SpMedicalGroup.WebApi.Domains
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=tcp:serversenaircd.database.windows.net,1433;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA;Persist Security Info=False;User ID=ricardopaulo;Password=Dcrp246dragon;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-                //optionsBuilder.UseSqlServer("Data source =.\\SqlExpress;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA; User id=sa;pwd=132");
-                //optionsBuilder.UseSqlServer("Data source =.\\;Initial Catalog=SENAI_SPMEDICALGROUP_MANHA; Integrated Security=True");
+                optionsBuilder.UseSqlServer("Data source =.\\SQLSERVERJIROS;Initial Catalog=SpMedicalGroup; User id=sa; pwd=ji_15?27101001_roS");
             }
         }
 
